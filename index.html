@@ -3,23 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>EKO Analytics & Research | Turning Data into Actionable Insights</title>
 
-    <title>
-        Administrator | EKO Analytics & Research
-    </title>
-
-    <meta name="robots" content="noindex,nofollow">
+    <meta name="description"
+          content="EKO Analytics & Research provides research, data analytics, market intelligence, monitoring and evaluation, business insights and professional reporting.">
 
     <!-- GOOGLE FONTS -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
           rel="stylesheet">
@@ -31,1407 +24,918 @@
     <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- MAIN CSS -->
+    <!-- MAIN STYLESHEET -->
     <link rel="stylesheet" href="style.css">
-
-    <style>
-
-        body {
-            background: #f4f7f9;
-        }
-
-        .admin-page {
-            min-height: 100vh;
-            padding: 120px 20px 70px;
-        }
-
-        .admin-container {
-            width: min(94%, 1100px);
-            margin: auto;
-        }
-
-        .admin-header {
-            margin-bottom: 30px;
-        }
-
-        .admin-header span {
-            display: inline-block;
-            color: #087f5b;
-            font-weight: 800;
-            font-size: .72rem;
-            letter-spacing: .12em;
-            margin-bottom: 10px;
-        }
-
-        .admin-header h1 {
-            font-family: "Playfair Display", serif;
-            color: #0b1f3a;
-            font-size: clamp(2rem, 5vw, 3.4rem);
-            margin: 0 0 12px;
-        }
-
-        .admin-header p {
-            max-width: 720px;
-            color: #687789;
-            line-height: 1.7;
-        }
-
-        .admin-card {
-            background: white;
-            border: 1px solid #dfe6ed;
-            border-radius: 20px;
-            padding: 28px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(11,31,58,.05);
-        }
-
-        .admin-card h2 {
-            color: #0b1f3a;
-            font-family: "Playfair Display", serif;
-            margin: 0 0 8px;
-        }
-
-        .admin-card > p {
-            color: #687789;
-            margin-bottom: 22px;
-        }
-
-        .admin-form {
-            display: grid;
-            gap: 18px;
-        }
-
-        .admin-form-group {
-            display: grid;
-            gap: 7px;
-        }
-
-        .admin-form-group label {
-            font-weight: 700;
-            color: #0b1f3a;
-            font-size: .86rem;
-        }
-
-        .admin-form-group input,
-        .admin-form-group select {
-            width: 100%;
-            padding: 14px 15px;
-            border: 1px solid #ced8e1;
-            border-radius: 10px;
-            font: inherit;
-            background: white;
-            color: #0b1f3a;
-        }
-
-        .admin-form-group input:focus,
-        .admin-form-group select:focus {
-            outline: none;
-            border-color: #087f5b;
-            box-shadow: 0 0 0 3px rgba(8,127,91,.1);
-        }
-
-        .admin-button {
-            border: 0;
-            border-radius: 10px;
-            padding: 14px 20px;
-            background: #087f5b;
-            color: white;
-            font-weight: 800;
-            cursor: pointer;
-            font: inherit;
-        }
-
-        .admin-button:hover {
-            opacity: .92;
-        }
-
-        .admin-button.secondary {
-            background: #0b1f3a;
-        }
-
-        .admin-button.danger {
-            background: #a52a2a;
-            padding: 10px 13px;
-            font-size: .78rem;
-        }
-
-        .admin-button.small {
-            padding: 10px 13px;
-            font-size: .78rem;
-        }
-
-        .admin-toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 22px;
-            flex-wrap: wrap;
-        }
-
-        .admin-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #0b1f3a;
-            font-weight: 700;
-        }
-
-        .admin-user i {
-            color: #087f5b;
-        }
-
-        .admin-status {
-            display: none;
-            margin-top: 18px;
-            padding: 14px 16px;
-            border-radius: 10px;
-            font-size: .86rem;
-            line-height: 1.5;
-        }
-
-        .admin-status.show {
-            display: block;
-        }
-
-        .admin-status.success {
-            background: #eaf8f2;
-            color: #086246;
-            border: 1px solid #b8e5d3;
-        }
-
-        .admin-status.error {
-            background: #fff0f0;
-            color: #922;
-            border: 1px solid #efc6c6;
-        }
-
-        .admin-status.info {
-            background: #edf4fa;
-            color: #274a68;
-            border: 1px solid #ccdce9;
-        }
-
-        .project-information {
-            padding: 16px;
-            border-radius: 12px;
-            background: #f6f8fa;
-            border-left: 4px solid #c79a3b;
-            margin-top: 15px;
-        }
-
-        .project-information strong {
-            display: block;
-            color: #0b1f3a;
-            margin-bottom: 5px;
-        }
-
-        .project-information span {
-            color: #687789;
-            font-size: .82rem;
-        }
-
-        .file-list {
-            display: grid;
-            gap: 13px;
-        }
-
-        .admin-file {
-            border: 1px solid #dfe6ed;
-            border-radius: 13px;
-            padding: 15px;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .admin-file-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 10px;
-            background: #edf6f2;
-            color: #087f5b;
-            display: grid;
-            place-items: center;
-            font-size: 1.2rem;
-        }
-
-        .admin-file-info {
-            min-width: 0;
-        }
-
-        .admin-file-info strong {
-            display: block;
-            color: #0b1f3a;
-            overflow-wrap: anywhere;
-            margin-bottom: 4px;
-        }
-
-        .admin-file-info small {
-            color: #7a8794;
-            overflow-wrap: anywhere;
-        }
-
-        .admin-file-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .admin-file-actions a {
-            text-decoration: none;
-            background: #0b1f3a;
-            color: white;
-            border-radius: 8px;
-            padding: 10px 12px;
-            font-size: .76rem;
-            font-weight: 700;
-        }
-
-        .admin-empty {
-            padding: 35px 20px;
-            text-align: center;
-            color: #7a8794;
-            border: 1px dashed #ccd6df;
-            border-radius: 14px;
-        }
-
-        .admin-empty i {
-            display: block;
-            font-size: 2rem;
-            color: #c79a3b;
-            margin-bottom: 12px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .admin-back {
-            display: inline-flex;
-            gap: 8px;
-            align-items: center;
-            text-decoration: none;
-            color: #0b1f3a;
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 700px) {
-
-            .admin-page {
-                padding-top: 70px;
-            }
-
-            .admin-card {
-                padding: 20px;
-            }
-
-            .admin-file {
-                grid-template-columns: auto 1fr;
-            }
-
-            .admin-file-actions {
-                grid-column: 1 / -1;
-            }
-
-        }
-
-    </style>
-
 </head>
 
 
-<body>
+<body data-page="home">
 
 
-<main class="admin-page">
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
-    <div class="admin-container">
+<nav class="site-nav">
 
+    <div class="nav-wrap">
 
-        <a href="index.html"
-           class="admin-back">
+        <a class="brand" href="index.html">
 
-            <i class="fas fa-arrow-left"></i>
-            Return to EKO Website
+            <span class="brand-mark">
+                EKO
+            </span>
+
+            <span class="brand-copy">
+
+                <strong>
+                    EKO Analytics &amp; Research
+                </strong>
+
+                <small>
+                    Turning Data into Actionable Insights
+                </small>
+
+            </span>
 
         </a>
 
 
-        <header class="admin-header">
+        <button class="nav-toggle"
+                id="navToggle"
+                aria-label="Open navigation">
 
-            <span>
-                RESTRICTED AREA
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+
+        <div class="nav-links"
+             id="navLinks">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="projects.html">
+                Projects
+            </a>
+
+            <a href="insights.html">
+                Insights
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a class="nav-cta"
+               href="contact.html#consultation">
+
+                Request Consultation
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-grid">
+
+
+        <div class="hero-copy">
+
+            <span class="eyebrow">
+                RESEARCH • ANALYTICS • DECISION SUPPORT
             </span>
 
+
             <h1>
-                EKO Administrator
+
+                Turning Data into
+
+                <span>
+                    Actionable Insights
+                </span>
+
             </h1>
 
-            <p>
-                Manage project resources for EKO Analytics &amp; Research.
-                Files can be organised by project and made available
-                automatically through the relevant project pages.
-            </p>
-
-        </header>
-
-
-
-        <!-- =====================================================
-             LOGIN
-        ====================================================== -->
-
-        <section class="admin-card"
-                 id="loginSection">
-
-            <h2>
-                Administrator Sign In
-            </h2>
 
             <p>
-                Sign in using your authorised Supabase administrator account.
+                EKO Analytics &amp; Research helps organisations make
+                stronger decisions through structured research,
+                data analysis, market intelligence and clear
+                professional reporting.
             </p>
 
 
-            <div class="admin-form">
+            <div class="hero-actions">
 
-                <div class="admin-form-group">
+                <a class="btn primary"
+                   href="services.html">
 
-                    <label for="adminEmail">
-                        Email Address
-                    </label>
+                    <i class="fas fa-chart-line"></i>
 
-                    <input type="email"
-                           id="adminEmail"
-                           autocomplete="email"
-                           placeholder="Administrator email">
+                    Explore Services
 
-                </div>
+                </a>
 
 
-                <div class="admin-form-group">
+                <a class="btn ghost"
+                   href="projects.html">
 
-                    <label for="adminPassword">
-                        Password
-                    </label>
+                    <i class="fas fa-folder-open"></i>
 
-                    <input type="password"
-                           id="adminPassword"
-                           autocomplete="current-password"
-                           placeholder="Password">
+                    View Projects
 
-                </div>
-
-
-                <button class="admin-button"
-                        id="loginButton">
-
-                    <i class="fas fa-right-to-bracket"></i>
-                    Sign In
-
-                </button>
+                </a>
 
             </div>
 
 
-            <div id="loginStatus"
-                 class="admin-status">
-            </div>
+            <div class="hero-proof">
 
-        </section>
+                <div>
 
-
-
-        <!-- =====================================================
-             DASHBOARD
-        ====================================================== -->
-
-        <div id="adminDashboard"
-             class="hidden">
-
-
-            <section class="admin-card">
-
-                <div class="admin-toolbar">
-
-                    <div class="admin-user">
-
-                        <i class="fas fa-circle-check"></i>
-
-                        <span id="signedInUser">
-                            Administrator
-                        </span>
-
-                    </div>
-
-
-                    <button class="admin-button secondary small"
-                            id="logoutButton">
-
-                        <i class="fas fa-right-from-bracket"></i>
-                        Sign Out
-
-                    </button>
-
-                </div>
-
-
-                <h2>
-                    Project Manager
-                </h2>
-
-                <p>
-                    Select the EKO project you want to manage.
-                </p>
-
-
-                <div class="admin-form-group">
-
-                    <label for="projectSelector">
-                        Select Project
-                    </label>
-
-
-                    <select id="projectSelector">
-
-                        <option value="project-01">
-                            Project 01 — SME Sales & Customer Performance Analysis
-                        </option>
-
-                        <option value="project-02">
-                            Project 02 — Customer Satisfaction & Service Quality Analysis
-                        </option>
-
-                        <option value="project-03">
-                            Project 03 — Youth Empowerment Programme M&E Dashboard
-                        </option>
-
-                        <option value="project-04">
-                            Project 04 — Consumer Purchasing Behaviour & Market Opportunity Study
-                        </option>
-
-                        <option value="project-05">
-                            Project 05 — Youth Employment & Skills Development Analysis
-                        </option>
-
-                        <option value="general">
-                            General EKO Materials
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="project-information">
-
-                    <strong id="selectedProjectTitle">
-                        Project 01 — SME Sales & Customer Performance Analysis
+                    <strong>
+                        Research
                     </strong>
 
-                    <span id="selectedProjectPath">
-                        Storage folder: eko/project-01/
+                    <span>
+                        Evidence-led inquiry
                     </span>
 
                 </div>
 
-            </section>
 
+                <div>
 
+                    <strong>
+                        Analytics
+                    </strong>
 
-            <!-- =================================================
-                 UPLOAD
-            ================================================== -->
-
-            <section class="admin-card">
-
-                <h2>
-                    Upload Project Files
-                </h2>
-
-                <p>
-                    You may select one or several files at the same time.
-                </p>
-
-
-                <div class="admin-form">
-
-                    <div class="admin-form-group">
-
-                        <label for="projectFiles">
-                            Select Files
-                        </label>
-
-                        <input type="file"
-                               id="projectFiles"
-                               multiple
-                               accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.txt,.jpg,.jpeg,.png,.webp">
-
-                    </div>
-
-
-                    <button class="admin-button"
-                            id="uploadButton">
-
-                        <i class="fas fa-cloud-arrow-up"></i>
-                        Upload to Selected Project
-
-                    </button>
+                    <span>
+                        Data to insight
+                    </span>
 
                 </div>
 
 
-                <div id="uploadStatus"
-                     class="admin-status">
-                </div>
+                <div>
 
-            </section>
+                    <strong>
+                        Reporting
+                    </strong>
 
-
-
-            <!-- =================================================
-                 FILE MANAGER
-            ================================================== -->
-
-            <section class="admin-card">
-
-                <div class="admin-toolbar">
-
-                    <div>
-
-                        <h2>
-                            Project Files
-                        </h2>
-
-                        <p style="margin:5px 0 0;color:#687789;">
-                            Files currently stored for the selected project.
-                        </p>
-
-                    </div>
-
-
-                    <button class="admin-button secondary small"
-                            id="refreshButton">
-
-                        <i class="fas fa-rotate"></i>
-                        Refresh
-
-                    </button>
+                    <span>
+                        Clear recommendations
+                    </span>
 
                 </div>
 
-
-                <div id="projectFileList"
-                     class="file-list">
-
-                    <div class="admin-empty">
-
-                        <i class="fas fa-spinner fa-spin"></i>
-
-                        Loading project files...
-
-                    </div>
-
-                </div>
-
-            </section>
-
+            </div>
 
         </div>
 
 
+
+        <!-- ANALYTICAL APPROACH -->
+
+        <div class="hero-panel">
+
+            <span class="panel-label">
+                EKO ANALYTICAL APPROACH
+            </span>
+
+
+            <div class="process-wheel">
+
+                <div class="wheel-center">
+                    EKO
+                </div>
+
+                <div class="wheel-item w1">
+                    Data
+                </div>
+
+                <div class="wheel-item w2">
+                    Research
+                </div>
+
+                <div class="wheel-item w3">
+                    Analysis
+                </div>
+
+                <div class="wheel-item w4">
+                    Insight
+                </div>
+
+                <div class="wheel-item w5">
+                    Action
+                </div>
+
+            </div>
+
+
+            <p>
+                Good decisions begin with good evidence.
+            </p>
+
+        </div>
+
     </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     SERVICES INTRODUCTION
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            WHAT WE DO
+        </span>
+
+
+        <h2>
+            From questions to evidence,
+            and evidence to decisions.
+        </h2>
+
+
+        <p>
+            EKO supports organisations that need reliable research,
+            clearer performance information and practical recommendations.
+        </p>
+
+    </div>
+
+
+
+    <div class="service-grid">
+
+
+        <!-- RESEARCH -->
+
+        <article class="service-card">
+
+            <i class="fas fa-magnifying-glass-chart"></i>
+
+            <h3>
+                Research &amp; Analysis
+            </h3>
+
+            <p>
+                Desk research, field research support,
+                literature reviews, survey analysis and
+                structured evidence synthesis.
+            </p>
+
+            <a href="services.html#research">
+                Learn more →
+            </a>
+
+        </article>
+
+
+
+        <!-- ANALYTICS -->
+
+        <article class="service-card">
+
+            <i class="fas fa-chart-column"></i>
+
+            <h3>
+                Data Analytics
+            </h3>
+
+            <p>
+                Data preparation, KPI analysis, dashboards,
+                performance analysis and management insights.
+            </p>
+
+            <a href="services.html#analytics">
+                Learn more →
+            </a>
+
+        </article>
+
+
+
+        <!-- MARKET INTELLIGENCE -->
+
+        <article class="service-card">
+
+            <i class="fas fa-store"></i>
+
+            <h3>
+                Market Intelligence
+            </h3>
+
+            <p>
+                Market research, competitor analysis,
+                customer insight and opportunity assessment.
+            </p>
+
+            <a href="services.html#market">
+                Learn more →
+            </a>
+
+        </article>
+
+
+
+        <!-- M&E -->
+
+        <article class="service-card">
+
+            <i class="fas fa-clipboard-check"></i>
+
+            <h3>
+                Monitoring &amp; Evaluation Support
+            </h3>
+
+            <p>
+                Indicator frameworks, reporting support,
+                programme monitoring and evidence-based learning.
+            </p>
+
+            <a href="services.html#me">
+                Learn more →
+            </a>
+
+        </article>
+
+
+
+        <!-- REPORTING -->
+
+        <article class="service-card">
+
+            <i class="fas fa-file-lines"></i>
+
+            <h3>
+                Professional Reporting
+            </h3>
+
+            <p>
+                Analytical reports, executive summaries,
+                research briefs, presentations and
+                decision-ready documents.
+            </p>
+
+            <a href="services.html#reporting">
+                Learn more →
+            </a>
+
+        </article>
+
+
+
+        <!-- BUSINESS INSIGHTS -->
+
+        <article class="service-card">
+
+            <i class="fas fa-lightbulb"></i>
+
+            <h3>
+                Business Insights
+            </h3>
+
+            <p>
+                Structured analysis of sales, customers,
+                operations and performance to support
+                practical business decisions.
+            </p>
+
+            <a href="services.html#business">
+                Learn more →
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURED PROJECT
+===================================================== -->
+
+<section class="section alt">
+
+    <div class="split">
+
+
+        <div>
+
+            <span class="eyebrow">
+                FEATURED CASE STUDY
+            </span>
+
+
+            <h2>
+                Project 01:
+                SME Sales &amp; Customer Performance Analysis
+            </h2>
+
+
+            <p>
+                A portfolio case study demonstrating how sales
+                and customer data can be transformed into KPIs,
+                trends, segments, visualisations and practical
+                business recommendations.
+            </p>
+
+
+            <div class="tag-row">
+
+                <span>
+                    Excel
+                </span>
+
+                <span>
+                    Sales Analysis
+                </span>
+
+                <span>
+                    Customer Analysis
+                </span>
+
+                <span>
+                    Business Intelligence
+                </span>
+
+            </div>
+
+
+            <div class="hero-actions">
+
+                <a class="btn primary"
+                   href="project-01.html">
+
+                    Explore Project 01
+
+                </a>
+
+
+                <a class="btn outline-dark"
+                   href="projects.html">
+
+                    All Projects
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROJECT DASHBOARD PREVIEW -->
+
+        <div class="case-preview">
+
+            <div class="preview-top">
+
+                <span>
+                    PROJECT 01
+                </span>
+
+                <strong>
+                    SME PERFORMANCE
+                </strong>
+
+            </div>
+
+
+            <div class="kpi-mini">
+
+                <div>
+
+                    <small>
+                        Revenue
+                    </small>
+
+                    <strong>
+                        KES 7.05M
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Transactions
+                    </small>
+
+                    <strong>
+                        384
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Units
+                    </small>
+
+                    <strong>
+                        963
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Avg. Transaction
+                    </small>
+
+                    <strong>
+                        KES 18.4K
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-bars">
+
+                <span style="height:42%"></span>
+                <span style="height:58%"></span>
+                <span style="height:64%"></span>
+                <span style="height:55%"></span>
+                <span style="height:72%"></span>
+                <span style="height:88%"></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CLIENT GROUPS
+===================================================== -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            WHO WE SUPPORT
+        </span>
+
+
+        <h2>
+            Built for organisations that need clearer evidence.
+        </h2>
+
+    </div>
+
+
+
+    <div class="client-grid">
+
+
+        <div>
+
+            <i class="fas fa-building"></i>
+
+            <strong>
+                SMEs &amp; Businesses
+            </strong>
+
+            <span>
+                Sales, customers, markets and performance.
+            </span>
+
+        </div>
+
+
+
+        <div>
+
+            <i class="fas fa-hand-holding-heart"></i>
+
+            <strong>
+                NGOs &amp; Development Organisations
+            </strong>
+
+            <span>
+                Research, M&amp;E, reporting and learning.
+            </span>
+
+        </div>
+
+
+
+        <div>
+
+            <i class="fas fa-graduation-cap"></i>
+
+            <strong>
+                Education &amp; Research Institutions
+            </strong>
+
+            <span>
+                Research support, analysis and professional reports.
+            </span>
+
+        </div>
+
+
+
+        <div>
+
+            <i class="fas fa-briefcase"></i>
+
+            <strong>
+                Consulting &amp; Research Firms
+            </strong>
+
+            <span>
+                Flexible research, data and reporting support.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOUNDER
+===================================================== -->
+
+<section class="section founder-teaser">
+
+    <div class="split">
+
+
+        <div class="founder-visual">
+
+            <span class="founder-initials">
+                EKO
+            </span>
+
+            <small>
+                FOUNDER-LED CONSULTANCY
+            </small>
+
+        </div>
+
+
+
+        <div>
+
+            <span class="eyebrow">
+                ABOUT THE FOUNDER
+            </span>
+
+
+            <h2>
+                Edwin Kuchio Okello
+            </h2>
+
+
+            <h3>
+                Founder, EKO Analytics &amp; Research
+            </h3>
+
+
+            <p>
+                Edwin brings an interdisciplinary academic background
+                in Philosophy and Theology together with international
+                and cross-cultural experience across Africa.
+                His work emphasises research, critical analysis,
+                structured reasoning, professional writing and
+                clear communication.
+            </p>
+
+
+            <p>
+                Through EKO, he is building practical expertise
+                in data analytics, market research, monitoring
+                and evaluation, business intelligence and
+                decision-support services.
+            </p>
+
+
+            <a class="text-link"
+               href="about.html#founder">
+
+                Read the founder profile →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALL TO ACTION
+===================================================== -->
+
+<section class="cta-band">
+
+    <div>
+
+        <span class="eyebrow light">
+            START A CONVERSATION
+        </span>
+
+
+        <h2>
+            Have a research, analytics or reporting need?
+        </h2>
+
+
+        <p>
+            Tell us the decision you are trying to make.
+            EKO can help structure the evidence around it.
+        </p>
+
+    </div>
+
+
+    <a class="btn gold"
+       href="contact.html#consultation">
+
+        Request a Consultation
+
+    </a>
+
+</section>
+
 
 </main>
 
 
 
-<script>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
+<footer class="site-footer">
 
-/* =========================================================
-   SUPABASE
-========================================================= */
+    <div class="footer-grid">
 
-const SUPABASE_URL =
-    "https://cueajmzcmawvcbpwuyhi.supabase.co";
 
+        <div>
 
-const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
+            <div class="footer-brand">
 
+                <span>
+                    EKO
+                </span>
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+                <strong>
+                    EKO Analytics &amp; Research
+                </strong>
 
+            </div>
 
-const EKO_BUCKET =
-    "eko";
 
-
-/* =========================================================
-   PROJECT DEFINITIONS
-========================================================= */
-
-const PROJECTS = {
-
-    "project-01": {
-        title:
-            "Project 01 — SME Sales & Customer Performance Analysis"
-    },
-
-    "project-02": {
-        title:
-            "Project 02 — Customer Satisfaction & Service Quality Analysis"
-    },
-
-    "project-03": {
-        title:
-            "Project 03 — Youth Empowerment Programme M&E Dashboard"
-    },
-
-    "project-04": {
-        title:
-            "Project 04 — Consumer Purchasing Behaviour & Market Opportunity Study"
-    },
-
-    "project-05": {
-        title:
-            "Project 05 — Youth Employment & Skills Development Analysis"
-    },
-
-    "general": {
-        title:
-            "General EKO Materials"
-    }
-
-};
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const loginSection =
-    document.getElementById("loginSection");
-
-const adminDashboard =
-    document.getElementById("adminDashboard");
-
-const loginButton =
-    document.getElementById("loginButton");
-
-const logoutButton =
-    document.getElementById("logoutButton");
-
-const projectSelector =
-    document.getElementById("projectSelector");
-
-const uploadButton =
-    document.getElementById("uploadButton");
-
-const refreshButton =
-    document.getElementById("refreshButton");
-
-const projectFileList =
-    document.getElementById("projectFileList");
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function showStatus(id, message, type) {
-
-    const element =
-        document.getElementById(id);
-
-    element.textContent =
-        message;
-
-    element.className =
-        "admin-status show " + type;
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-loginButton.addEventListener(
-    "click",
-    login
-);
-
-
-async function login() {
-
-    const email =
-        document.getElementById("adminEmail")
-        .value
-        .trim();
-
-    const password =
-        document.getElementById("adminPassword")
-        .value;
-
-
-    if (!email || !password) {
-
-        showStatus(
-            "loginStatus",
-            "Please enter your administrator email and password.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    showStatus(
-        "loginStatus",
-        "Signing in...",
-        "info"
-    );
-
-
-    const { data, error } =
-        await supabaseClient.auth
-        .signInWithPassword({
-            email,
-            password
-        });
-
-
-    if (error) {
-
-        showStatus(
-            "loginStatus",
-            error.message,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (data.session) {
-
-        activateDashboard(
-            data.session.user
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SESSION
-========================================================= */
-
-async function checkSession() {
-
-    const { data } =
-        await supabaseClient.auth
-        .getSession();
-
-
-    if (data.session) {
-
-        activateDashboard(
-            data.session.user
-        );
-
-    }
-
-}
-
-
-function activateDashboard(user) {
-
-    loginSection.classList.add(
-        "hidden"
-    );
-
-    adminDashboard.classList.remove(
-        "hidden"
-    );
-
-
-    document.getElementById(
-        "signedInUser"
-    ).textContent =
-        user.email || "Administrator";
-
-
-    updateSelectedProject();
-
-    loadProjectFiles();
-
-}
-
-
-checkSession();
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-logoutButton.addEventListener(
-    "click",
-    async function () {
-
-        await supabaseClient.auth
-            .signOut();
-
-
-        adminDashboard.classList.add(
-            "hidden"
-        );
-
-
-        loginSection.classList.remove(
-            "hidden"
-        );
-
-
-        document.getElementById(
-            "adminPassword"
-        ).value = "";
-
-
-        showStatus(
-            "loginStatus",
-            "You have been signed out.",
-            "success"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   PROJECT SELECTOR
-========================================================= */
-
-projectSelector.addEventListener(
-    "change",
-    function () {
-
-        updateSelectedProject();
-
-        loadProjectFiles();
-
-    }
-);
-
-
-function updateSelectedProject() {
-
-    const project =
-        projectSelector.value;
-
-
-    document.getElementById(
-        "selectedProjectTitle"
-    ).textContent =
-        PROJECTS[project].title;
-
-
-    document.getElementById(
-        "selectedProjectPath"
-    ).textContent =
-        "Storage folder: eko/" +
-        project +
-        "/";
-
-}
-
-
-/* =========================================================
-   SAFE FILE NAME
-========================================================= */
-
-function makeSafeFileName(fileName) {
-
-    return fileName
-        .trim()
-        .replace(/\s+/g, "-")
-        .replace(/[^a-zA-Z0-9._-]/g, "")
-        .replace(/-+/g, "-");
-
-}
-
-
-/* =========================================================
-   UPLOAD
-========================================================= */
-
-uploadButton.addEventListener(
-    "click",
-    uploadFiles
-);
-
-
-async function uploadFiles() {
-
-    const input =
-        document.getElementById(
-            "projectFiles"
-        );
-
-
-    const files =
-        input.files;
-
-
-    if (!files || files.length === 0) {
-
-        showStatus(
-            "uploadStatus",
-            "Please select at least one file.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const project =
-        projectSelector.value;
-
-
-    showStatus(
-        "uploadStatus",
-        "Uploading files...",
-        "info"
-    );
-
-
-    uploadButton.disabled =
-        true;
-
-
-    let uploaded =
-        0;
-
-    let failed =
-        0;
-
-
-    for (const file of files) {
-
-        const safeName =
-            makeSafeFileName(
-                file.name
-            );
-
-
-        const path =
-            project +
-            "/" +
-            safeName;
-
-
-        const { error } =
-            await supabaseClient.storage
-            .from(EKO_BUCKET)
-            .upload(
-                path,
-                file,
-                {
-                    upsert: true,
-                    contentType:
-                        file.type ||
-                        "application/octet-stream"
-                }
-            );
-
-
-        if (error) {
-
-            console.error(
-                "Upload error:",
-                error
-            );
-
-            failed++;
-
-        } else {
-
-            uploaded++;
-
-        }
-
-    }
-
-
-    uploadButton.disabled =
-        false;
-
-
-    input.value =
-        "";
-
-
-    if (failed === 0) {
-
-        showStatus(
-            "uploadStatus",
-            uploaded +
-            " file(s) uploaded successfully to " +
-            PROJECTS[project].title +
-            ".",
-            "success"
-        );
-
-    } else {
-
-        showStatus(
-            "uploadStatus",
-            uploaded +
-            " file(s) uploaded. " +
-            failed +
-            " file(s) failed.",
-            "error"
-        );
-
-    }
-
-
-    await loadProjectFiles();
-
-}
-
-
-/* =========================================================
-   LOAD FILES
-========================================================= */
-
-async function loadProjectFiles() {
-
-    const project =
-        projectSelector.value;
-
-
-    projectFileList.innerHTML = `
-
-        <div class="admin-empty">
-
-            <i class="fas fa-spinner fa-spin"></i>
-
-            Loading project files...
+            <p>
+                Research, analytics and decision-support services
+                for organisations that need clearer evidence
+                and better decisions.
+            </p>
 
         </div>
 
-    `;
 
 
-    const { data, error } =
-        await supabaseClient.storage
-        .from(EKO_BUCKET)
-        .list(
-            project,
-            {
-                limit: 100,
-                sortBy: {
-                    column: "created_at",
-                    order: "desc"
-                }
-            }
-        );
+        <div>
 
+            <h4>
+                Explore
+            </h4>
 
-    if (error) {
+            <a href="about.html">
+                About EKO
+            </a>
 
-        projectFileList.innerHTML = `
+            <a href="services.html">
+                Services
+            </a>
 
-            <div class="admin-empty">
+            <a href="projects.html">
+                Projects
+            </a>
 
-                <i class="fas fa-triangle-exclamation"></i>
+            <a href="insights.html">
+                Insights
+            </a>
 
-                Unable to load project files.
+        </div>
 
-            </div>
 
-        `;
 
-        console.error(error);
+        <div>
 
-        return;
+            <h4>
+                Contact
+            </h4>
 
-    }
+            <a href="mailto:edwinokello24@gmail.com">
+                edwinokello24@gmail.com
+            </a>
 
+            <a href="tel:+254143947048">
+                +254 143 947 048
+            </a>
 
-    const files =
-        (data || []).filter(
-            file =>
-                file.name &&
-                file.id
-        );
+            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+               target="_blank"
+               rel="noopener">
 
+                LinkedIn
 
-    if (files.length === 0) {
+            </a>
 
-        projectFileList.innerHTML = `
+        </div>
 
-            <div class="admin-empty">
+    </div>
 
-                <i class="fas fa-folder-open"></i>
 
-                No files have been uploaded
-                to this project yet.
 
-            </div>
+    <div class="footer-bottom">
 
-        `;
+        <span>
+            © <span id="year"></span>
+            EKO Analytics &amp; Research
+        </span>
 
-        return;
 
-    }
+        <a href="admin.html"
+           class="admin-link"
+           title="Administrator">
 
+            <i class="fas fa-lock"></i>
 
-    projectFileList.innerHTML =
-        "";
+        </a>
 
+    </div>
 
-    files.forEach(
-        file => {
+</footer>
 
-            const path =
-                project +
-                "/" +
-                file.name;
 
 
-            const { data: urlData } =
-                supabaseClient.storage
-                .from(EKO_BUCKET)
-                .getPublicUrl(path);
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "admin-file";
-
-
-            item.innerHTML = `
-
-                <div class="admin-file-icon">
-
-                    <i class="fas ${getFileIcon(file.name)}"></i>
-
-                </div>
-
-
-                <div class="admin-file-info">
-
-                    <strong>
-                        ${escapeHTML(file.name)}
-                    </strong>
-
-                    <small>
-                        ${escapeHTML(path)}
-                    </small>
-
-                </div>
-
-
-                <div class="admin-file-actions">
-
-                    <a href="${urlData.publicUrl}"
-                       target="_blank"
-                       rel="noopener noreferrer">
-
-                        <i class="fas fa-eye"></i>
-                        View
-
-                    </a>
-
-
-                    <a href="${urlData.publicUrl}"
-                       download>
-
-                        <i class="fas fa-download"></i>
-                        Download
-
-                    </a>
-
-
-                    <button
-                        class="admin-button danger"
-                        onclick="deleteProjectFile(
-                            '${escapeJS(path)}'
-                        )">
-
-                        <i class="fas fa-trash"></i>
-                        Delete
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            projectFileList.appendChild(
-                item
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   DELETE FILE
-========================================================= */
-
-async function deleteProjectFile(path) {
-
-    const confirmed =
-        confirm(
-            "Delete this file permanently?"
-        );
-
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    const { error } =
-        await supabaseClient.storage
-        .from(EKO_BUCKET)
-        .remove([
-            path
-        ]);
-
-
-    if (error) {
-
-        alert(
-            "Unable to delete file: " +
-            error.message
-        );
-
-        return;
-
-    }
-
-
-    await loadProjectFiles();
-
-}
-
-
-/* =========================================================
-   REFRESH
-========================================================= */
-
-refreshButton.addEventListener(
-    "click",
-    loadProjectFiles
-);
-
-
-/* =========================================================
-   FILE ICON
-========================================================= */
-
-function getFileIcon(name) {
-
-    const extension =
-        name.split(".")
-        .pop()
-        .toLowerCase();
-
-
-    if (extension === "pdf")
-        return "fa-file-pdf";
-
-
-    if (
-        extension === "doc" ||
-        extension === "docx"
-    )
-        return "fa-file-word";
-
-
-    if (
-        extension === "xls" ||
-        extension === "xlsx" ||
-        extension === "csv"
-    )
-        return "fa-file-excel";
-
-
-    if (
-        extension === "ppt" ||
-        extension === "pptx"
-    )
-        return "fa-file-powerpoint";
-
-
-    if (
-        extension === "jpg" ||
-        extension === "jpeg" ||
-        extension === "png" ||
-        extension === "webp"
-    )
-        return "fa-file-image";
-
-
-    return "fa-file-lines";
-
-}
-
-
-/* =========================================================
-   SECURITY HELPERS
-========================================================= */
-
-function escapeHTML(value) {
-
-    const element =
-        document.createElement("div");
-
-    element.textContent =
-        value;
-
-    return element.innerHTML;
-
-}
-
-
-function escapeJS(value) {
-
-    return value
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'");
-
-}
-
-
-</script>
+<script src="script.js"></script>
 
 
 </body>
