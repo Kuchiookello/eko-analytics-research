@@ -1,12 +1,12 @@
 /* =========================================================
    EKO ANALYTICS & RESEARCH
-   MAIN JAVASCRIPT
-   ========================================================= */
+   COMPLETE WEBSITE JAVASCRIPT
+========================================================= */
 
 
 /* =========================================================
-   SUPABASE CONFIGURATION
-   ========================================================= */
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
     "https://cueajmzcmawvcbpwuyhi.supabase.co";
@@ -14,247 +14,379 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
 
+const EKO_BUCKET =
+    "eko";
+
+const PROJECT_01_FOLDER =
+    "project-01";
+
+
 let supabaseClient = null;
 
-if (window.supabase) {
 
-    supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+if (
+    window.supabase &&
+    window.supabase.createClient
+) {
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
 
 }
 
 
 /* =========================================================
-   STORAGE CONFIGURATION
-   ========================================================= */
+   START WEBSITE
+========================================================= */
 
-const EKO_BUCKET = "eko";
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-const PROJECT_01_FOLDER = "project-01";
+        initialiseYear();
+
+        initialiseNavigation();
+
+        initialiseBackToTop();
+
+        initialiseContactForm();
+
+        initialiseProject01Files();
+
+        initialiseAdministrator();
+
+    }
+);
 
 
 /* =========================================================
-   DOM READY
-   ========================================================= */
+   COPYRIGHT YEAR
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+function initialiseYear() {
 
-    initialiseNavigation();
+    document
+        .querySelectorAll("#year")
+        .forEach(
+            function (year) {
 
-    initialiseYear();
+                year.textContent =
+                    new Date().getFullYear();
 
-    initialiseScrollEffects();
+            }
+        );
 
-    initialiseBackToTop();
-
-    initialiseProjectFilters();
-
-    initialiseFAQ();
-
-    initialiseContactForm();
-
-    initialiseAdmin();
-
-    initialiseProject01();
-
-});
+}
 
 
 /* =========================================================
    MOBILE NAVIGATION
-   ========================================================= */
+========================================================= */
 
 function initialiseNavigation() {
 
-    const navToggle =
-        document.getElementById("navToggle");
+    const toggle =
+        document.getElementById(
+            "navToggle"
+        );
 
-    const navLinks =
-        document.getElementById("navLinks");
 
-    if (!navToggle || !navLinks) {
+    const links =
+        document.getElementById(
+            "navLinks"
+        );
+
+
+    if (
+        !toggle ||
+        !links
+    ) {
+
         return;
+
     }
 
 
-    navToggle.addEventListener("click", function () {
+    /* -----------------------------
+       OPEN / CLOSE MENU
+    ----------------------------- */
 
-        navLinks.classList.toggle("active");
+    toggle.addEventListener(
+        "click",
+        function (event) {
 
-        const icon =
-            navToggle.querySelector("i");
+            event.preventDefault();
 
-        if (icon) {
-
-            if (navLinks.classList.contains("active")) {
-
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-
-            } else {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
-        }
-
-    });
+            event.stopPropagation();
 
 
-    navLinks.querySelectorAll("a")
-        .forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                navLinks.classList.remove("active");
-
-                const icon =
-                    navToggle.querySelector("i");
-
-                if (icon) {
-
-                    icon.classList.remove("fa-xmark");
-                    icon.classList.add("fa-bars");
-
-                }
-
-            });
-
-        });
+            const isOpen =
+                links.classList.toggle(
+                    "active"
+                );
 
 
-    document.addEventListener("click", function (event) {
+            toggle.setAttribute(
+                "aria-expanded",
+                isOpen
+                    ? "true"
+                    : "false"
+            );
 
-        if (
-            !navLinks.contains(event.target) &&
-            !navToggle.contains(event.target)
-        ) {
-
-            navLinks.classList.remove("active");
 
             const icon =
-                navToggle.querySelector("i");
+                toggle.querySelector("i");
+
 
             if (icon) {
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+                if (isOpen) {
+
+                    icon.classList.remove(
+                        "fa-bars"
+                    );
+
+                    icon.classList.add(
+                        "fa-xmark"
+                    );
+
+                } else {
+
+                    icon.classList.remove(
+                        "fa-xmark"
+                    );
+
+                    icon.classList.add(
+                        "fa-bars"
+                    );
+
+                }
 
             }
 
         }
-
-    });
-
-}
+    );
 
 
-/* =========================================================
-   CURRENT YEAR
-   ========================================================= */
+    /* -----------------------------
+       CLOSE WHEN LINK CLICKED
+    ----------------------------- */
 
-function initialiseYear() {
+    links
+        .querySelectorAll("a")
+        .forEach(
+            function (link) {
 
-    const year =
-        document.getElementById("year");
+                link.addEventListener(
+                    "click",
+                    function () {
 
-    if (year) {
+                        closeNavigationMenu(
+                            toggle,
+                            links
+                        );
 
-        year.textContent =
-            new Date().getFullYear();
+                    }
+                );
 
-    }
-
-}
-
-
-/* =========================================================
-   NAVIGATION SCROLL EFFECT
-   ========================================================= */
-
-function initialiseScrollEffects() {
-
-    const navigation =
-        document.querySelector(".site-nav");
-
-    if (!navigation) {
-        return;
-    }
+            }
+        );
 
 
-    function updateNavigation() {
+    /* -----------------------------
+       CLICK OUTSIDE
+    ----------------------------- */
 
-        if (window.scrollY > 30) {
+    document.addEventListener(
+        "click",
+        function (event) {
 
-            navigation.classList.add("scrolled");
+            if (
+                !links.contains(
+                    event.target
+                ) &&
+                !toggle.contains(
+                    event.target
+                )
+            ) {
 
-        } else {
+                closeNavigationMenu(
+                    toggle,
+                    links
+                );
 
-            navigation.classList.remove("scrolled");
+            }
 
         }
+    );
 
-    }
+
+    /* -----------------------------
+       ESC KEY
+    ----------------------------- */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+                closeNavigationMenu(
+                    toggle,
+                    links
+                );
+
+            }
+
+        }
+    );
 
 
-    updateNavigation();
+    /* -----------------------------
+       CLOSE ON LARGE SCREEN
+    ----------------------------- */
 
     window.addEventListener(
-        "scroll",
-        updateNavigation,
-        { passive: true }
+        "resize",
+        function () {
+
+            if (
+                window.innerWidth >
+                980
+            ) {
+
+                closeNavigationMenu(
+                    toggle,
+                    links
+                );
+
+            }
+
+        }
     );
 
 }
 
 
+function closeNavigationMenu(
+    toggle,
+    links
+) {
+
+    links.classList.remove(
+        "active"
+    );
+
+
+    links.classList.remove(
+        "open"
+    );
+
+
+    toggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+
+    const icon =
+        toggle.querySelector("i");
+
+
+    if (icon) {
+
+        icon.classList.remove(
+            "fa-xmark"
+        );
+
+        icon.classList.add(
+            "fa-bars"
+        );
+
+    }
+
+}
+
+
 /* =========================================================
-   BACK TO TOP
-   ========================================================= */
+   RETURN TO TOP BUTTON
+========================================================= */
 
 function initialiseBackToTop() {
 
     let button =
-        document.getElementById("backToTop");
+        document.getElementById(
+            "backToTop"
+        );
 
+
+    /*
+       Automatically create it
+       if a page doesn't contain it.
+    */
 
     if (!button) {
 
         button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
+
 
         button.id =
             "backToTop";
 
+
         button.className =
             "back-to-top";
 
+
+        button.title =
+            "Return to top";
+
+
         button.setAttribute(
             "aria-label",
-            "Back to top"
+            "Return to top"
         );
 
-        button.innerHTML =
-            '<i class="fas fa-arrow-up"></i>';
 
-        document.body.appendChild(button);
+        button.innerHTML = `
+
+            <i class="fas fa-arrow-up"></i>
+
+        `;
+
+
+        document.body.appendChild(
+            button
+        );
 
     }
 
 
-    function updateButton() {
+    function updateBackToTop() {
 
-        if (window.scrollY > 500) {
+        if (
+            window.scrollY >
+            450
+        ) {
 
-            button.classList.add("show");
+            button.classList.add(
+                "show"
+            );
 
         } else {
 
-            button.classList.remove("show");
+            button.classList.remove(
+                "show"
+            );
 
         }
 
@@ -263,8 +395,10 @@ function initialiseBackToTop() {
 
     window.addEventListener(
         "scroll",
-        updateButton,
-        { passive: true }
+        updateBackToTop,
+        {
+            passive: true
+        }
     );
 
 
@@ -275,7 +409,9 @@ function initialiseBackToTop() {
             window.scrollTo({
 
                 top: 0,
-                behavior: "smooth"
+
+                behavior:
+                    "smooth"
 
             });
 
@@ -283,168 +419,14 @@ function initialiseBackToTop() {
     );
 
 
-    updateButton();
-
-}
-
-
-/* =========================================================
-   PROJECT FILTERING
-   ========================================================= */
-
-function initialiseProjectFilters() {
-
-    const filterButtons =
-        document.querySelectorAll(
-            "[data-project-filter]"
-        );
-
-    const projectCards =
-        document.querySelectorAll(
-            "[data-project-category]"
-        );
-
-
-    if (
-        filterButtons.length === 0 ||
-        projectCards.length === 0
-    ) {
-        return;
-    }
-
-
-    filterButtons.forEach(
-        function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    const filter =
-                        button.dataset.projectFilter;
-
-                    filterButtons.forEach(
-                        function (item) {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    projectCards.forEach(
-                        function (card) {
-
-                            const category =
-                                card.dataset.projectCategory;
-
-                            if (
-                                filter === "all" ||
-                                category === filter
-                            ) {
-
-                                card.style.display =
-                                    "";
-
-                            } else {
-
-                                card.style.display =
-                                    "none";
-
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FAQ
-   ========================================================= */
-
-function initialiseFAQ() {
-
-    const questions =
-        document.querySelectorAll(
-            ".faq-question"
-        );
-
-
-    if (questions.length === 0) {
-        return;
-    }
-
-
-    questions.forEach(
-        function (question) {
-
-            question.addEventListener(
-                "click",
-                function () {
-
-                    const item =
-                        question.closest(
-                            ".faq-item"
-                        );
-
-                    if (!item) {
-                        return;
-                    }
-
-
-                    const currentlyOpen =
-                        item.classList.contains(
-                            "active"
-                        );
-
-
-                    document.querySelectorAll(
-                        ".faq-item"
-                    )
-                    .forEach(
-                        function (faq) {
-
-                            faq.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-
-                    if (!currentlyOpen) {
-
-                        item.classList.add(
-                            "active"
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-    );
+    updateBackToTop();
 
 }
 
 
 /* =========================================================
    CONTACT FORM
-   ========================================================= */
+========================================================= */
 
 function initialiseContactForm() {
 
@@ -453,8 +435,11 @@ function initialiseContactForm() {
             "consultationForm"
         );
 
+
     if (!form) {
+
         return;
+
     }
 
 
@@ -466,30 +451,47 @@ function initialiseContactForm() {
 
 
             const name =
-                getInputValue("clientName");
+                getValue(
+                    "clientName"
+                );
+
 
             const email =
-                getInputValue("clientEmail");
+                getValue(
+                    "clientEmail"
+                );
+
 
             const organisation =
-                getInputValue("organisation");
+                getValue(
+                    "organisation"
+                );
+
 
             const service =
-                getInputValue("service");
+                getValue(
+                    "service"
+                );
 
-            const message =
-                getInputValue("projectMessage");
+
+            const project =
+                getValue(
+                    "projectMessage"
+                );
 
 
             if (
                 !name ||
                 !email ||
-                !message
+                !project
             ) {
 
                 showFormMessage(
-                    "Please complete your name, email and project description.",
+
+                    "Please complete your name, email and project details.",
+
                     "error"
+
                 );
 
                 return;
@@ -497,11 +499,16 @@ function initialiseContactForm() {
             }
 
 
-            if (!isValidEmail(email)) {
+            if (
+                !validateEmail(email)
+            ) {
 
                 showFormMessage(
+
                     "Please enter a valid email address.",
+
                     "error"
+
                 );
 
                 return;
@@ -518,46 +525,54 @@ function initialiseContactForm() {
             const body =
                 encodeURIComponent(
 
-                    "Name: " +
+                    "EKO ANALYTICS & RESEARCH" +
+
+                    "\n\nConsultation Request" +
+
+                    "\n\nName: " +
                     name +
 
-                    "\n\nEmail: " +
+                    "\nEmail: " +
                     email +
 
-                    "\n\nOrganisation: " +
+                    "\nOrganisation: " +
                     (
                         organisation ||
                         "Not provided"
                     ) +
 
-                    "\n\nService required: " +
+                    "\nArea of Support: " +
                     (
                         service ||
                         "Not specified"
                     ) +
 
-                    "\n\nProject / enquiry:\n" +
-                    message
+                    "\n\nProject / Enquiry Details:" +
+
+                    "\n" +
+                    project
 
                 );
 
 
-            const mailto =
-                "mailto:edwinokello24@gmail.com" +
-                "?subject=" +
-                subject +
-                "&body=" +
-                body;
-
-
             showFormMessage(
-                "Your email application will now open with your enquiry prepared.",
+
+                "Your email application is being opened with your enquiry prepared.",
+
                 "success"
+
             );
 
 
             window.location.href =
-                mailto;
+
+                "mailto:edwinokello24@gmail.com" +
+
+                "?subject=" +
+                subject +
+
+                "&body=" +
+                body;
 
         }
     );
@@ -567,23 +582,27 @@ function initialiseContactForm() {
 
 /* =========================================================
    FORM HELPERS
-   ========================================================= */
+========================================================= */
 
-function getInputValue(id) {
+function getValue(id) {
 
-    const element =
+    const field =
         document.getElementById(id);
 
-    if (!element) {
+
+    if (!field) {
+
         return "";
+
     }
 
-    return element.value.trim();
+
+    return field.value.trim();
 
 }
 
 
-function isValidEmail(email) {
+function validateEmail(email) {
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         .test(email);
@@ -601,13 +620,17 @@ function showFormMessage(
             "formMessage"
         );
 
+
     if (!box) {
+
         return;
+
     }
 
 
     box.textContent =
         message;
+
 
     box.className =
         "form-message show " +
@@ -617,18 +640,21 @@ function showFormMessage(
 
 
 /* =========================================================
-   PROJECT 01
-   ========================================================= */
+   PROJECT 01 PUBLIC FILES
+========================================================= */
 
-function initialiseProject01() {
+function initialiseProject01Files() {
 
-    const projectContainer =
+    const container =
         document.getElementById(
             "project01Files"
         );
 
-    if (!projectContainer) {
+
+    if (!container) {
+
         return;
+
     }
 
 
@@ -637,10 +663,6 @@ function initialiseProject01() {
 }
 
 
-/* =========================================================
-   LOAD PROJECT 01 FILES
-   ========================================================= */
-
 async function loadProject01Files() {
 
     const container =
@@ -648,16 +670,22 @@ async function loadProject01Files() {
             "project01Files"
         );
 
+
     if (!container) {
+
         return;
+
     }
 
 
     if (!supabaseClient) {
 
-        showProjectError(
+        displayProjectMessage(
+
             container,
-            "Project storage is currently unavailable."
+
+            "Project storage connection is unavailable."
+
         );
 
         return;
@@ -682,36 +710,51 @@ async function loadProject01Files() {
 
     try {
 
-        const { data, error } =
-            await supabaseClient.storage
-            .from(EKO_BUCKET)
-            .list(
-                PROJECT_01_FOLDER,
-                {
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .storage
 
-                    limit: 100,
+                .from(
+                    EKO_BUCKET
+                )
 
-                    sortBy: {
+                .list(
+                    PROJECT_01_FOLDER,
+                    {
 
-                        column: "name",
-                        order: "asc"
+                        limit:
+                            100,
+
+                        sortBy: {
+
+                            column:
+                                "name",
+
+                            order:
+                                "asc"
+
+                        }
 
                     }
-
-                }
-            );
+                );
 
 
         if (error) {
 
             console.error(
-                "Project 01 storage error:",
                 error
             );
 
-            showProjectError(
+
+            displayProjectMessage(
+
                 container,
-                "Project resources could not be loaded."
+
+                "Project resources are not available yet."
+
             );
 
             return;
@@ -721,34 +764,39 @@ async function loadProject01Files() {
 
         const files =
             (data || [])
-            .filter(
-                function (file) {
+                .filter(
+                    function (file) {
 
-                    return (
-                        file.name &&
-                        file.name !== ".emptyFolderPlaceholder"
-                    );
+                        return (
+                            file.name &&
+                            file.name !==
+                            ".emptyFolderPlaceholder"
+                        );
 
-                }
-            );
+                    }
+                );
 
 
-        displayProject01Files(
+        displayProjectFiles(
             container,
             files
         );
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(
-            "Project 01 error:",
             error
         );
 
 
-        showProjectError(
+        displayProjectMessage(
+
             container,
+
             "Project resources could not be loaded."
+
         );
 
     }
@@ -757,15 +805,16 @@ async function loadProject01Files() {
 
 
 /* =========================================================
-   DISPLAY PROJECT 01 FILES
-   ========================================================= */
+   DISPLAY PROJECT FILES
+========================================================= */
 
-function displayProject01Files(
+function displayProjectFiles(
     container,
     files
 ) {
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     if (
@@ -773,24 +822,13 @@ function displayProject01Files(
         files.length === 0
     ) {
 
-        container.innerHTML = `
+        displayProjectMessage(
 
-            <div class="project-file-empty">
+            container,
 
-                <i class="fas fa-folder-open"></i>
+            "Supporting Project 01 files will appear here once uploaded."
 
-                <h3>
-                    Project resources coming soon
-                </h3>
-
-                <p>
-                    Supporting reports, datasets and analytical
-                    files for Project 01 will be published here.
-                </p>
-
-            </div>
-
-        `;
+        );
 
         return;
 
@@ -801,43 +839,54 @@ function displayProject01Files(
         function (file) {
 
             const path =
+
                 PROJECT_01_FOLDER +
+
                 "/" +
+
                 file.name;
 
 
-            const { data } =
-                supabaseClient.storage
-                .from(EKO_BUCKET)
-                .getPublicUrl(path);
+            const {
+                data
+            } =
+
+                supabaseClient
+                    .storage
+
+                    .from(
+                        EKO_BUCKET
+                    )
+
+                    .getPublicUrl(
+                        path
+                    );
 
 
             if (
                 !data ||
                 !data.publicUrl
             ) {
+
                 return;
+
             }
 
 
-            const publicUrl =
-                data.publicUrl;
-
-
             const extension =
-                getFileExtension(
+                getExtension(
                     file.name
                 );
 
 
             const icon =
-                getDocumentIcon(
+                fileIcon(
                     extension
                 );
 
 
             const title =
-                cleanDocumentTitle(
+                cleanFileTitle(
                     file.name
                 );
 
@@ -864,19 +913,28 @@ function displayProject01Files(
                 <div class="project-file-info">
 
                     <span class="file-type">
+
                         ${escapeHTML(
                             extension.toUpperCase()
                         )}
+
                     </span>
 
+
                     <h3>
-                        ${escapeHTML(title)}
+
+                        ${escapeHTML(
+                            title
+                        )}
+
                     </h3>
 
+
                     <p>
+
                         Supporting resource for
-                        Project 01: SME Sales &amp;
-                        Customer Performance Analysis.
+                        Project 01.
+
                     </p>
 
                 </div>
@@ -885,25 +943,36 @@ function displayProject01Files(
                 <div class="project-file-actions">
 
                     <a
-                        href="${escapeAttribute(publicUrl)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
                         class="file-view"
+
+                        href="${escapeAttribute(
+                            data.publicUrl
+                        )}"
+
+                        target="_blank"
+
+                        rel="noopener noreferrer"
                     >
 
                         <i class="fas fa-eye"></i>
+
                         View
 
                     </a>
 
 
                     <a
-                        href="${escapeAttribute(publicUrl)}"
-                        download
                         class="file-download"
+
+                        href="${escapeAttribute(
+                            data.publicUrl
+                        )}"
+
+                        download
                     >
 
                         <i class="fas fa-download"></i>
+
                         Download
 
                     </a>
@@ -923,11 +992,7 @@ function displayProject01Files(
 }
 
 
-/* =========================================================
-   PROJECT ERROR
-   ========================================================= */
-
-function showProjectError(
+function displayProjectMessage(
     container,
     message
 ) {
@@ -936,10 +1001,10 @@ function showProjectError(
 
         <div class="project-file-empty">
 
-            <i class="fas fa-circle-exclamation"></i>
+            <i class="fas fa-folder-open"></i>
 
             <h3>
-                Resources unavailable
+                Project Resources
             </h3>
 
             <p>
@@ -954,96 +1019,10 @@ function showProjectError(
 
 
 /* =========================================================
-   DOCUMENT HELPERS
-   ========================================================= */
+   ADMINISTRATOR
+========================================================= */
 
-function getFileExtension(
-    fileName
-) {
-
-    const parts =
-        fileName.split(".");
-
-    if (parts.length < 2) {
-        return "file";
-    }
-
-    return parts
-        .pop()
-        .toLowerCase();
-
-}
-
-
-function getDocumentIcon(
-    extension
-) {
-
-    switch (extension) {
-
-        case "pdf":
-
-            return "fa-file-pdf";
-
-
-        case "xlsx":
-        case "xls":
-        case "csv":
-
-            return "fa-file-excel";
-
-
-        case "doc":
-        case "docx":
-
-            return "fa-file-word";
-
-
-        case "ppt":
-        case "pptx":
-
-            return "fa-file-powerpoint";
-
-
-        case "jpg":
-        case "jpeg":
-        case "png":
-        case "webp":
-
-            return "fa-file-image";
-
-
-        default:
-
-            return "fa-file-lines";
-
-    }
-
-}
-
-
-function cleanDocumentTitle(
-    fileName
-) {
-
-    return fileName
-
-        .replace(/\.[^/.]+$/, "")
-
-        .replace(/[-_]+/g, " ")
-
-        .replace(/\s+/g, " ")
-
-        .trim();
-
-}
-
-
-/* =========================================================
-   ADMIN INITIALISATION
-   ========================================================= */
-
-function initialiseAdmin() {
+function initialiseAdministrator() {
 
     const loginForm =
         document.getElementById(
@@ -1051,7 +1030,7 @@ function initialiseAdmin() {
         );
 
 
-    const logoutButton =
+    const logout =
         document.getElementById(
             "adminLogout"
         );
@@ -1063,6 +1042,25 @@ function initialiseAdmin() {
         );
 
 
+    /*
+       If this isn't admin.html,
+       stop here.
+    */
+
+    if (
+        !loginForm &&
+        !logout &&
+        !uploadForm
+    ) {
+
+        return;
+
+    }
+
+
+    checkAdministratorSession();
+
+
     if (loginForm) {
 
         loginForm.addEventListener(
@@ -1071,7 +1069,9 @@ function initialiseAdmin() {
 
                 event.preventDefault();
 
-                adminLogin();
+                event.stopPropagation();
+
+                administratorLogin();
 
             }
         );
@@ -1079,11 +1079,17 @@ function initialiseAdmin() {
     }
 
 
-    if (logoutButton) {
+    if (logout) {
 
-        logoutButton.addEventListener(
+        logout.addEventListener(
             "click",
-            adminLogout
+            function (event) {
+
+                event.preventDefault();
+
+                administratorLogout();
+
+            }
         );
 
     }
@@ -1097,21 +1103,10 @@ function initialiseAdmin() {
 
                 event.preventDefault();
 
-                uploadProject01Files();
+                uploadProjectFiles();
 
             }
         );
-
-    }
-
-
-    if (
-        loginForm ||
-        logoutButton ||
-        uploadForm
-    ) {
-
-        checkAdminSession();
 
     }
 
@@ -1120,15 +1115,18 @@ function initialiseAdmin() {
 
 /* =========================================================
    ADMIN LOGIN
-   ========================================================= */
+========================================================= */
 
-async function adminLogin() {
+async function administratorLogin() {
 
     if (!supabaseClient) {
 
         showAdminMessage(
-            "Supabase connection is unavailable.",
+
+            "Supabase could not be loaded.",
+
             "error"
+
         );
 
         return;
@@ -1137,20 +1135,20 @@ async function adminLogin() {
 
 
     const email =
-        getInputValue(
+        getValue(
             "adminEmail"
         );
 
 
-    const passwordElement =
+    const passwordField =
         document.getElementById(
             "adminPassword"
         );
 
 
     const password =
-        passwordElement
-            ? passwordElement.value
+        passwordField
+            ? passwordField.value
             : "";
 
 
@@ -1160,8 +1158,11 @@ async function adminLogin() {
     ) {
 
         showAdminMessage(
+
             "Enter your administrator email and password.",
+
             "error"
+
         );
 
         return;
@@ -1170,46 +1171,102 @@ async function adminLogin() {
 
 
     showAdminMessage(
+
         "Signing in...",
+
         "info"
+
     );
 
 
-    const { data, error } =
-        await supabaseClient.auth
-        .signInWithPassword({
+    try {
 
-            email: email,
-            password: password
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .auth
 
-        });
+                .signInWithPassword(
+                    {
+
+                        email:
+                            email,
+
+                        password:
+                            password
+
+                    }
+                );
 
 
-    if (error) {
+        if (error) {
 
-        showAdminMessage(
-            error.message,
-            "error"
-        );
+            console.error(
+                "Login error:",
+                error
+            );
 
-        return;
+
+            showAdminMessage(
+
+                error.message,
+
+                "error"
+
+            );
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.session
+        ) {
+
+            setAdministratorState(
+                true
+            );
+
+
+            showAdminMessage(
+
+                "Administrator access granted.",
+
+                "success"
+
+            );
+
+        } else {
+
+            showAdminMessage(
+
+                "Login did not create a valid session.",
+
+                "error"
+
+            );
+
+        }
 
     }
 
+    catch (error) {
 
-    if (
-        data &&
-        data.session
-    ) {
-
-        setAdminState(
-            true
+        console.error(
+            error
         );
 
 
         showAdminMessage(
-            "Administrator access granted.",
-            "success"
+
+            "Unable to complete login. Please try again.",
+
+            "error"
+
         );
 
     }
@@ -1219,40 +1276,56 @@ async function adminLogin() {
 
 /* =========================================================
    CHECK ADMIN SESSION
-   ========================================================= */
+========================================================= */
 
-async function checkAdminSession() {
+async function checkAdministratorSession() {
 
     if (!supabaseClient) {
+
         return;
+
     }
 
 
-    const { data } =
-        await supabaseClient.auth
-        .getSession();
+    try {
+
+        const {
+            data
+        } =
+            await supabaseClient
+                .auth
+
+                .getSession();
 
 
-    const signedIn =
-        Boolean(
-            data &&
-            data.session
+        setAdministratorState(
+
+            Boolean(
+                data &&
+                data.session
+            )
+
         );
 
+    }
 
-    setAdminState(
-        signedIn
-    );
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+    }
 
 }
 
 
 /* =========================================================
-   SET ADMIN STATE
-   ========================================================= */
+   SET ADMIN PAGE STATE
+========================================================= */
 
-function setAdminState(
-    signedIn
+function setAdministratorState(
+    loggedIn
 ) {
 
     const loginArea =
@@ -1270,7 +1343,8 @@ function setAdminState(
     if (loginArea) {
 
         loginArea.style.display =
-            signedIn
+
+            loggedIn
                 ? "none"
                 : "";
 
@@ -1280,7 +1354,8 @@ function setAdminState(
     if (dashboard) {
 
         dashboard.style.display =
-            signedIn
+
+            loggedIn
                 ? ""
                 : "none";
 
@@ -1290,36 +1365,86 @@ function setAdminState(
 
 
 /* =========================================================
-   ADMIN LOGOUT
-   ========================================================= */
+   LOG OUT
+========================================================= */
 
-async function adminLogout() {
+async function administratorLogout() {
 
     if (!supabaseClient) {
+
         return;
+
     }
 
 
-    await supabaseClient.auth
-        .signOut();
+    try {
+
+        await supabaseClient
+            .auth
+            .signOut();
 
 
-    setAdminState(
-        false
-    );
+        setAdministratorState(
+            false
+        );
 
 
-    showAdminMessage(
-        "You have been signed out.",
-        "success"
-    );
+        const email =
+            document.getElementById(
+                "adminEmail"
+            );
+
+
+        const password =
+            document.getElementById(
+                "adminPassword"
+            );
+
+
+        if (email) {
+
+            email.value =
+                "";
+
+        }
+
+
+        if (password) {
+
+            password.value =
+                "";
+
+        }
+
+
+        showAdminMessage(
+
+            "You have been signed out.",
+
+            "success"
+
+        );
+
+    }
+
+    catch (error) {
+
+        showAdminMessage(
+
+            "Unable to sign out.",
+
+            "error"
+
+        );
+
+    }
 
 }
 
 
 /* =========================================================
    ADMIN MESSAGE
-   ========================================================= */
+========================================================= */
 
 function showAdminMessage(
     message,
@@ -1333,7 +1458,9 @@ function showAdminMessage(
 
 
     if (!box) {
+
         return;
+
     }
 
 
@@ -1349,13 +1476,461 @@ function showAdminMessage(
 
 
 /* =========================================================
-   UPLOAD PROJECT 01 FILES
-   ========================================================= */
+   UPLOAD PROJECT 01
+========================================================= */
 
-async function uploadProject01Files() {
+async function uploadProjectFiles() {
 
     if (!supabaseClient) {
 
         showAdminMessage(
+
             "Supabase connection is unavailable.",
-           
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "projectFiles"
+        );
+
+
+    if (
+        !input ||
+        !input.files ||
+        input.files.length === 0
+    ) {
+
+        showAdminMessage(
+
+            "Select at least one file.",
+
+            "error"
+
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data: sessionData
+    } =
+        await supabaseClient
+            .auth
+
+            .getSession();
+
+
+    if (
+        !sessionData ||
+        !sessionData.session
+    ) {
+
+        showAdminMessage(
+
+            "Your administrator session has expired. Please sign in again.",
+
+            "error"
+
+        );
+
+
+        setAdministratorState(
+            false
+        );
+
+        return;
+
+    }
+
+
+    showAdminMessage(
+
+        "Uploading files...",
+
+        "info"
+
+    );
+
+
+    let successful =
+        0;
+
+
+    let failed =
+        0;
+
+
+    for (
+        const file
+        of input.files
+    ) {
+
+        const safeName =
+            createSafeFileName(
+                file.name
+            );
+
+
+        const path =
+
+            PROJECT_01_FOLDER +
+
+            "/" +
+
+            safeName;
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .storage
+
+                .from(
+                    EKO_BUCKET
+                )
+
+                .upload(
+                    path,
+                    file,
+                    {
+
+                        upsert:
+                            true,
+
+                        contentType:
+
+                            file.type ||
+
+                            "application/octet-stream"
+
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                file.name,
+                error
+            );
+
+
+            failed++;
+
+        } else {
+
+            successful++;
+
+        }
+
+    }
+
+
+    input.value =
+        "";
+
+
+    if (
+        successful > 0 &&
+        failed === 0
+    ) {
+
+        showAdminMessage(
+
+            successful +
+            " file(s) uploaded successfully.",
+
+            "success"
+
+        );
+
+    } else if (
+        successful > 0
+    ) {
+
+        showAdminMessage(
+
+            successful +
+            " uploaded; " +
+            failed +
+            " failed.",
+
+            "info"
+
+        );
+
+    } else {
+
+        showAdminMessage(
+
+            "Upload failed. Your Supabase Storage policy may need to be checked.",
+
+            "error"
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FILE HELPERS
+========================================================= */
+
+function getExtension(
+    fileName
+) {
+
+    const position =
+        fileName.lastIndexOf(".");
+
+
+    if (
+        position === -1
+    ) {
+
+        return "file";
+
+    }
+
+
+    return fileName
+        .substring(
+            position + 1
+        )
+        .toLowerCase();
+
+}
+
+
+function fileIcon(
+    extension
+) {
+
+    if (
+        extension === "pdf"
+    ) {
+
+        return "fa-file-pdf";
+
+    }
+
+
+    if (
+        [
+            "xls",
+            "xlsx",
+            "csv"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "fa-file-excel";
+
+    }
+
+
+    if (
+        [
+            "doc",
+            "docx"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "fa-file-word";
+
+    }
+
+
+    if (
+        [
+            "ppt",
+            "pptx"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "fa-file-powerpoint";
+
+    }
+
+
+    if (
+        [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "fa-file-image";
+
+    }
+
+
+    return "fa-file-lines";
+
+}
+
+
+function cleanFileTitle(
+    fileName
+) {
+
+    return fileName
+
+        .replace(
+            /\.[^/.]+$/,
+            ""
+        )
+
+        .replace(
+            /[-_]+/g,
+            " "
+        )
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .trim();
+
+}
+
+
+function createSafeFileName(
+    fileName
+) {
+
+    const finalDot =
+        fileName.lastIndexOf(".");
+
+
+    let name =
+        finalDot >= 0
+
+            ? fileName.substring(
+                0,
+                finalDot
+            )
+
+            : fileName;
+
+
+    const extension =
+        finalDot >= 0
+
+            ? fileName.substring(
+                finalDot
+            )
+
+            : "";
+
+
+    name =
+        name
+
+            .trim()
+
+            .replace(
+                /[^a-zA-Z0-9-_]+/g,
+                "-"
+            )
+
+            .replace(
+                /-+/g,
+                "-"
+            )
+
+            .replace(
+                /^-|-$/g,
+                ""
+            );
+
+
+    if (!name) {
+
+        name =
+            "eko-file";
+
+    }
+
+
+    return (
+        name +
+        extension.toLowerCase()
+    );
+
+}
+
+
+/* =========================================================
+   SECURITY / OUTPUT HELPERS
+========================================================= */
+
+function escapeHTML(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(value);
+
+
+    return div.innerHTML;
+
+}
+
+
+function escapeAttribute(
+    value
+) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        );
+
+}
