@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Administrator | EKO Analytics & Research
+    </title>
+
+    <meta name="robots"
+          content="noindex,nofollow">
+
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- MAIN CSS -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="site-nav">
+
+    <div class="nav-wrap">
+
+        <a class="brand"
+           href="index.html">
+
+            <span class="brand-mark">
+                EKO
+            </span>
+
+            <span class="brand-copy">
+
+                <strong>
+                    EKO Analytics &amp; Research
+                </strong>
+
+                <small>
+                    Turning Data into Actionable Insights
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <button class="nav-toggle"
+                id="navToggle"
+                aria-label="Open navigation">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+
+        <div class="nav-links"
+             id="navLinks">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="projects.html">
+                Projects
+            </a>
+
+            <a href="insights.html">
+                Insights
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     ADMIN PAGE
+========================================================= -->
+
+<main style="
+    min-height:80vh;
+    padding:85px 0;
+    background:#f7f9fc;
+">
+
+
+    <div style="
+        width:min(92%,900px);
+        margin:auto;
+    ">
+
+
+        <!-- =================================================
+             ADMIN HEADER
+        ================================================== -->
+
+        <div style="
+            text-align:center;
+            margin-bottom:35px;
+        ">
+
+            <div style="
+                width:68px;
+                height:68px;
+                margin:0 auto 18px;
+                display:grid;
+                place-items:center;
+                border-radius:18px;
+                background:#0b1f3a;
+                color:#e7c978;
+                font-size:1.5rem;
+            ">
+
+                <i class="fas fa-lock"></i>
+
+            </div>
+
+
+            <span class="eyebrow">
+                RESTRICTED AREA
+            </span>
+
+
+            <h1 style="
+                font-family:'Playfair Display',serif;
+                color:#0b1f3a;
+                font-size:2.6rem;
+                margin-bottom:12px;
+            ">
+                EKO Administrator
+            </h1>
+
+
+            <p style="
+                max-width:650px;
+                margin:auto;
+            ">
+                Sign in to manage selected EKO Analytics &amp; Research
+                project files stored in Supabase.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOGIN AREA
+        ================================================== -->
+
+        <section id="adminLoginArea"
+                 style="
+                    max-width:560px;
+                    margin:auto;
+                 ">
+
+
+            <form id="adminLoginForm"
+                  style="
+                    padding:34px;
+                    background:white;
+                    border:1px solid #dfe6ed;
+                    border-radius:20px;
+                    box-shadow:0 18px 50px rgba(7,20,38,0.09);
+                  ">
+
+
+                <span class="eyebrow">
+                    ADMINISTRATOR LOGIN
+                </span>
+
+
+                <!-- EMAIL -->
+
+                <div style="margin-bottom:18px;">
+
+                    <label for="adminEmail"
+                           style="
+                               display:block;
+                               color:#0b1f3a;
+                               font-size:0.8rem;
+                               font-weight:800;
+                               margin-bottom:7px;
+                           ">
+
+                        Administrator Email
+
+                    </label>
+
+
+                    <input type="email"
+                           id="adminEmail"
+                           required
+                           placeholder="Enter your email"
+                           style="
+                               width:100%;
+                               padding:13px;
+                               border:1px solid #dfe6ed;
+                               border-radius:9px;
+                               outline:none;
+                           ">
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div style="margin-bottom:20px;">
+
+                    <label for="adminPassword"
+                           style="
+                               display:block;
+                               color:#0b1f3a;
+                               font-size:0.8rem;
+                               font-weight:800;
+                               margin-bottom:7px;
+                           ">
+
+                        Password
+
+                    </label>
+
+
+                    <input type="password"
+                           id="adminPassword"
+                           required
+                           placeholder="Enter password"
+                           style="
+                               width:100%;
+                               padding:13px;
+                               border:1px solid #dfe6ed;
+                               border-radius:9px;
+                               outline:none;
+                           ">
+
+                </div>
+
+
+
+                <button type="submit"
+                        class="btn primary"
+                        style="width:100%;">
+
+                    <i class="fas fa-right-to-bracket"></i>
+
+                    Sign In
+
+                </button>
+
+
+                <div id="adminMessage"
+                     class="admin-message">
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ADMIN DASHBOARD
+        ================================================== -->
+
+        <section id="adminDashboard"
+                 style="
+                    display:none;
+                    margin-top:30px;
+                 ">
+
+
+            <!-- DASHBOARD HEADER -->
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:20px;
+                margin-bottom:24px;
+                flex-wrap:wrap;
+            ">
+
+                <div>
+
+                    <span class="eyebrow">
+                        EKO STORAGE
+                    </span>
+
+                    <h2 style="
+                        font-family:'Playfair Display',serif;
+                        color:#0b1f3a;
+                        font-size:2rem;
+                    ">
+                        Project File Management
+                    </h2>
+
+                </div>
+
+
+                <button id="adminLogout"
+                        class="btn outline-dark">
+
+                    <i class="fas fa-right-from-bracket"></i>
+
+                    Sign Out
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PROJECT 01 UPLOAD
+            ================================================== -->
+
+            <div style="
+                padding:30px;
+                background:white;
+                border:1px solid #dfe6ed;
+                border-radius:20px;
+                box-shadow:0 12px 35px rgba(7,20,38,0.07);
+                margin-bottom:22px;
+            ">
+
+
+                <div style="
+                    display:flex;
+                    gap:15px;
+                    align-items:flex-start;
+                    margin-bottom:20px;
+                ">
+
+                    <div style="
+                        width:52px;
+                        height:52px;
+                        flex:0 0 52px;
+                        display:grid;
+                        place-items:center;
+                        border-radius:14px;
+                        background:#e8f6f0;
+                        color:#087f5b;
+                        font-size:1.3rem;
+                    ">
+
+                        <i class="fas fa-chart-line"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="eyebrow"
+                              style="margin-bottom:5px;">
+                            PROJECT 01
+                        </span>
+
+                        <h3 style="
+                            font-family:'Playfair Display',serif;
+                            color:#0b1f3a;
+                            font-size:1.55rem;
+                            margin-bottom:5px;
+                        ">
+                            SME Sales &amp; Customer Performance Analysis
+                        </h3>
+
+                        <p style="font-size:0.86rem;">
+                            Upload supporting files into
+                            <strong>eko/project-01</strong>.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <form id="projectUploadForm">
+
+
+                    <div style="
+                        padding:22px;
+                        border:1px dashed #c8d3dd;
+                        border-radius:14px;
+                        background:#f9fbfc;
+                        margin-bottom:18px;
+                    ">
+
+                        <label for="projectFiles"
+                               style="
+                                   display:block;
+                                   color:#0b1f3a;
+                                   font-size:0.82rem;
+                                   font-weight:800;
+                                   margin-bottom:9px;
+                               ">
+
+                            Select Project 01 files
+
+                        </label>
+
+
+                        <input type="file"
+                               id="projectFiles"
+                               multiple
+                               accept=".pdf,.xlsx,.xls,.csv,.doc,.docx,.ppt,.pptx,image/*"
+                               style="
+                                   width:100%;
+                                   font-size:0.8rem;
+                               ">
+
+
+                        <p style="
+                            margin-top:10px;
+                            font-size:0.72rem;
+                        ">
+                            Recommended: PDF report, Excel workbook,
+                            dashboards, images or supporting analytical files.
+                        </p>
+
+                    </div>
+
+
+
+                    <button type="submit"
+                            class="btn primary">
+
+                        <i class="fas fa-cloud-arrow-up"></i>
+
+                        Upload Project 01 Files
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PROJECT GUIDANCE
+            ================================================== -->
+
+            <div style="
+                padding:28px;
+                background:
+                    linear-gradient(
+                        145deg,
+                        #071426,
+                        #0b1f3a
+                    );
+                color:white;
+                border-radius:20px;
+            ">
+
+                <span class="eyebrow light">
+                    STORAGE GUIDANCE
+                </span>
+
+
+                <h3 style="
+                    color:white;
+                    font-family:'Playfair Display',serif;
+                    font-size:1.7rem;
+                    margin-bottom:15px;
+                ">
+                    How Project 01 publishing works.
+                </h3>
+
+
+                <div style="
+                    display:grid;
+                    gap:13px;
+                ">
+
+                    <div style="
+                        padding:13px;
+                        border-radius:10px;
+                        background:rgba(255,255,255,0.06);
+                    ">
+                        1. Sign in using your Supabase administrator account.
+                    </div>
+
+                    <div style="
+                        padding:13px;
+                        border-radius:10px;
+                        background:rgba(255,255,255,0.06);
+                    ">
+                        2. Select one or more Project 01 files.
+                    </div>
+
+                    <div style="
+                        padding:13px;
+                        border-radius:10px;
+                        background:rgba(255,255,255,0.06);
+                    ">
+                        3. Files are uploaded to the
+                        <strong>eko/project-01</strong>
+                        storage folder.
+                    </div>
+
+                    <div style="
+                        padding:13px;
+                        border-radius:10px;
+                        background:#087f5b;
+                    ">
+                        4. The public Project 01 page loads those resources automatically.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+
+        <div>
+
+            <div class="footer-brand">
+
+                <span>
+                    EKO
+                </span>
+
+                <strong>
+                    EKO Analytics &amp; Research
+                </strong>
+
+            </div>
+
+
+            <p>
+                Research, analytics and decision-support services
+                for organisations that need clearer evidence
+                and better decisions.
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="about.html">
+                About EKO
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="projects.html">
+                Projects
+            </a>
+
+            <a href="insights.html">
+                Insights
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <a href="mailto:edwinokello24@gmail.com">
+                edwinokello24@gmail.com
+            </a>
+
+            <a href="tel:+254143947048">
+                +254 143 947 048
+            </a>
+
+            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © <span id="year"></span>
+            EKO Analytics &amp; Research
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     MAIN JAVASCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
+
+
+
+<!-- =========================================================
+     ADMIN MESSAGE STYLING
+========================================================= -->
+
+<style>
+
+.admin-message {
+
+    display:none;
+
+    margin-top:14px;
+
+    padding:12px 14px;
+
+    border-radius:9px;
+
+    font-size:0.78rem;
+
+    font-weight:700;
+
+}
+
+
+.admin-message.show {
+
+    display:block;
+
+}
+
+
+.admin-message.success {
+
+    background:#e8f6f0;
+
+    color:#087f5b;
+
+}
+
+
+.admin-message.error {
+
+    background:#fff0ee;
+
+    color:#a62f23;
+
+}
+
+
+.admin-message.info {
+
+    background:#eef3f7;
+
+    color:#0b1f3a;
+
+}
+
+</style>
+
+
+</body>
+
+</html>
