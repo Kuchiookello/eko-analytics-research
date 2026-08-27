@@ -5,17 +5,20 @@
 
 
 /* =========================================================
-   SUPABASE
+   SUPABASE CONFIGURATION
 ========================================================= */
 
 const SUPABASE_URL =
     "https://cueajmzcmawvcbpwuyhi.supabase.co";
 
+
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
 
+
 const EKO_BUCKET =
     "eko";
+
 
 const PROJECT_01_FOLDER =
     "project-01";
@@ -39,6 +42,71 @@ if (
 
 
 /* =========================================================
+   PROJECT 01 DELIVERABLES
+
+   These names match the files created for Project 01
+   and uploaded through the EKO administrator.
+========================================================= */
+
+const PROJECT_01_FILES = [
+
+    {
+        file:
+            "EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf",
+
+        title:
+            "Final SME Sales & Customer Performance Analysis Report",
+
+        description:
+            "The complete professional analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
+
+        label:
+            "FINAL REPORT",
+
+        icon:
+            "fa-file-pdf"
+    },
+
+
+    {
+        file:
+            "EKO_Project_01_SME_Sales_Customer_Performance.xlsx",
+
+        title:
+            "SME Sales & Customer Performance Analytical Workbook",
+
+        description:
+            "The supporting Excel workbook containing the synthetic dataset, KPI analysis, dashboard, revenue trends, service analysis and customer performance analysis.",
+
+        label:
+            "EXCEL DASHBOARD",
+
+        icon:
+            "fa-file-excel"
+    },
+
+
+    {
+        file:
+            "EKO_Project_01_SME_Sales_Customer_Performance_Report.docx",
+
+        title:
+            "Editable Project 01 Analytical Report",
+
+        description:
+            "The editable Word version of the Project 01 analytical report.",
+
+        label:
+            "WORD REPORT",
+
+        icon:
+            "fa-file-word"
+    }
+
+];
+
+
+/* =========================================================
    START WEBSITE
 ========================================================= */
 
@@ -55,8 +123,6 @@ document.addEventListener(
         initialiseContactForm();
 
         initialiseProject01Files();
-
-        initialiseAdministrator();
 
     }
 );
@@ -110,9 +176,11 @@ function initialiseNavigation() {
     }
 
 
-    /* -----------------------------
-       OPEN / CLOSE MENU
-    ----------------------------- */
+    toggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
 
     toggle.addEventListener(
         "click",
@@ -171,10 +239,6 @@ function initialiseNavigation() {
     );
 
 
-    /* -----------------------------
-       CLOSE WHEN LINK CLICKED
-    ----------------------------- */
-
     links
         .querySelectorAll("a")
         .forEach(
@@ -195,10 +259,6 @@ function initialiseNavigation() {
             }
         );
 
-
-    /* -----------------------------
-       CLICK OUTSIDE
-    ----------------------------- */
 
     document.addEventListener(
         "click",
@@ -224,10 +284,6 @@ function initialiseNavigation() {
     );
 
 
-    /* -----------------------------
-       ESC KEY
-    ----------------------------- */
-
     document.addEventListener(
         "keydown",
         function (event) {
@@ -247,10 +303,6 @@ function initialiseNavigation() {
         }
     );
 
-
-    /* -----------------------------
-       CLOSE ON LARGE SCREEN
-    ----------------------------- */
 
     window.addEventListener(
         "resize",
@@ -272,6 +324,7 @@ function initialiseNavigation() {
     );
 
 }
+
 
 
 function closeNavigationMenu(
@@ -305,6 +358,7 @@ function closeNavigationMenu(
             "fa-xmark"
         );
 
+
         icon.classList.add(
             "fa-bars"
         );
@@ -315,7 +369,7 @@ function closeNavigationMenu(
 
 
 /* =========================================================
-   RETURN TO TOP BUTTON
+   RETURN TO TOP
 ========================================================= */
 
 function initialiseBackToTop() {
@@ -325,11 +379,6 @@ function initialiseBackToTop() {
             "backToTop"
         );
 
-
-    /*
-       Automatically create it
-       if a page doesn't contain it.
-    */
 
     if (!button) {
 
@@ -602,12 +651,14 @@ function getValue(id) {
 }
 
 
+
 function validateEmail(email) {
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         .test(email);
 
 }
+
 
 
 function showFormMessage(
@@ -640,7 +691,7 @@ function showFormMessage(
 
 
 /* =========================================================
-   PROJECT 01 PUBLIC FILES
+   PROJECT 01 PUBLIC DELIVERABLES
 ========================================================= */
 
 function initialiseProject01Files() {
@@ -663,6 +714,10 @@ function initialiseProject01Files() {
 }
 
 
+/* =========================================================
+   LOAD PROJECT 01
+========================================================= */
+
 async function loadProject01Files() {
 
     const container =
@@ -680,11 +735,11 @@ async function loadProject01Files() {
 
     if (!supabaseClient) {
 
-        displayProjectMessage(
+        displayProjectError(
 
             container,
 
-            "Project storage connection is unavailable."
+            "Project storage is currently unavailable."
 
         );
 
@@ -700,13 +755,25 @@ async function loadProject01Files() {
             <i class="fas fa-spinner fa-spin"></i>
 
             <strong>
-                Loading Project 01 resources...
+                Loading Project 01 deliverables...
             </strong>
+
+            <p>
+                Connecting to EKO project storage.
+            </p>
 
         </div>
 
     `;
 
+
+    /*
+       We first try to list the folder.
+
+       If the public Supabase storage policy does not permit
+       anonymous folder listing, we automatically fall back
+       to the known Project 01 deliverables.
+    */
 
     try {
 
@@ -714,13 +781,10 @@ async function loadProject01Files() {
             data,
             error
         } =
-            await supabaseClient
-                .storage
-
+            await supabaseClient.storage
                 .from(
                     EKO_BUCKET
                 )
-
                 .list(
                     PROJECT_01_FOLDER,
                     {
@@ -742,29 +806,14 @@ async function loadProject01Files() {
                 );
 
 
-        if (error) {
+        if (
+            !error &&
+            data &&
+            data.length > 0
+        ) {
 
-            console.error(
-                error
-            );
-
-
-            displayProjectMessage(
-
-                container,
-
-                "Project resources are not available yet."
-
-            );
-
-            return;
-
-        }
-
-
-        const files =
-            (data || [])
-                .filter(
+            const files =
+                data.filter(
                     function (file) {
 
                         return (
@@ -777,25 +826,137 @@ async function loadProject01Files() {
                 );
 
 
-        displayProjectFiles(
-            container,
-            files
+            if (
+                files.length > 0
+            ) {
+
+                displayUploadedProjectFiles(
+                    container,
+                    files
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        /*
+           Anonymous LIST was unavailable or empty.
+           Use the known Project 01 deliverables instead.
+        */
+
+        displayKnownProject01Files(
+            container
         );
+
 
     }
 
     catch (error) {
 
-        console.error(
+        console.warn(
+            "Folder listing unavailable. Using known Project 01 deliverables.",
             error
         );
 
 
-        displayProjectMessage(
+        displayKnownProject01Files(
+            container
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DISPLAY KNOWN PROJECT 01 FILES
+========================================================= */
+
+function displayKnownProject01Files(
+    container
+) {
+
+    container.innerHTML =
+        "";
+
+
+    PROJECT_01_FILES.forEach(
+        function (resource) {
+
+
+            const path =
+
+                PROJECT_01_FOLDER +
+
+                "/" +
+
+                resource.file;
+
+
+            const {
+                data
+            } =
+                supabaseClient.storage
+                    .from(
+                        EKO_BUCKET
+                    )
+                    .getPublicUrl(
+                        path
+                    );
+
+
+            if (
+                !data ||
+                !data.publicUrl
+            ) {
+
+                return;
+
+            }
+
+
+            createProjectFileCard(
+                container,
+                {
+
+                    title:
+                        resource.title,
+
+                    description:
+                        resource.description,
+
+                    label:
+                        resource.label,
+
+                    icon:
+                        resource.icon,
+
+                    url:
+                        data.publicUrl,
+
+                    fileName:
+                        resource.file
+
+                }
+            );
+
+        }
+    );
+
+
+    if (
+        container.children.length ===
+        0
+    ) {
+
+        displayProjectError(
 
             container,
 
-            "Project resources could not be loaded."
+            "Project files could not be displayed."
 
         );
 
@@ -805,10 +966,10 @@ async function loadProject01Files() {
 
 
 /* =========================================================
-   DISPLAY PROJECT FILES
+   DISPLAY FILES FOUND THROUGH SUPABASE LIST
 ========================================================= */
 
-function displayProjectFiles(
+function displayUploadedProjectFiles(
     container,
     files
 ) {
@@ -817,26 +978,9 @@ function displayProjectFiles(
         "";
 
 
-    if (
-        !files ||
-        files.length === 0
-    ) {
-
-        displayProjectMessage(
-
-            container,
-
-            "Supporting Project 01 files will appear here once uploaded."
-
-        );
-
-        return;
-
-    }
-
-
     files.forEach(
         function (file) {
+
 
             const path =
 
@@ -850,14 +994,10 @@ function displayProjectFiles(
             const {
                 data
             } =
-
-                supabaseClient
-                    .storage
-
+                supabaseClient.storage
                     .from(
                         EKO_BUCKET
                     )
-
                     .getPublicUrl(
                         path
                     );
@@ -879,111 +1019,37 @@ function displayProjectFiles(
                 );
 
 
-            const icon =
-                fileIcon(
-                    extension
-                );
-
-
-            const title =
-                cleanFileTitle(
+            const resource =
+                identifyProject01Resource(
                     file.name
                 );
 
 
-            const card =
-                document.createElement(
-                    "article"
-                );
+            createProjectFileCard(
+                container,
+                {
 
+                    title:
+                        resource.title,
 
-            card.className =
-                "project-file-card";
+                    description:
+                        resource.description,
 
+                    label:
+                        resource.label,
 
-            card.innerHTML = `
+                    icon:
+                        fileIcon(
+                            extension
+                        ),
 
-                <div class="project-file-icon">
+                    url:
+                        data.publicUrl,
 
-                    <i class="fas ${icon}"></i>
+                    fileName:
+                        file.name
 
-                </div>
-
-
-                <div class="project-file-info">
-
-                    <span class="file-type">
-
-                        ${escapeHTML(
-                            extension.toUpperCase()
-                        )}
-
-                    </span>
-
-
-                    <h3>
-
-                        ${escapeHTML(
-                            title
-                        )}
-
-                    </h3>
-
-
-                    <p>
-
-                        Supporting resource for
-                        Project 01.
-
-                    </p>
-
-                </div>
-
-
-                <div class="project-file-actions">
-
-                    <a
-                        class="file-view"
-
-                        href="${escapeAttribute(
-                            data.publicUrl
-                        )}"
-
-                        target="_blank"
-
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fas fa-eye"></i>
-
-                        View
-
-                    </a>
-
-
-                    <a
-                        class="file-download"
-
-                        href="${escapeAttribute(
-                            data.publicUrl
-                        )}"
-
-                        download
-                    >
-
-                        <i class="fas fa-download"></i>
-
-                        Download
-
-                    </a>
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                card
+                }
             );
 
         }
@@ -992,7 +1058,224 @@ function displayProjectFiles(
 }
 
 
-function displayProjectMessage(
+/* =========================================================
+   IDENTIFY PROJECT 01 RESOURCE
+========================================================= */
+
+function identifyProject01Resource(
+    fileName
+) {
+
+    const lower =
+        fileName.toLowerCase();
+
+
+    if (
+        lower.endsWith(".pdf")
+    ) {
+
+        return {
+
+            title:
+                "Final SME Sales & Customer Performance Analysis Report",
+
+            description:
+                "The complete EKO analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
+
+            label:
+                "FINAL REPORT"
+
+        };
+
+    }
+
+
+    if (
+        lower.endsWith(".xlsx") ||
+        lower.endsWith(".xls")
+    ) {
+
+        return {
+
+            title:
+                "SME Sales & Customer Performance Analytical Workbook",
+
+            description:
+                "The supporting Excel workbook containing the synthetic dataset, analytical calculations, KPI dashboard and performance charts.",
+
+            label:
+                "EXCEL DASHBOARD"
+
+        };
+
+    }
+
+
+    if (
+        lower.endsWith(".docx") ||
+        lower.endsWith(".doc")
+    ) {
+
+        return {
+
+            title:
+                "Editable Project 01 Analytical Report",
+
+            description:
+                "Editable Word version of the complete Project 01 analytical report.",
+
+            label:
+                "WORD REPORT"
+
+        };
+
+    }
+
+
+    return {
+
+        title:
+            cleanFileTitle(
+                fileName
+            ),
+
+        description:
+            "Supporting resource for Project 01.",
+
+        label:
+            "PROJECT RESOURCE"
+
+    };
+
+}
+
+
+/* =========================================================
+   CREATE PROJECT FILE CARD
+========================================================= */
+
+function createProjectFileCard(
+    container,
+    resource
+) {
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "project-file-card";
+
+
+    card.innerHTML = `
+
+        <div class="project-file-icon">
+
+            <i class="fas ${escapeHTML(resource.icon)}"></i>
+
+        </div>
+
+
+        <div class="project-file-info">
+
+            <span class="file-type">
+
+                ${escapeHTML(
+                    resource.label
+                )}
+
+            </span>
+
+
+            <h3>
+
+                ${escapeHTML(
+                    resource.title
+                )}
+
+            </h3>
+
+
+            <p>
+
+                ${escapeHTML(
+                    resource.description
+                )}
+
+            </p>
+
+
+            <small class="project-file-name">
+
+                ${escapeHTML(
+                    resource.fileName
+                )}
+
+            </small>
+
+        </div>
+
+
+        <div class="project-file-actions">
+
+
+            <a
+                class="file-view"
+
+                href="${escapeAttribute(
+                    resource.url
+                )}"
+
+                target="_blank"
+
+                rel="noopener noreferrer"
+            >
+
+                <i class="fas fa-eye"></i>
+
+                View
+
+            </a>
+
+
+            <a
+                class="file-download"
+
+                href="${escapeAttribute(
+                    resource.url
+                )}"
+
+                download="${escapeAttribute(
+                    resource.fileName
+                )}"
+            >
+
+                <i class="fas fa-download"></i>
+
+                Download
+
+            </a>
+
+
+        </div>
+
+    `;
+
+
+    container.appendChild(
+        card
+    );
+
+}
+
+
+/* =========================================================
+   PROJECT ERROR
+========================================================= */
+
+function displayProjectError(
     container,
     message
 ) {
@@ -1004,683 +1287,18 @@ function displayProjectMessage(
             <i class="fas fa-folder-open"></i>
 
             <h3>
-                Project Resources
+                Project Deliverables
             </h3>
 
             <p>
+
                 ${escapeHTML(message)}
+
             </p>
 
         </div>
 
     `;
-
-}
-
-
-/* =========================================================
-   ADMINISTRATOR
-========================================================= */
-
-function initialiseAdministrator() {
-
-    const loginForm =
-        document.getElementById(
-            "adminLoginForm"
-        );
-
-
-    const logout =
-        document.getElementById(
-            "adminLogout"
-        );
-
-
-    const uploadForm =
-        document.getElementById(
-            "projectUploadForm"
-        );
-
-
-    /*
-       If this isn't admin.html,
-       stop here.
-    */
-
-    if (
-        !loginForm &&
-        !logout &&
-        !uploadForm
-    ) {
-
-        return;
-
-    }
-
-
-    checkAdministratorSession();
-
-
-    if (loginForm) {
-
-        loginForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-                administratorLogin();
-
-            }
-        );
-
-    }
-
-
-    if (logout) {
-
-        logout.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-
-                administratorLogout();
-
-            }
-        );
-
-    }
-
-
-    if (uploadForm) {
-
-        uploadForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-                uploadProjectFiles();
-
-            }
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   ADMIN LOGIN
-========================================================= */
-
-async function administratorLogin() {
-
-    if (!supabaseClient) {
-
-        showAdminMessage(
-
-            "Supabase could not be loaded.",
-
-            "error"
-
-        );
-
-        return;
-
-    }
-
-
-    const email =
-        getValue(
-            "adminEmail"
-        );
-
-
-    const passwordField =
-        document.getElementById(
-            "adminPassword"
-        );
-
-
-    const password =
-        passwordField
-            ? passwordField.value
-            : "";
-
-
-    if (
-        !email ||
-        !password
-    ) {
-
-        showAdminMessage(
-
-            "Enter your administrator email and password.",
-
-            "error"
-
-        );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-
-        "Signing in...",
-
-        "info"
-
-    );
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-
-                .signInWithPassword(
-                    {
-
-                        email:
-                            email,
-
-                        password:
-                            password
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                "Login error:",
-                error
-            );
-
-
-            showAdminMessage(
-
-                error.message,
-
-                "error"
-
-            );
-
-            return;
-
-        }
-
-
-        if (
-            data &&
-            data.session
-        ) {
-
-            setAdministratorState(
-                true
-            );
-
-
-            showAdminMessage(
-
-                "Administrator access granted.",
-
-                "success"
-
-            );
-
-        } else {
-
-            showAdminMessage(
-
-                "Login did not create a valid session.",
-
-                "error"
-
-            );
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.error(
-            error
-        );
-
-
-        showAdminMessage(
-
-            "Unable to complete login. Please try again.",
-
-            "error"
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CHECK ADMIN SESSION
-========================================================= */
-
-async function checkAdministratorSession() {
-
-    if (!supabaseClient) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const {
-            data
-        } =
-            await supabaseClient
-                .auth
-
-                .getSession();
-
-
-        setAdministratorState(
-
-            Boolean(
-                data &&
-                data.session
-            )
-
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   SET ADMIN PAGE STATE
-========================================================= */
-
-function setAdministratorState(
-    loggedIn
-) {
-
-    const loginArea =
-        document.getElementById(
-            "adminLoginArea"
-        );
-
-
-    const dashboard =
-        document.getElementById(
-            "adminDashboard"
-        );
-
-
-    if (loginArea) {
-
-        loginArea.style.display =
-
-            loggedIn
-                ? "none"
-                : "";
-
-    }
-
-
-    if (dashboard) {
-
-        dashboard.style.display =
-
-            loggedIn
-                ? ""
-                : "none";
-
-    }
-
-}
-
-
-/* =========================================================
-   LOG OUT
-========================================================= */
-
-async function administratorLogout() {
-
-    if (!supabaseClient) {
-
-        return;
-
-    }
-
-
-    try {
-
-        await supabaseClient
-            .auth
-            .signOut();
-
-
-        setAdministratorState(
-            false
-        );
-
-
-        const email =
-            document.getElementById(
-                "adminEmail"
-            );
-
-
-        const password =
-            document.getElementById(
-                "adminPassword"
-            );
-
-
-        if (email) {
-
-            email.value =
-                "";
-
-        }
-
-
-        if (password) {
-
-            password.value =
-                "";
-
-        }
-
-
-        showAdminMessage(
-
-            "You have been signed out.",
-
-            "success"
-
-        );
-
-    }
-
-    catch (error) {
-
-        showAdminMessage(
-
-            "Unable to sign out.",
-
-            "error"
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   ADMIN MESSAGE
-========================================================= */
-
-function showAdminMessage(
-    message,
-    type
-) {
-
-    const box =
-        document.getElementById(
-            "adminMessage"
-        );
-
-
-    if (!box) {
-
-        return;
-
-    }
-
-
-    box.textContent =
-        message;
-
-
-    box.className =
-        "admin-message show " +
-        type;
-
-}
-
-
-/* =========================================================
-   UPLOAD PROJECT 01
-========================================================= */
-
-async function uploadProjectFiles() {
-
-    if (!supabaseClient) {
-
-        showAdminMessage(
-
-            "Supabase connection is unavailable.",
-
-            "error"
-
-        );
-
-        return;
-
-    }
-
-
-    const input =
-        document.getElementById(
-            "projectFiles"
-        );
-
-
-    if (
-        !input ||
-        !input.files ||
-        input.files.length === 0
-    ) {
-
-        showAdminMessage(
-
-            "Select at least one file.",
-
-            "error"
-
-        );
-
-        return;
-
-    }
-
-
-    const {
-        data: sessionData
-    } =
-        await supabaseClient
-            .auth
-
-            .getSession();
-
-
-    if (
-        !sessionData ||
-        !sessionData.session
-    ) {
-
-        showAdminMessage(
-
-            "Your administrator session has expired. Please sign in again.",
-
-            "error"
-
-        );
-
-
-        setAdministratorState(
-            false
-        );
-
-        return;
-
-    }
-
-
-    showAdminMessage(
-
-        "Uploading files...",
-
-        "info"
-
-    );
-
-
-    let successful =
-        0;
-
-
-    let failed =
-        0;
-
-
-    for (
-        const file
-        of input.files
-    ) {
-
-        const safeName =
-            createSafeFileName(
-                file.name
-            );
-
-
-        const path =
-
-            PROJECT_01_FOLDER +
-
-            "/" +
-
-            safeName;
-
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .storage
-
-                .from(
-                    EKO_BUCKET
-                )
-
-                .upload(
-                    path,
-                    file,
-                    {
-
-                        upsert:
-                            true,
-
-                        contentType:
-
-                            file.type ||
-
-                            "application/octet-stream"
-
-                    }
-                );
-
-
-        if (error) {
-
-            console.error(
-                file.name,
-                error
-            );
-
-
-            failed++;
-
-        } else {
-
-            successful++;
-
-        }
-
-    }
-
-
-    input.value =
-        "";
-
-
-    if (
-        successful > 0 &&
-        failed === 0
-    ) {
-
-        showAdminMessage(
-
-            successful +
-            " file(s) uploaded successfully.",
-
-            "success"
-
-        );
-
-    } else if (
-        successful > 0
-    ) {
-
-        showAdminMessage(
-
-            successful +
-            " uploaded; " +
-            failed +
-            " failed.",
-
-            "info"
-
-        );
-
-    } else {
-
-        showAdminMessage(
-
-            "Upload failed. Your Supabase Storage policy may need to be checked.",
-
-            "error"
-
-        );
-
-    }
 
 }
 
@@ -1713,6 +1331,7 @@ function getExtension(
         .toLowerCase();
 
 }
+
 
 
 function fileIcon(
@@ -1792,6 +1411,7 @@ function fileIcon(
 }
 
 
+
 function cleanFileTitle(
     fileName
 ) {
@@ -1818,74 +1438,8 @@ function cleanFileTitle(
 }
 
 
-function createSafeFileName(
-    fileName
-) {
-
-    const finalDot =
-        fileName.lastIndexOf(".");
-
-
-    let name =
-        finalDot >= 0
-
-            ? fileName.substring(
-                0,
-                finalDot
-            )
-
-            : fileName;
-
-
-    const extension =
-        finalDot >= 0
-
-            ? fileName.substring(
-                finalDot
-            )
-
-            : "";
-
-
-    name =
-        name
-
-            .trim()
-
-            .replace(
-                /[^a-zA-Z0-9-_]+/g,
-                "-"
-            )
-
-            .replace(
-                /-+/g,
-                "-"
-            )
-
-            .replace(
-                /^-|-$/g,
-                ""
-            );
-
-
-    if (!name) {
-
-        name =
-            "eko-file";
-
-    }
-
-
-    return (
-        name +
-        extension.toLowerCase()
-    );
-
-}
-
-
 /* =========================================================
-   SECURITY / OUTPUT HELPERS
+   OUTPUT SECURITY
 ========================================================= */
 
 function escapeHTML(
@@ -1905,6 +1459,7 @@ function escapeHTML(
     return div.innerHTML;
 
 }
+
 
 
 function escapeAttribute(
