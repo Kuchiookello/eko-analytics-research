@@ -1,23 +1,18 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Project 01 | SME Sales & Customer Performance Analysis
-    </title>
+    <title>Project 01 | SME Sales & Customer Performance Analysis | EKO Analytics & Research</title>
 
     <meta name="description"
           content="EKO Analytics & Research Project 01 — SME Sales & Customer Performance Analysis. A professional demonstration case study in sales analytics, customer performance, business intelligence and decision support.">
 
-
     <!-- GOOGLE FONTS -->
-
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -28,794 +23,392 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
           rel="stylesheet">
 
-
     <!-- FONT AWESOME -->
-
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
     <!-- CHART.JS -->
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
     <!-- MAIN CSS -->
-
     <link rel="stylesheet"
           href="style.css">
 
-
-    <!-- PAGE-SPECIFIC STYLING -->
-
+    <!-- PROJECT 01 SPECIFIC CSS -->
     <style>
 
-        /* =====================================================
-           PROJECT 01
-        ===================================================== */
-
         .project-meta {
-
             width: min(92%, 1050px);
-
-            margin:
-                38px auto 0;
-
+            margin: 38px auto 0;
             display: flex;
-
             flex-wrap: wrap;
-
             justify-content: center;
-
             gap: 10px;
-
         }
-
 
         .project-meta span {
-
-            padding:
-                7px 12px;
-
+            padding: 7px 12px;
             border-radius: 40px;
-
-            background:
-                rgba(255,255,255,0.08);
-
-            border:
-                1px solid rgba(255,255,255,0.15);
-
-            color:
-                rgba(255,255,255,0.80);
-
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.80);
             font-size: 0.69rem;
-
             font-weight: 700;
-
         }
-
-
-        /* =====================================================
-           DISCLOSURE
-        ===================================================== */
 
         .project-disclosure {
-
             width: min(92%,1000px);
-
             margin: auto;
-
-            padding:
-                20px 22px;
-
+            padding: 20px 22px;
             display: flex;
-
             gap: 15px;
-
             align-items: flex-start;
-
-            background:
-                #fff9ea;
-
-            border:
-                1px solid #ead8a4;
-
+            background: #fff9ea;
+            border: 1px solid #ead8a4;
             border-radius: 15px;
-
         }
-
 
         .project-disclosure i {
-
             color: #c79a3b;
-
             font-size: 1.1rem;
-
             margin-top: 4px;
-
         }
-
 
         .project-disclosure strong {
-
             display: block;
-
             margin-bottom: 5px;
-
             color: #0b1f3a;
-
         }
-
 
         .project-disclosure p {
-
             margin: 0;
-
             font-size: .86rem;
-
         }
 
-
-        /* =====================================================
-           DELIVERABLES
-        ===================================================== */
+        /* DELIVERABLES */
 
         .project-deliverables {
-
-            width:
-                min(92%,1080px);
-
+            width: min(92%,900px);
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap: 20px;
-
+            grid-template-columns: repeat(2,1fr);
+            gap: 22px;
         }
-
 
         .deliverable-card {
-
             position: relative;
-
             overflow: hidden;
-
-            padding: 28px;
-
+            padding: 30px;
             border-radius: 18px;
-
-            border:
-                1px solid #dfe6ed;
-
-            background:
-                #ffffff;
-
-            box-shadow:
-                0 10px 30px rgba(7,20,38,.07);
-
+            border: 1px solid #dfe6ed;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(7,20,38,.07);
             display: flex;
-
             flex-direction: column;
-
-            min-height: 320px;
-
+            min-height: 330px;
         }
-
 
         .deliverable-card::before {
-
             content: "";
-
             position: absolute;
-
             left: 0;
-
             top: 0;
-
             width: 100%;
-
             height: 4px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #087f5b,
-                    #c79a3b
-                );
-
+            background: linear-gradient(
+                90deg,
+                #087f5b,
+                #c79a3b
+            );
         }
-
 
         .deliverable-icon {
-
             width: 58px;
-
             height: 58px;
-
             display: grid;
-
             place-items: center;
-
             border-radius: 14px;
-
-            background:
-                #e8f6f0;
-
-            color:
-                #087f5b;
-
+            background: #e8f6f0;
+            color: #087f5b;
             font-size: 1.5rem;
-
             margin-bottom: 20px;
-
         }
-
 
         .deliverable-type {
-
             display: inline-block;
-
             margin-bottom: 7px;
-
-            color:
-                #087f5b;
-
+            color: #087f5b;
             font-size: .67rem;
-
             font-weight: 800;
-
             letter-spacing: .12em;
-
             text-transform: uppercase;
-
         }
-
 
         .deliverable-card h3 {
-
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
-
+            font-family: "Playfair Display", Georgia, serif;
             font-size: 1.28rem;
-
             line-height: 1.25;
-
             margin-bottom: 12px;
-
         }
-
 
         .deliverable-card p {
-
             font-size: .82rem;
-
             margin-bottom: 20px;
-
         }
-
 
         .deliverable-actions {
-
             margin-top: auto;
-
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1fr 1fr;
             gap: 9px;
-
         }
-
 
         .deliverable-actions a {
-
             min-height: 42px;
-
             display: inline-flex;
-
             align-items: center;
-
             justify-content: center;
-
             gap: 7px;
-
             border-radius: 8px;
-
             font-size: .74rem;
-
             font-weight: 800;
-
         }
-
 
         .deliverable-view {
-
-            background:
-                #0b1f3a;
-
+            background: #0b1f3a;
             color: #ffffff;
-
         }
-
 
         .deliverable-view:hover {
-
-            background:
-                #12395c;
-
+            background: #12395c;
         }
-
 
         .deliverable-download {
-
-            background:
-                #087f5b;
-
+            background: #087f5b;
             color: #ffffff;
-
         }
-
 
         .deliverable-download:hover {
-
-            background:
-                #056044;
-
+            background: #056044;
         }
 
-
-        /* =====================================================
-           KPI CARDS
-        ===================================================== */
+        /* KPI CARDS */
 
         .project-kpi-grid {
-
-            width:
-                min(92%,1100px);
-
+            width: min(92%,1100px);
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(4,1fr);
-
+            grid-template-columns: repeat(4,1fr);
             gap: 16px;
-
         }
-
 
         .project-kpi {
-
-            padding:
-                24px;
-
-            border:
-                1px solid #dfe6ed;
-
+            padding: 24px;
+            border: 1px solid #dfe6ed;
             border-radius: 16px;
-
-            background:
-                #ffffff;
-
-            box-shadow:
-                0 8px 22px rgba(7,20,38,.05);
-
+            background: #ffffff;
+            box-shadow: 0 8px 22px rgba(7,20,38,.05);
         }
-
 
         .project-kpi small {
-
             display: block;
-
-            color:
-                #687789;
-
+            color: #687789;
             font-size: .65rem;
-
             font-weight: 800;
-
             letter-spacing: .08em;
-
             text-transform: uppercase;
-
         }
-
 
         .project-kpi strong {
-
             display: block;
-
             margin-top: 7px;
-
-            color:
-                #0b1f3a;
-
+            color: #0b1f3a;
             font-size: 1.55rem;
-
         }
-
 
         .project-kpi span {
-
             display: block;
-
             margin-top: 4px;
-
-            color:
-                #087f5b;
-
+            color: #087f5b;
             font-size: .72rem;
-
             font-weight: 700;
-
         }
-
-
-        /* =====================================================
-           CONTENT BOX
-        ===================================================== */
 
         .project-content-box {
-
-            padding:
-                31px;
-
-            border:
-                1px solid #dfe6ed;
-
-            border-radius:
-                18px;
-
-            background:
-                #ffffff;
-
+            padding: 31px;
+            border: 1px solid #dfe6ed;
+            border-radius: 18px;
+            background: #ffffff;
         }
-
 
         .project-content-box h3 {
-
-            font-family:
-                "Playfair Display",
-                Georgia,
-                serif;
-
-            font-size:
-                1.5rem;
-
-            margin-bottom:
-                18px;
-
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
         }
-
 
         .project-list {
-
             display: grid;
-
             gap: 12px;
-
             list-style: none;
-
+            padding: 0;
         }
-
 
         .project-list li {
-
             display: flex;
-
             align-items: flex-start;
-
             gap: 9px;
-
-            color:
-                #465668;
-
-            font-size:
-                .86rem;
-
+            color: #465668;
+            font-size: .86rem;
         }
-
 
         .project-list i {
-
-            color:
-                #087f5b;
-
+            color: #087f5b;
             margin-top: 5px;
-
         }
 
-
-        /* =====================================================
-           CHARTS
-        ===================================================== */
+        /* CHARTS */
 
         .dashboard-grid {
-
-            width:
-                min(92%,1100px);
-
+            width: min(92%,1100px);
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(2,1fr);
-
+            grid-template-columns: repeat(2,1fr);
             gap: 20px;
-
         }
-
 
         .chart-card {
-
             padding: 25px;
-
-            border:
-                1px solid #dfe6ed;
-
-            border-radius:
-                18px;
-
-            background:
-                #ffffff;
-
+            border: 1px solid #dfe6ed;
+            border-radius: 18px;
+            background: #ffffff;
             min-height: 395px;
-
         }
-
 
         .chart-card.full {
-
-            grid-column:
-                1 / -1;
-
+            grid-column: 1 / -1;
         }
-
 
         .chart-card h3 {
-
             margin-bottom: 18px;
-
         }
-
 
         .chart-space {
-
             height: 290px;
-
         }
 
-
-        /* =====================================================
-           FINDING CARDS
-        ===================================================== */
+        /* FINDINGS */
 
         .finding-grid {
-
-            width:
-                min(92%,1100px);
-
+            width: min(92%,1100px);
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(4,1fr);
-
+            grid-template-columns: repeat(4,1fr);
             gap: 18px;
-
         }
-
 
         .finding-card {
-
             padding: 25px;
-
-            border:
-                1px solid #dfe6ed;
-
+            border: 1px solid #dfe6ed;
             border-radius: 16px;
-
-            background:
-                #ffffff;
-
+            background: #ffffff;
         }
-
 
         .finding-card i {
-
-            color:
-                #087f5b;
-
+            color: #087f5b;
             font-size: 1.4rem;
-
             margin-bottom: 15px;
-
         }
-
 
         .finding-card strong {
-
             display: block;
-
             margin-bottom: 8px;
-
-            color:
-                #0b1f3a;
-
+            color: #0b1f3a;
         }
-
 
         .finding-card p {
-
-            font-size:
-                .78rem;
-
+            font-size: .78rem;
         }
 
-
-        /* =====================================================
-           METHODOLOGY STEPS
-        ===================================================== */
+        /* METHODOLOGY */
 
         .method-list {
-
             display: grid;
-
             gap: 12px;
-
             margin-top: 22px;
-
         }
-
 
         .method-step {
-
             display: grid;
-
-            grid-template-columns:
-                45px 1fr;
-
+            grid-template-columns: 45px 1fr;
             gap: 14px;
-
             align-items: center;
-
-            padding:
-                15px;
-
-            border:
-                1px solid #dfe6ed;
-
-            border-radius:
-                12px;
-
-            background:
-                #ffffff;
-
+            padding: 15px;
+            border: 1px solid #dfe6ed;
+            border-radius: 12px;
+            background: #ffffff;
         }
-
 
         .method-number {
-
             width: 42px;
-
             height: 42px;
-
             display: grid;
-
             place-items: center;
-
-            border-radius:
-                10px;
-
-            background:
-                #087f5b;
-
-            color:
-                #ffffff;
-
+            border-radius: 10px;
+            background: #087f5b;
+            color: #ffffff;
             font-weight: 800;
-
         }
-
 
         .method-step strong {
-
             display: block;
-
-            color:
-                #0b1f3a;
-
+            color: #0b1f3a;
         }
-
 
         .method-step p {
-
             margin: 2px 0 0;
-
             font-size: .77rem;
-
         }
 
+        /* RESPONSIVE */
 
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-        @media (max-width: 900px) {
+        @media (max-width:900px) {
 
             .project-deliverables {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
+                max-width: 620px;
             }
-
 
             .project-kpi-grid {
-
-                grid-template-columns:
-                    repeat(2,1fr);
-
+                grid-template-columns: repeat(2,1fr);
             }
-
 
             .finding-grid {
-
-                grid-template-columns:
-                    repeat(2,1fr);
-
+                grid-template-columns: repeat(2,1fr);
             }
-
         }
 
-
-        @media (max-width: 700px) {
+        @media (max-width:700px) {
 
             .dashboard-grid {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
             }
-
 
             .chart-card.full {
-
-                grid-column:
-                    auto;
-
+                grid-column: auto;
             }
-
         }
 
-
-        @media (max-width: 520px) {
+        @media (max-width:520px) {
 
             .project-kpi-grid,
             .finding-grid {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
             }
-
 
             .deliverable-actions {
-
-                grid-template-columns:
-                    1fr;
-
+                grid-template-columns: 1fr;
             }
-
         }
 
     </style>
@@ -823,8 +416,7 @@
 </head>
 
 
-
-<body>
+<body data-page="project-01">
 
 
 <!-- =========================================================
@@ -835,70 +427,45 @@
 
     <div class="nav-wrap">
 
-        <a class="brand"
-           href="./">
+        <a class="brand brand-official-logo"
+           href="index.html"
+           aria-label="EKO Analytics & Research Home">
 
-            <span class="brand-mark">
-                EKO
-            </span>
-
-
-            <span class="brand-copy">
-
-                <strong>
-                    EKO Analytics &amp; Research
-                </strong>
-
-                <small>
-                    Turning Data into Actionable Insights
-                </small>
-
-            </span>
+            <img
+                src="file_000000005e7c7243ba74d1018716cc17.png"
+                alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                class="brand-logo">
 
         </a>
 
-
         <button class="nav-toggle"
                 id="navToggle"
-                aria-label="Open navigation">
+                aria-label="Open navigation"
+                aria-expanded="false">
 
             <i class="fas fa-bars"></i>
 
         </button>
 
-
         <div class="nav-links"
              id="navLinks">
 
-            <a href="./">
-                Home
-            </a>
+            <a href="index.html">Home</a>
 
-            <a href="about.html">
-                About
-            </a>
+            <a href="about.html">About</a>
 
-            <a href="services.html">
-                Services
-            </a>
+            <a href="services.html">Services</a>
 
-            <a href="projects.html">
-                Projects
-            </a>
+            <a href="projects.html"
+               aria-current="page">Projects</a>
 
-            <a href="insights.html">
-                Insights
-            </a>
+            <a href="insights.html">Insights</a>
 
-            <a href="contact.html">
-                Contact
-            </a>
+            <a href="contact.html">Contact</a>
 
             <a class="nav-cta"
                href="contact.html#consultation">
-
                 Request Consultation
-
             </a>
 
         </div>
@@ -906,7 +473,6 @@
     </div>
 
 </nav>
-
 
 
 <!-- =========================================================
@@ -930,33 +496,21 @@
         and practical management recommendations.
     </p>
 
-
     <div class="project-meta">
 
-        <span>
-            Business Analytics
-        </span>
+        <span>Business Analytics</span>
 
-        <span>
-            SME Performance
-        </span>
+        <span>SME Performance</span>
 
-        <span>
-            Customer Analytics
-        </span>
+        <span>Customer Analytics</span>
 
-        <span>
-            January 2025 – June 2026
-        </span>
+        <span>January 2025 – June 2026</span>
 
-        <span>
-            Synthetic Demonstration Data
-        </span>
+        <span>Synthetic Demonstration Data</span>
 
     </div>
 
 </header>
-
 
 
 <main>
@@ -973,7 +527,6 @@
 
         <i class="fas fa-circle-info"></i>
 
-
         <div>
 
             <strong>
@@ -982,11 +535,10 @@
 
             <p>
                 This project uses synthetic demonstration data
-                and is designed to illustrate the analytical
-                approach EKO Analytics &amp; Research can apply
-                to a real SME assignment. It does not represent
-                confidential client information or the performance
-                of a real organisation.
+                and illustrates the analytical approach EKO Analytics
+                &amp; Research can apply to a real SME engagement.
+                It does not represent confidential client information
+                or the performance of a real organisation.
             </p>
 
         </div>
@@ -996,9 +548,8 @@
 </section>
 
 
-
 <!-- =========================================================
-     PROJECT DELIVERABLES
+     PROJECT RESOURCES
 ========================================================= -->
 
 <section class="section"
@@ -1007,17 +558,17 @@
     <div class="section-head center">
 
         <span class="eyebrow">
-            PROJECT DELIVERABLES
+            PROJECT RESOURCES
         </span>
 
         <h2>
-            Explore the complete Project 01 analysis
+            Explore the Project 01 analysis
         </h2>
 
         <p>
             Review the final analytical report and supporting
-            workbook used to demonstrate EKO's end-to-end
-            SME analytics capability.
+            workbook demonstrating EKO's end-to-end SME
+            analytics capability.
         </p>
 
     </div>
@@ -1026,33 +577,28 @@
     <div class="project-deliverables">
 
 
-        <!-- PDF -->
+        <!-- PDF REPORT -->
 
         <article class="deliverable-card">
 
             <div class="deliverable-icon">
-
                 <i class="fas fa-file-pdf"></i>
-
             </div>
-
 
             <span class="deliverable-type">
                 Final Analytical Report
             </span>
 
-
             <h3>
                 SME Sales &amp; Customer Performance Analysis
             </h3>
 
-
             <p>
-                Complete professional report containing the executive
-                summary, methodology, KPI analysis, findings,
-                interpretation, limitations and management recommendations.
+                Professional analytical report containing the
+                executive summary, methodology, KPI analysis,
+                findings, interpretation, limitations and
+                management recommendations.
             </p>
-
 
             <div class="deliverable-actions">
 
@@ -1060,23 +606,20 @@
                     class="deliverable-view"
                     href="https://cueajmzcmawvcbpwuyhi.supabase.co/storage/v1/object/public/eko/project-01/EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf"
                     target="_blank"
-                    rel="noopener noreferrer"
-                >
+                    rel="noopener noreferrer">
 
                     <i class="fas fa-eye"></i>
-                    View
+                    View Report
 
                 </a>
-
 
                 <a
                     class="deliverable-download"
                     href="https://cueajmzcmawvcbpwuyhi.supabase.co/storage/v1/object/public/eko/project-01/EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf"
-                    download
-                >
+                    download="EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf">
 
                     <i class="fas fa-download"></i>
-                    Download
+                    Download PDF
 
                 </a>
 
@@ -1085,34 +628,28 @@
         </article>
 
 
-
-        <!-- EXCEL -->
+        <!-- EXCEL WORKBOOK -->
 
         <article class="deliverable-card">
 
             <div class="deliverable-icon">
-
                 <i class="fas fa-file-excel"></i>
-
             </div>
-
 
             <span class="deliverable-type">
                 Analytical Workbook
             </span>
 
-
             <h3>
                 SME Sales &amp; Customer Performance Workbook
             </h3>
 
-
             <p>
-                Supporting Excel workbook containing the synthetic
-                transaction dataset, analysis tables, KPIs,
-                revenue trends, customer analysis and management dashboard.
+                Supporting analytical workbook containing the
+                synthetic transaction dataset, KPI calculations,
+                revenue trends, customer analysis and
+                management dashboard.
             </p>
-
 
             <div class="deliverable-actions">
 
@@ -1120,95 +657,30 @@
                     class="deliverable-view"
                     href="https://cueajmzcmawvcbpwuyhi.supabase.co/storage/v1/object/public/eko/project-01/EKO_Project_01_SME_Sales_Customer_Performance.xlsx"
                     target="_blank"
-                    rel="noopener noreferrer"
-                >
+                    rel="noopener noreferrer">
 
-                    <i class="fas fa-eye"></i>
-                    Open
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                    Open Workbook
 
                 </a>
-
 
                 <a
                     class="deliverable-download"
                     href="https://cueajmzcmawvcbpwuyhi.supabase.co/storage/v1/object/public/eko/project-01/EKO_Project_01_SME_Sales_Customer_Performance.xlsx"
-                    download
-                >
+                    download="EKO_Project_01_SME_Sales_Customer_Performance.xlsx">
 
                     <i class="fas fa-download"></i>
-                    Download
+                    Download Excel
 
                 </a>
 
             </div>
 
         </article>
-
-
-
-        <!-- WORD -->
-
-        <article class="deliverable-card">
-
-            <div class="deliverable-icon">
-
-                <i class="fas fa-file-word"></i>
-
-            </div>
-
-
-            <span class="deliverable-type">
-                Editable Report
-            </span>
-
-
-            <h3>
-                Project 01 Editable Analytical Report
-            </h3>
-
-
-            <p>
-                Editable Word version of the complete analytical
-                report for review, adaptation and professional
-                documentation purposes.
-            </p>
-
-
-            <div class="deliverable-actions">
-
-                <a
-                    class="deliverable-view"
-                    href="https://cueajmzcmawvcbpwuyhi.supabase.co/storage/v1/object/public/eko/project-01/EKO_Project_01_SME_Sales_Customer_Performance_Report.docx"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-
-                    <i class="fas fa-eye"></i>
-                    Open
-
-                </a>
-
-
-                <a
-                    class="deliverable-download"
-                    href="https://cueajmzcmawvcbpwuyhi.supabase.co/storage/v1/object/public/eko/project-01/EKO_Project_01_SME_Sales_Customer_Performance_Report.docx"
-                    download
-                >
-
-                    <i class="fas fa-download"></i>
-                    Download
-
-                </a>
-
-            </div>
-
-        </article>
-
 
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -1228,7 +700,7 @@
         </h2>
 
         <p>
-            The core performance measures generated from the
+            Core performance measures generated from the
             completed synthetic SME dataset.
         </p>
 
@@ -1237,154 +709,57 @@
 
     <div class="project-kpi-grid">
 
-
         <div class="project-kpi">
-
-            <small>
-                Total Revenue
-            </small>
-
-            <strong>
-                KES 24.95M
-            </strong>
-
-            <span>
-                18-month demonstration period
-            </span>
-
+            <small>Total Revenue</small>
+            <strong>KES 24.95M</strong>
+            <span>18-month demonstration period</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Gross Profit
-            </small>
-
-            <strong>
-                KES 11.40M
-            </strong>
-
-            <span>
-                Estimated
-            </span>
-
+            <small>Gross Profit</small>
+            <strong>KES 11.40M</strong>
+            <span>Estimated</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Gross Margin
-            </small>
-
-            <strong>
-                45.7%
-            </strong>
-
-            <span>
-                Estimated
-            </span>
-
+            <small>Gross Margin</small>
+            <strong>45.7%</strong>
+            <span>Estimated</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Transactions
-            </small>
-
-            <strong>
-                520
-            </strong>
-
-            <span>
-                Sales records analysed
-            </span>
-
+            <small>Transactions</small>
+            <strong>520</strong>
+            <span>Sales records analysed</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Avg. Transaction
-            </small>
-
-            <strong>
-                KES 47.98K
-            </strong>
-
-            <span>
-                Average transaction value
-            </span>
-
+            <small>Avg. Transaction</small>
+            <strong>KES 47.98K</strong>
+            <span>Average transaction value</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Service Orders
-            </small>
-
-            <strong>
-                756
-            </strong>
-
-            <span>
-                Units / service orders
-            </span>
-
+            <small>Service Orders</small>
+            <strong>756</strong>
+            <span>Units / service orders</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Unique Customers
-            </small>
-
-            <strong>
-                80
-            </strong>
-
-            <span>
-                Customer records represented
-            </span>
-
+            <small>Unique Customers</small>
+            <strong>80</strong>
+            <span>Customer records represented</span>
         </div>
 
-
-
         <div class="project-kpi">
-
-            <small>
-                Analysis Period
-            </small>
-
-            <strong>
-                18 Months
-            </strong>
-
-            <span>
-                Jan 2025 – Jun 2026
-            </span>
-
+            <small>Analysis Period</small>
+            <strong>18 Months</strong>
+            <span>Jan 2025 – Jun 2026</span>
         </div>
-
 
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -1394,7 +769,6 @@
 <section class="section">
 
     <div class="split">
-
 
         <div>
 
@@ -1428,7 +802,6 @@
         </div>
 
 
-
         <div class="project-content-box">
 
             <span class="eyebrow">
@@ -1439,60 +812,36 @@
                 What does the business need to understand?
             </h3>
 
-
             <ul class="project-list">
 
                 <li>
-
                     <i class="fas fa-check"></i>
-
                     How is revenue performing over time?
-
                 </li>
 
-
                 <li>
-
                     <i class="fas fa-check"></i>
-
                     Which services generate the highest commercial value?
-
                 </li>
 
-
                 <li>
-
                     <i class="fas fa-check"></i>
-
                     Which customer groups contribute most strongly?
-
                 </li>
 
-
                 <li>
-
                     <i class="fas fa-check"></i>
-
                     Which locations generate stronger or weaker results?
-
                 </li>
 
-
                 <li>
-
                     <i class="fas fa-check"></i>
-
                     Which acquisition channels are producing revenue?
-
                 </li>
 
-
                 <li>
-
                     <i class="fas fa-check"></i>
-
                     What should management prioritise next?
-
                 </li>
 
             </ul>
@@ -1502,7 +851,6 @@
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -1526,107 +874,63 @@
 
     <div class="service-grid">
 
-
         <article class="service-card">
-
             <i class="fas fa-money-bill-trend-up"></i>
-
-            <h3>
-                Measure Performance
-            </h3>
-
+            <h3>Measure Performance</h3>
             <p>
                 Calculate core sales, revenue, transaction
                 and gross-profit indicators.
             </p>
-
         </article>
 
-
         <article class="service-card">
-
             <i class="fas fa-chart-line"></i>
-
-            <h3>
-                Identify Trends
-            </h3>
-
+            <h3>Identify Trends</h3>
             <p>
                 Examine monthly sales performance and variation
                 across the analysis period.
             </p>
-
         </article>
 
-
         <article class="service-card">
-
             <i class="fas fa-briefcase"></i>
-
-            <h3>
-                Compare Services
-            </h3>
-
+            <h3>Compare Services</h3>
             <p>
                 Identify which services contribute most strongly
                 to commercial performance.
             </p>
-
         </article>
 
-
         <article class="service-card">
-
             <i class="fas fa-users"></i>
-
-            <h3>
-                Understand Customers
-            </h3>
-
+            <h3>Understand Customers</h3>
             <p>
                 Assess customer segments, repeat activity
                 and customer concentration.
             </p>
-
         </article>
 
-
         <article class="service-card">
-
             <i class="fas fa-location-dot"></i>
-
-            <h3>
-                Compare Markets
-            </h3>
-
+            <h3>Compare Markets</h3>
             <p>
                 Evaluate geographic revenue contribution
                 across operating locations.
             </p>
-
         </article>
 
-
         <article class="service-card">
-
             <i class="fas fa-lightbulb"></i>
-
-            <h3>
-                Recommend Action
-            </h3>
-
+            <h3>Recommend Action</h3>
             <p>
                 Translate analytical findings into
                 practical management recommendations.
             </p>
-
         </article>
-
 
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -1636,7 +940,6 @@
 <section class="section">
 
     <div class="split">
-
 
         <div>
 
@@ -1649,237 +952,96 @@
             </h2>
 
             <p>
-                EKO used a structured analytical process that can
-                be adapted to a real business engagement.
+                EKO used a structured analytical process that
+                can be adapted to a real business engagement.
             </p>
 
 
             <div class="method-list">
 
-
                 <div class="method-step">
-
-                    <div class="method-number">
-                        01
-                    </div>
-
+                    <div class="method-number">01</div>
                     <div>
-
-                        <strong>
-                            Define
-                        </strong>
-
-                        <p>
-                            Clarify business questions and management objectives.
-                        </p>
-
+                        <strong>Define</strong>
+                        <p>Clarify business questions and management objectives.</p>
                     </div>
-
                 </div>
 
-
-
                 <div class="method-step">
-
-                    <div class="method-number">
-                        02
-                    </div>
-
+                    <div class="method-number">02</div>
                     <div>
-
-                        <strong>
-                            Prepare
-                        </strong>
-
-                        <p>
-                            Structure and validate transaction-level records.
-                        </p>
-
+                        <strong>Prepare</strong>
+                        <p>Structure and validate transaction-level records.</p>
                     </div>
-
                 </div>
 
-
-
                 <div class="method-step">
-
-                    <div class="method-number">
-                        03
-                    </div>
-
+                    <div class="method-number">03</div>
                     <div>
-
-                        <strong>
-                            Analyse
-                        </strong>
-
-                        <p>
-                            Calculate KPIs and compare major performance dimensions.
-                        </p>
-
+                        <strong>Analyse</strong>
+                        <p>Calculate KPIs and compare major performance dimensions.</p>
                     </div>
-
                 </div>
 
-
-
                 <div class="method-step">
-
-                    <div class="method-number">
-                        04
-                    </div>
-
+                    <div class="method-number">04</div>
                     <div>
-
-                        <strong>
-                            Visualise
-                        </strong>
-
-                        <p>
-                            Convert findings into charts and management dashboards.
-                        </p>
-
+                        <strong>Visualise</strong>
+                        <p>Convert findings into charts and management dashboards.</p>
                     </div>
-
                 </div>
 
-
-
                 <div class="method-step">
-
-                    <div class="method-number">
-                        05
-                    </div>
-
+                    <div class="method-number">05</div>
                     <div>
-
-                        <strong>
-                            Interpret
-                        </strong>
-
-                        <p>
-                            Explain what the findings mean for the business.
-                        </p>
-
+                        <strong>Interpret</strong>
+                        <p>Explain what the findings mean for the business.</p>
                     </div>
-
                 </div>
 
-
-
                 <div class="method-step">
-
-                    <div class="method-number">
-                        06
-                    </div>
-
+                    <div class="method-number">06</div>
                     <div>
-
-                        <strong>
-                            Recommend
-                        </strong>
-
-                        <p>
-                            Translate evidence into practical management actions.
-                        </p>
-
+                        <strong>Recommend</strong>
+                        <p>Translate evidence into practical management actions.</p>
                     </div>
-
                 </div>
-
 
             </div>
 
         </div>
 
 
-
         <div class="case-preview">
 
             <div class="preview-top">
-
-                <span>
-                    EKO ANALYTICAL FLOW
-                </span>
-
-                <strong>
-                    DECISION SUPPORT
-                </strong>
-
+                <span>EKO ANALYTICAL FLOW</span>
+                <strong>DECISION SUPPORT</strong>
             </div>
 
+            <div style="margin-top:38px;display:grid;gap:14px;">
 
-            <div style="
-                margin-top:38px;
-                display:grid;
-                gap:14px;
-            ">
-
-
-                <div style="
-                    padding:18px;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.06);
-                    color:white;
-                ">
+                <div style="padding:18px;border-radius:12px;background:rgba(255,255,255,.06);color:white;">
                     RAW DATA
                 </div>
 
+                <div style="text-align:center;color:#e7c978;">↓</div>
 
-                <div style="
-                    text-align:center;
-                    color:#e7c978;
-                ">
-                    ↓
-                </div>
-
-
-                <div style="
-                    padding:18px;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.06);
-                    color:white;
-                ">
+                <div style="padding:18px;border-radius:12px;background:rgba(255,255,255,.06);color:white;">
                     ANALYSIS
                 </div>
 
+                <div style="text-align:center;color:#e7c978;">↓</div>
 
-                <div style="
-                    text-align:center;
-                    color:#e7c978;
-                ">
-                    ↓
-                </div>
-
-
-                <div style="
-                    padding:18px;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.06);
-                    color:white;
-                ">
+                <div style="padding:18px;border-radius:12px;background:rgba(255,255,255,.06);color:white;">
                     BUSINESS INSIGHT
                 </div>
 
+                <div style="text-align:center;color:#e7c978;">↓</div>
 
-                <div style="
-                    text-align:center;
-                    color:#e7c978;
-                ">
-                    ↓
-                </div>
-
-
-                <div style="
-                    padding:18px;
-                    border-radius:12px;
-                    background:#087f5b;
-                    color:white;
-                    font-weight:800;
-                ">
+                <div style="padding:18px;border-radius:12px;background:#087f5b;color:white;font-weight:800;">
                     MANAGEMENT ACTION
                 </div>
-
 
             </div>
 
@@ -1888,7 +1050,6 @@
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -1916,25 +1077,19 @@
 
     <div class="dashboard-grid">
 
-
         <div class="chart-card full">
 
             <span class="eyebrow">
                 MONTHLY PERFORMANCE
             </span>
 
-            <h3>
-                Revenue Trend
-            </h3>
+            <h3>Revenue Trend</h3>
 
             <div class="chart-space">
-
                 <canvas id="monthlyRevenueChart"></canvas>
-
             </div>
 
         </div>
-
 
 
         <div class="chart-card">
@@ -1943,18 +1098,13 @@
                 SERVICE MIX
             </span>
 
-            <h3>
-                Revenue by Service
-            </h3>
+            <h3>Revenue by Service</h3>
 
             <div class="chart-space">
-
                 <canvas id="serviceRevenueChart"></canvas>
-
             </div>
 
         </div>
-
 
 
         <div class="chart-card">
@@ -1963,18 +1113,13 @@
                 CUSTOMER MIX
             </span>
 
-            <h3>
-                Revenue by Customer Segment
-            </h3>
+            <h3>Revenue by Customer Segment</h3>
 
             <div class="chart-space">
-
                 <canvas id="segmentRevenueChart"></canvas>
-
             </div>
 
         </div>
-
 
 
         <div class="chart-card full">
@@ -1983,23 +1128,17 @@
                 GEOGRAPHIC PERFORMANCE
             </span>
 
-            <h3>
-                Revenue by Location
-            </h3>
+            <h3>Revenue by Location</h3>
 
             <div class="chart-space">
-
                 <canvas id="locationRevenueChart"></canvas>
-
             </div>
 
         </div>
 
-
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -2023,7 +1162,6 @@
 
     <div class="finding-grid">
 
-
         <article class="finding-card">
 
             <i class="fas fa-briefcase"></i>
@@ -2038,7 +1176,6 @@
             </p>
 
         </article>
-
 
 
         <article class="finding-card">
@@ -2057,7 +1194,6 @@
         </article>
 
 
-
         <article class="finding-card">
 
             <i class="fas fa-users"></i>
@@ -2072,7 +1208,6 @@
             </p>
 
         </article>
-
 
 
         <article class="finding-card">
@@ -2090,11 +1225,9 @@
 
         </article>
 
-
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -2104,7 +1237,6 @@
 <section class="section alt">
 
     <div class="split">
-
 
         <div>
 
@@ -2133,7 +1265,6 @@
         </div>
 
 
-
         <div class="project-content-box">
 
             <span class="eyebrow">
@@ -2144,61 +1275,19 @@
                 Important management measures
             </h3>
 
-
             <ul class="project-list">
 
-                <li>
+                <li><i class="fas fa-check"></i>Unique active customers</li>
 
-                    <i class="fas fa-check"></i>
+                <li><i class="fas fa-check"></i>Repeat transaction rate</li>
 
-                    Unique active customers
+                <li><i class="fas fa-check"></i>Revenue by customer segment</li>
 
-                </li>
+                <li><i class="fas fa-check"></i>Top-customer revenue concentration</li>
 
+                <li><i class="fas fa-check"></i>Customer acquisition channel</li>
 
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Repeat transaction rate
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Revenue by customer segment
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Top-customer revenue concentration
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Customer acquisition channel
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Average customer value
-
-                </li>
+                <li><i class="fas fa-check"></i>Average customer value</li>
 
             </ul>
 
@@ -2207,7 +1296,6 @@
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -2231,113 +1319,64 @@
 
     <div class="service-grid">
 
-
         <article class="service-card">
-
             <i class="fas fa-arrow-trend-up"></i>
-
-            <h3>
-                Protect High-Value Services
-            </h3>
-
+            <h3>Protect High-Value Services</h3>
             <p>
                 Prioritise sales capacity and delivery quality
                 around services that generate the strongest
                 commercial contribution.
             </p>
-
         </article>
 
-
-
         <article class="service-card">
-
             <i class="fas fa-repeat"></i>
-
-            <h3>
-                Build Repeat Business
-            </h3>
-
+            <h3>Build Repeat Business</h3>
             <p>
                 Create structured follow-up, retention and
                 repeat-purchase processes for existing customers.
             </p>
-
         </article>
 
-
-
         <article class="service-card">
-
             <i class="fas fa-chart-column"></i>
-
-            <h3>
-                Forecast Monthly Performance
-            </h3>
-
+            <h3>Forecast Monthly Performance</h3>
             <p>
                 Use monthly KPI reviews and sales-pipeline
                 tracking to identify revenue gaps early.
             </p>
-
         </article>
 
-
-
         <article class="service-card">
-
             <i class="fas fa-user-shield"></i>
-
-            <h3>
-                Monitor Customer Concentration
-            </h3>
-
+            <h3>Monitor Customer Concentration</h3>
             <p>
                 Track dependence on major customers and
                 deliberately broaden the active customer base.
             </p>
-
         </article>
 
-
-
         <article class="service-card">
-
             <i class="fas fa-map-location-dot"></i>
-
-            <h3>
-                Use Market-Specific Strategies
-            </h3>
-
+            <h3>Use Market-Specific Strategies</h3>
             <p>
                 Compare customer demand, service mix and acquisition
                 channels before allocating resources across locations.
             </p>
-
         </article>
 
-
-
         <article class="service-card">
-
             <i class="fas fa-bullseye"></i>
-
-            <h3>
-                Measure Channel Economics
-            </h3>
-
+            <h3>Measure Channel Economics</h3>
             <p>
                 Add marketing spend, lead volumes and conversion
                 rates to assess channel return on investment.
             </p>
-
         </article>
-
 
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -2347,7 +1386,6 @@
 <section class="section alt">
 
     <div class="split">
-
 
         <div>
 
@@ -2374,68 +1412,25 @@
         </div>
 
 
-
         <div class="project-content-box">
 
             <h3>
                 A live engagement would additionally include
             </h3>
 
-
             <ul class="project-list">
 
-                <li>
+                <li><i class="fas fa-check"></i>Client-specific data validation</li>
 
-                    <i class="fas fa-check"></i>
+                <li><i class="fas fa-check"></i>Actual cost and profitability information</li>
 
-                    Client-specific data validation
+                <li><i class="fas fa-check"></i>Marketing expenditure</li>
 
-                </li>
+                <li><i class="fas fa-check"></i>Sales targets and budgets</li>
 
+                <li><i class="fas fa-check"></i>Management interviews</li>
 
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Actual cost and profitability information
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Marketing expenditure
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Sales targets and budgets
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Management interviews
-
-                </li>
-
-
-                <li>
-
-                    <i class="fas fa-check"></i>
-
-                    Client-specific recommendations
-
-                </li>
+                <li><i class="fas fa-check"></i>Client-specific recommendations</li>
 
             </ul>
 
@@ -2446,7 +1441,6 @@
 </section>
 
 
-
 <!-- =========================================================
      CLIENT VALUE
 ========================================================= -->
@@ -2455,76 +1449,38 @@
 
     <div class="split">
 
-
         <div class="case-preview">
 
             <div class="preview-top">
-
-                <span>
-                    POSSIBLE CLIENT DELIVERABLES
-                </span>
-
-                <strong>
-                    SME ANALYTICS ENGAGEMENT
-                </strong>
-
+                <span>POSSIBLE CLIENT DELIVERABLES</span>
+                <strong>SME ANALYTICS ENGAGEMENT</strong>
             </div>
 
+            <div style="margin-top:35px;display:grid;gap:14px;">
 
-            <div style="
-                margin-top:35px;
-                display:grid;
-                gap:14px;
-            ">
-
-
-                <div style="
-                    color:white;
-                    padding-bottom:13px;
-                    border-bottom:1px solid rgba(255,255,255,.12);
-                ">
+                <div style="color:white;padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.12);">
                     ✓ Cleaned analytical dataset
                 </div>
 
-
-                <div style="
-                    color:white;
-                    padding-bottom:13px;
-                    border-bottom:1px solid rgba(255,255,255,.12);
-                ">
+                <div style="color:white;padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.12);">
                     ✓ Management KPI dashboard
                 </div>
 
-
-                <div style="
-                    color:white;
-                    padding-bottom:13px;
-                    border-bottom:1px solid rgba(255,255,255,.12);
-                ">
+                <div style="color:white;padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.12);">
                     ✓ Sales &amp; customer analysis
                 </div>
 
-
-                <div style="
-                    color:white;
-                    padding-bottom:13px;
-                    border-bottom:1px solid rgba(255,255,255,.12);
-                ">
+                <div style="color:white;padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.12);">
                     ✓ Executive analytical report
                 </div>
 
-
-                <div style="
-                    color:white;
-                ">
+                <div style="color:white;">
                     ✓ Decision-ready recommendations
                 </div>
-
 
             </div>
 
         </div>
-
 
 
         <div>
@@ -2549,28 +1505,20 @@
                 reporting needs and strategic priorities.
             </p>
 
-
             <div class="hero-actions">
 
-                <a
-                    class="btn primary"
-                    href="contact.html#consultation"
-                >
+                <a class="btn primary"
+                   href="contact.html#consultation">
 
                     <i class="fas fa-comments"></i>
-
                     Discuss a Similar Project
 
                 </a>
 
-
-                <a
-                    class="btn outline-dark"
-                    href="projects.html"
-                >
+                <a class="btn outline-dark"
+                   href="projects.html">
 
                     <i class="fas fa-arrow-left"></i>
-
                     All Projects
 
                 </a>
@@ -2582,7 +1530,6 @@
     </div>
 
 </section>
-
 
 
 <!-- =========================================================
@@ -2608,14 +1555,10 @@
 
     </div>
 
-
-    <a
-        class="btn gold"
-        href="contact.html#consultation"
-    >
+    <a class="btn gold"
+       href="contact.html#consultation">
 
         <i class="fas fa-comments"></i>
-
         Request Consultation
 
     </a>
@@ -2626,7 +1569,6 @@
 </main>
 
 
-
 <!-- =========================================================
      FOOTER
 ========================================================= -->
@@ -2635,21 +1577,16 @@
 
     <div class="footer-grid">
 
-
         <div>
 
-            <div class="footer-brand">
+            <div class="footer-brand footer-brand-logo">
 
-                <span>
-                    EKO
-                </span>
-
-                <strong>
-                    EKO Analytics &amp; Research
-                </strong>
+                <img
+                    src="file_000000005e7c7243ba74d1018716cc17.png"
+                    alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                    class="footer-logo">
 
             </div>
-
 
             <p>
                 Research, analytics and decision-support services
@@ -2660,38 +1597,24 @@
         </div>
 
 
-
         <div>
 
-            <h4>
-                Explore
-            </h4>
+            <h4>Explore</h4>
 
-            <a href="about.html">
-                About EKO
-            </a>
+            <a href="about.html">About EKO</a>
 
-            <a href="services.html">
-                Services
-            </a>
+            <a href="services.html">Services</a>
 
-            <a href="projects.html">
-                Projects
-            </a>
+            <a href="projects.html">Projects</a>
 
-            <a href="insights.html">
-                Insights
-            </a>
+            <a href="insights.html">Insights</a>
 
         </div>
 
 
-
         <div>
 
-            <h4>
-                Contact
-            </h4>
+            <h4>Contact</h4>
 
             <a href="mailto:edwinokello24@gmail.com">
                 edwinokello24@gmail.com
@@ -2701,18 +1624,15 @@
                 +254 143 947 048
             </a>
 
-            <a
-                href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
+            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+               target="_blank"
+               rel="noopener noreferrer">
                 LinkedIn
             </a>
 
         </div>
 
     </div>
-
 
 
     <div class="footer-bottom">
@@ -2722,12 +1642,10 @@
             EKO Analytics &amp; Research
         </span>
 
-
-        <a
-            href="admin.html"
-            class="admin-link"
-            title="Administrator"
-        >
+        <a href="admin.html"
+           class="admin-link"
+           title="Administrator"
+           aria-label="Administrator">
 
             <i class="fas fa-lock"></i>
 
@@ -2738,13 +1656,11 @@
 </footer>
 
 
-
 <!-- =========================================================
      MAIN SCRIPT
 ========================================================= -->
 
 <script src="script.js"></script>
-
 
 
 <!-- =========================================================
@@ -2753,454 +1669,304 @@
 
 <script>
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (typeof Chart === "undefined") {
+        return;
+    }
+
+    Chart.defaults.font.family = "Inter";
+    Chart.defaults.color = "#687789";
 
 
-        if (
-            typeof Chart ===
-            "undefined"
-        ) {
+    /* MONTHLY REVENUE */
 
-            return;
+    const monthlyRevenue =
+        document.getElementById("monthlyRevenueChart");
 
-        }
+    if (monthlyRevenue) {
 
+        new Chart(monthlyRevenue, {
 
-        Chart.defaults.font.family =
-            "Inter";
+            type: "line",
 
+            data: {
 
-        Chart.defaults.color =
-            "#687789";
+                labels: [
+                    "Jan 25",
+                    "Feb 25",
+                    "Mar 25",
+                    "Apr 25",
+                    "May 25",
+                    "Jun 25",
+                    "Jul 25",
+                    "Aug 25",
+                    "Sep 25",
+                    "Oct 25",
+                    "Nov 25",
+                    "Dec 25",
+                    "Jan 26",
+                    "Feb 26",
+                    "Mar 26",
+                    "Apr 26",
+                    "May 26",
+                    "Jun 26"
+                ],
 
+                datasets: [{
 
-        /* =====================================================
-           MONTHLY REVENUE
-        ===================================================== */
+                    data: [
+                        1046934,
+                        1273996,
+                        1252267,
+                        966918,
+                        1585994,
+                        1530982,
+                        1516513,
+                        1330000,
+                        1250000,
+                        1395000,
+                        1480000,
+                        1370000,
+                        1430000,
+                        1270000,
+                        1360000,
+                        1390000,
+                        1710000,
+                        2128707
+                    ],
 
-        const monthlyRevenue =
-            document.getElementById(
-                "monthlyRevenueChart"
-            );
+                    borderColor: "#087f5b",
 
+                    backgroundColor: "rgba(8,127,91,.10)",
 
-        if (monthlyRevenue) {
+                    pointBackgroundColor: "#c79a3b",
 
-            new Chart(
-                monthlyRevenue,
-                {
+                    pointRadius: 3,
 
-                    type:
-                        "line",
+                    borderWidth: 3,
 
-                    data: {
+                    tension: .35,
 
-                        labels: [
+                    fill: true
 
-                            "Jan 25",
-                            "Feb 25",
-                            "Mar 25",
-                            "Apr 25",
-                            "May 25",
-                            "Jun 25",
-                            "Jul 25",
-                            "Aug 25",
-                            "Sep 25",
-                            "Oct 25",
-                            "Nov 25",
-                            "Dec 25",
-                            "Jan 26",
-                            "Feb 26",
-                            "Mar 26",
-                            "Apr 26",
-                            "May 26",
-                            "Jun 26"
+                }]
 
-                        ],
+            },
 
+            options: {
 
-                        datasets: [
+                responsive: true,
 
-                            {
+                maintainAspectRatio: false,
 
-                                data: [
+                plugins: {
 
-                                    1046934,
-                                    1273996,
-                                    1252267,
-                                    966918,
-                                    1585994,
-                                    1530982,
-                                    1516513,
-                                    1330000,
-                                    1250000,
-                                    1395000,
-                                    1480000,
-                                    1370000,
-                                    1430000,
-                                    1270000,
-                                    1360000,
-                                    1390000,
-                                    1710000,
-                                    2128707
-
-                                ],
-
-                                borderColor:
-                                    "#087f5b",
-
-                                backgroundColor:
-                                    "rgba(8,127,91,.10)",
-
-                                pointBackgroundColor:
-                                    "#c79a3b",
-
-                                pointRadius:
-                                    3,
-
-                                borderWidth:
-                                    3,
-
-                                tension:
-                                    .35,
-
-                                fill:
-                                    true
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        plugins: {
-
-                            legend: {
-
-                                display:
-                                    false
-
-                            }
-
-                        }
-
+                    legend: {
+                        display: false
                     }
 
                 }
-            );
 
-        }
+            }
 
-
-
-        /* =====================================================
-           SERVICES
-        ===================================================== */
-
-        const serviceRevenue =
-            document.getElementById(
-                "serviceRevenueChart"
-            );
-
-
-        if (serviceRevenue) {
-
-            new Chart(
-                serviceRevenue,
-                {
-
-                    type:
-                        "bar",
-
-                    data: {
-
-                        labels: [
-
-                            "Business Advisory",
-
-                            "Market Research",
-
-                            "Training & Capacity Building",
-
-                            "Data Analysis",
-
-                            "Customer Survey",
-
-                            "Reporting & Insights"
-
-                        ],
-
-
-                        datasets: [
-
-                            {
-
-                                data: [
-
-                                    5200000,
-                                    4620000,
-                                    4290000,
-                                    4210000,
-                                    3520000,
-                                    3108815
-
-                                ],
-
-                                backgroundColor:
-                                    "#087f5b",
-
-                                borderRadius:
-                                    7
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        indexAxis:
-                            "y",
-
-                        plugins: {
-
-                            legend: {
-
-                                display:
-                                    false
-
-                            }
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-
-
-
-        /* =====================================================
-           CUSTOMER SEGMENTS
-        ===================================================== */
-
-        const segmentRevenue =
-            document.getElementById(
-                "segmentRevenueChart"
-            );
-
-
-        if (segmentRevenue) {
-
-            new Chart(
-                segmentRevenue,
-                {
-
-                    type:
-                        "doughnut",
-
-                    data: {
-
-                        labels: [
-
-                            "Micro Business",
-
-                            "Small Business",
-
-                            "Medium Business",
-
-                            "Individual"
-
-                        ],
-
-
-                        datasets: [
-
-                            {
-
-                                data: [
-
-                                    35,
-                                    34,
-                                    20,
-                                    11
-
-                                ],
-
-                                backgroundColor: [
-
-                                    "#087f5b",
-
-                                    "#12395c",
-
-                                    "#c79a3b",
-
-                                    "#8fa4b8"
-
-                                ],
-
-                                borderWidth:
-                                    0
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        cutout:
-                            "62%",
-
-                        plugins: {
-
-                            legend: {
-
-                                position:
-                                    "bottom"
-
-                            }
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-
-
-
-        /* =====================================================
-           LOCATION
-        ===================================================== */
-
-        const locationRevenue =
-            document.getElementById(
-                "locationRevenueChart"
-            );
-
-
-        if (locationRevenue) {
-
-            new Chart(
-                locationRevenue,
-                {
-
-                    type:
-                        "bar",
-
-                    data: {
-
-                        labels: [
-
-                            "Nairobi",
-
-                            "Nakuru",
-
-                            "Kisumu",
-
-                            "Mombasa",
-
-                            "Bungoma"
-
-                        ],
-
-
-                        datasets: [
-
-                            {
-
-                                data: [
-
-                                    10500000,
-
-                                    4300000,
-
-                                    4000000,
-
-                                    3600000,
-
-                                    2548815
-
-                                ],
-
-                                backgroundColor:
-                                    "#087f5b",
-
-                                borderRadius:
-                                    7
-
-                            }
-
-                        ]
-
-                    },
-
-
-                    options: {
-
-                        responsive:
-                            true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        plugins: {
-
-                            legend: {
-
-                                display:
-                                    false
-
-                            }
-
-                        }
-
-                    }
-
-                }
-            );
-
-        }
-
+        });
 
     }
-);
+
+
+    /* SERVICE REVENUE */
+
+    const serviceRevenue =
+        document.getElementById("serviceRevenueChart");
+
+    if (serviceRevenue) {
+
+        new Chart(serviceRevenue, {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+                    "Business Advisory",
+                    "Market Research",
+                    "Training & Capacity Building",
+                    "Data Analysis",
+                    "Customer Survey",
+                    "Reporting & Insights"
+                ],
+
+                datasets: [{
+
+                    data: [
+                        5200000,
+                        4620000,
+                        4290000,
+                        4210000,
+                        3520000,
+                        3108815
+                    ],
+
+                    backgroundColor: "#087f5b",
+
+                    borderRadius: 7
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                indexAxis: "y",
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* CUSTOMER SEGMENTS */
+
+    const segmentRevenue =
+        document.getElementById("segmentRevenueChart");
+
+    if (segmentRevenue) {
+
+        new Chart(segmentRevenue, {
+
+            type: "doughnut",
+
+            data: {
+
+                labels: [
+                    "Micro Business",
+                    "Small Business",
+                    "Medium Business",
+                    "Individual"
+                ],
+
+                datasets: [{
+
+                    data: [
+                        35,
+                        34,
+                        20,
+                        11
+                    ],
+
+                    backgroundColor: [
+                        "#087f5b",
+                        "#12395c",
+                        "#c79a3b",
+                        "#8fa4b8"
+                    ],
+
+                    borderWidth: 0
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                cutout: "62%",
+
+                plugins: {
+
+                    legend: {
+                        position: "bottom"
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+    /* LOCATION REVENUE */
+
+    const locationRevenue =
+        document.getElementById("locationRevenueChart");
+
+    if (locationRevenue) {
+
+        new Chart(locationRevenue, {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+                    "Nairobi",
+                    "Nakuru",
+                    "Kisumu",
+                    "Mombasa",
+                    "Bungoma"
+                ],
+
+                datasets: [{
+
+                    data: [
+                        10500000,
+                        4300000,
+                        4000000,
+                        3600000,
+                        2548815
+                    ],
+
+                    backgroundColor: "#087f5b",
+
+                    borderRadius: 7
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+});
 
 </script>
 
 
 </body>
-
-</html>
+</html>       
