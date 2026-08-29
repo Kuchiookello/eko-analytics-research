@@ -45,11 +45,446 @@
     <link rel="stylesheet"
           href="style.css">
 
+
+    <!-- CONTACT PAGE SUPPORT -->
+
+    <style>
+
+        .contact-layout {
+
+            width: min(92%, 1080px);
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: .85fr 1.15fr;
+
+            gap: 40px;
+
+            align-items: start;
+
+        }
+
+
+        .contact-panel {
+
+            padding: 34px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #071426,
+                    #0b1f3a,
+                    #087f5b
+                );
+
+            color: white;
+
+        }
+
+
+        .contact-panel h3 {
+
+            color: white;
+
+            font-family:
+                "Playfair Display",
+                Georgia,
+                serif;
+
+            font-size: 2rem;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .contact-panel-intro {
+
+            color: rgba(255,255,255,.72);
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .contact-methods {
+
+            display: grid;
+
+            gap: 16px;
+
+        }
+
+
+        .contact-method {
+
+            display: flex;
+
+            gap: 14px;
+
+            align-items: center;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            transition:
+                transform .2s ease,
+                background .2s ease;
+
+        }
+
+
+        .contact-method:hover {
+
+            transform: translateY(-2px);
+
+            background:
+                rgba(255,255,255,.10);
+
+        }
+
+
+        .contact-method-icon {
+
+            width: 46px;
+
+            height: 46px;
+
+            flex: 0 0 46px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            color: #e7c978;
+
+        }
+
+
+        .contact-method small {
+
+            display: block;
+
+            color:
+                rgba(255,255,255,.55);
+
+            font-size: .67rem;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+        }
+
+
+        .contact-method strong {
+
+            color: white;
+
+            font-size: .86rem;
+
+            overflow-wrap: anywhere;
+
+        }
+
+
+        .contact-response {
+
+            margin-top: 30px;
+
+            padding-top: 22px;
+
+            border-top:
+                1px solid rgba(255,255,255,.12);
+
+        }
+
+
+        .contact-response small {
+
+            color: #e7c978;
+
+            font-size: .68rem;
+
+            font-weight: 800;
+
+            letter-spacing: .12em;
+
+        }
+
+
+        .contact-response p {
+
+            color:
+                rgba(255,255,255,.67);
+
+            margin-top: 8px;
+
+            font-size: .84rem;
+
+        }
+
+
+        .consultation-form {
+
+            padding: 34px;
+
+            border:
+                1px solid #dfe6ed;
+
+            border-radius: 22px;
+
+            background: white;
+
+            box-shadow:
+                0 16px 45px rgba(7,20,38,.08);
+
+        }
+
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 16px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #0b1f3a;
+
+            font-size: .79rem;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border:
+                1px solid #dfe6ed;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: white;
+
+            color: #24364a;
+
+            font-family: "Inter", sans-serif;
+
+            font-size: .84rem;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #087f5b;
+
+            box-shadow:
+                0 0 0 3px rgba(8,127,91,.10);
+
+        }
+
+
+        .form-group textarea {
+
+            resize: vertical;
+
+            min-height: 150px;
+
+        }
+
+
+        .form-note {
+
+            margin-top: 14px;
+
+            font-size: .72rem;
+
+            color: #687789;
+
+            line-height: 1.6;
+
+        }
+
+
+        .form-message {
+
+            display: none;
+
+            margin-top: 14px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            font-size: .78rem;
+
+            font-weight: 700;
+
+        }
+
+
+        .form-message.show {
+
+            display: block;
+
+        }
+
+
+        .form-message.success {
+
+            background: #e8f6f0;
+
+            color: #087f5b;
+
+        }
+
+
+        .form-message.error {
+
+            background: #fff0ee;
+
+            color: #a62f23;
+
+        }
+
+
+        .consultation-steps {
+
+            display: grid;
+
+            gap: 12px;
+
+            margin-top: 22px;
+
+        }
+
+
+        .consultation-step {
+
+            padding: 15px;
+
+            border:
+                1px solid #dfe6ed;
+
+            border-radius: 12px;
+
+            background: white;
+
+        }
+
+
+        .consultation-step strong {
+
+            color: #0b1f3a;
+
+        }
+
+
+        .consultation-step p {
+
+            margin: 4px 0 0;
+
+            font-size: .82rem;
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .contact-layout {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .form-row {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 0;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .contact-panel,
+            .consultation-form {
+
+                padding: 24px 20px;
+
+            }
+
+
+            .contact-panel h3 {
+
+                font-size: 1.65rem;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 
-<body>
+<body data-page="contact">
 
 
 <!-- =========================================================
@@ -60,31 +495,25 @@
 
     <div class="nav-wrap">
 
-        <a class="brand"
-           href="index.html">
 
-            <span class="brand-mark">
-                EKO
-            </span>
+        <!-- OFFICIAL EKO LOGO -->
 
-            <span class="brand-copy">
+        <a class="brand brand-official-logo"
+           href="index.html"
+           aria-label="EKO Analytics & Research Home">
 
-                <strong>
-                    EKO Analytics &amp; Research
-                </strong>
-
-                <small>
-                    Turning Data into Actionable Insights
-                </small>
-
-            </span>
+            <img
+                src="file_000000005e7c7243ba74d1018716cc17.png"
+                alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                class="brand-logo">
 
         </a>
 
 
         <button class="nav-toggle"
                 id="navToggle"
-                aria-label="Open navigation">
+                aria-label="Open navigation"
+                aria-expanded="false">
 
             <i class="fas fa-bars"></i>
 
@@ -114,7 +543,8 @@
                 Insights
             </a>
 
-            <a href="contact.html">
+            <a href="contact.html"
+               aria-current="page">
                 Contact
             </a>
 
@@ -162,7 +592,7 @@
 
 
 <!-- =========================================================
-     CONTACT INTRO
+     CONTACT INTRODUCTION
 ========================================================= -->
 
 <section class="section">
@@ -189,7 +619,13 @@
                 Start with the business question, research problem,
                 programme challenge or decision you need support with.
                 EKO can help clarify the scope and identify an appropriate
-                analytical approach.
+                research or analytical approach.
+            </p>
+
+            <p>
+                This allows the assignment to be built around
+                the actual decision, evidence requirement and
+                intended use of the findings.
             </p>
 
 
@@ -245,7 +681,7 @@
                 <div style="
                     padding:16px;
                     border-radius:12px;
-                    background:rgba(255,255,255,0.06);
+                    background:rgba(255,255,255,.06);
                     color:white;
                 ">
                     01 — What do you need to understand?
@@ -254,7 +690,7 @@
                 <div style="
                     padding:16px;
                     border-radius:12px;
-                    background:rgba(255,255,255,0.06);
+                    background:rgba(255,255,255,.06);
                     color:white;
                 ">
                     02 — What information is available?
@@ -263,7 +699,7 @@
                 <div style="
                     padding:16px;
                     border-radius:12px;
-                    background:rgba(255,255,255,0.06);
+                    background:rgba(255,255,255,.06);
                     color:white;
                 ">
                     03 — Who will use the findings?
@@ -272,7 +708,7 @@
                 <div style="
                     padding:16px;
                     border-radius:12px;
-                    background:rgba(255,255,255,0.06);
+                    background:rgba(255,255,255,.06);
                     color:white;
                 ">
                     04 — What is the required timeframe?
@@ -299,7 +735,7 @@
 
 
 <!-- =========================================================
-     CONTACT DETAILS + FORM
+     CONTACT DETAILS + CONSULTATION FORM
 ========================================================= -->
 
 <section class="section alt"
@@ -316,94 +752,51 @@
         </h2>
 
         <p>
-            Provide a short description of the project or decision
-            you need support with.
+            Provide a short description of the project,
+            question or decision you need support with.
+            The information below will be used to prepare
+            your enquiry email.
         </p>
 
     </div>
 
 
 
-    <div style="
-        width:min(92%,1080px);
-        margin:auto;
-        display:grid;
-        grid-template-columns:0.85fr 1.15fr;
-        gap:40px;
-        align-items:start;
-    "
-    class="contact-layout">
+    <div class="contact-layout">
 
 
         <!-- =================================================
              CONTACT DETAILS
         ================================================== -->
 
-        <div style="
-            padding:34px;
-            border-radius:22px;
-            background:
-                linear-gradient(
-                    145deg,
-                    #071426,
-                    #0b1f3a,
-                    #087f5b
-                );
-            color:white;
-        ">
+        <div class="contact-panel">
 
             <span class="eyebrow light">
                 CONTACT DETAILS
             </span>
 
-            <h3 style="
-                color:white;
-                font-family:'Playfair Display',serif;
-                font-size:2rem;
-                margin-bottom:14px;
-            ">
+
+            <h3>
                 Reach EKO directly.
             </h3>
 
 
-            <p style="
-                color:rgba(255,255,255,0.72);
-                margin-bottom:30px;
-            ">
-                For project enquiries, collaborations
-                and professional discussions.
+            <p class="contact-panel-intro">
+                For project enquiries, research collaboration,
+                analytical assignments and professional discussions.
             </p>
 
 
 
-            <div style="
-                display:grid;
-                gap:16px;
-            ">
+            <div class="contact-methods">
 
 
                 <!-- EMAIL -->
 
                 <a href="mailto:edwinokello24@gmail.com"
-                   style="
-                       display:flex;
-                       gap:14px;
-                       align-items:center;
-                       padding:15px;
-                       border-radius:12px;
-                       background:rgba(255,255,255,0.06);
-                   ">
+                   class="contact-method">
 
-                    <div style="
-                        width:46px;
-                        height:46px;
-                        flex:0 0 46px;
-                        display:grid;
-                        place-items:center;
-                        border-radius:12px;
-                        background:rgba(255,255,255,0.08);
-                        color:#e7c978;
-                    ">
+                    <div class="contact-method-icon">
 
                         <i class="fas fa-envelope"></i>
 
@@ -412,19 +805,11 @@
 
                     <div>
 
-                        <small style="
-                            display:block;
-                            color:rgba(255,255,255,0.55);
-                            font-size:0.67rem;
-                            text-transform:uppercase;
-                        ">
+                        <small>
                             Email
                         </small>
 
-                        <strong style="
-                            color:white;
-                            font-size:0.86rem;
-                        ">
+                        <strong>
                             edwinokello24@gmail.com
                         </strong>
 
@@ -437,25 +822,9 @@
                 <!-- PHONE -->
 
                 <a href="tel:+254143947048"
-                   style="
-                       display:flex;
-                       gap:14px;
-                       align-items:center;
-                       padding:15px;
-                       border-radius:12px;
-                       background:rgba(255,255,255,0.06);
-                   ">
+                   class="contact-method">
 
-                    <div style="
-                        width:46px;
-                        height:46px;
-                        flex:0 0 46px;
-                        display:grid;
-                        place-items:center;
-                        border-radius:12px;
-                        background:rgba(255,255,255,0.08);
-                        color:#e7c978;
-                    ">
+                    <div class="contact-method-icon">
 
                         <i class="fas fa-phone"></i>
 
@@ -464,20 +833,42 @@
 
                     <div>
 
-                        <small style="
-                            display:block;
-                            color:rgba(255,255,255,0.55);
-                            font-size:0.67rem;
-                            text-transform:uppercase;
-                        ">
+                        <small>
                             Phone
                         </small>
 
-                        <strong style="
-                            color:white;
-                            font-size:0.86rem;
-                        ">
+                        <strong>
                             +254 143 947 048
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- WHATSAPP -->
+
+                <a href="https://wa.me/254143947048"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="contact-method">
+
+                    <div class="contact-method-icon">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <small>
+                            WhatsApp
+                        </small>
+
+                        <strong>
+                            Message EKO
                         </strong>
 
                     </div>
@@ -491,25 +882,9 @@
                 <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   style="
-                       display:flex;
-                       gap:14px;
-                       align-items:center;
-                       padding:15px;
-                       border-radius:12px;
-                       background:rgba(255,255,255,0.06);
-                   ">
+                   class="contact-method">
 
-                    <div style="
-                        width:46px;
-                        height:46px;
-                        flex:0 0 46px;
-                        display:grid;
-                        place-items:center;
-                        border-radius:12px;
-                        background:rgba(255,255,255,0.08);
-                        color:#e7c978;
-                    ">
+                    <div class="contact-method-icon">
 
                         <i class="fab fa-linkedin-in"></i>
 
@@ -518,19 +893,11 @@
 
                     <div>
 
-                        <small style="
-                            display:block;
-                            color:rgba(255,255,255,0.55);
-                            font-size:0.67rem;
-                            text-transform:uppercase;
-                        ">
+                        <small>
                             LinkedIn
                         </small>
 
-                        <strong style="
-                            color:white;
-                            font-size:0.86rem;
-                        ">
+                        <strong>
                             Edwin Kuchio Okello
                         </strong>
 
@@ -542,30 +909,17 @@
 
 
 
-            <div style="
-                margin-top:30px;
-                padding-top:22px;
-                border-top:
-                    1px solid rgba(255,255,255,0.12);
-            ">
+            <div class="contact-response">
 
-                <small style="
-                    color:#e7c978;
-                    font-size:0.68rem;
-                    font-weight:800;
-                    letter-spacing:0.12em;
-                ">
-                    RESPONSE
+                <small>
+                    PROFESSIONAL ENQUIRIES
                 </small>
 
-                <p style="
-                    color:rgba(255,255,255,0.67);
-                    margin-top:8px;
-                    font-size:0.84rem;
-                ">
+                <p>
                     EKO aims to respond to professional enquiries
-                    as promptly as possible and will normally begin
-                    by clarifying the scope of the assignment.
+                    promptly and will normally begin by clarifying
+                    the scope, intended deliverables and requirements
+                    of the assignment.
                 </p>
 
             </div>
@@ -579,117 +933,88 @@
         ================================================== -->
 
         <form id="consultationForm"
-              style="
-                  padding:34px;
-                  border:1px solid #dfe6ed;
-                  border-radius:22px;
-                  background:white;
-                  box-shadow:
-                      0 16px 45px rgba(7,20,38,0.08);
-              ">
-
+              class="consultation-form">
 
             <span class="eyebrow">
                 PROJECT ENQUIRY
             </span>
 
 
-            <!-- NAME -->
+            <!-- NAME + ORGANISATION -->
 
-            <div style="margin-bottom:17px;">
-
-                <label for="clientName"
-                       style="
-                           display:block;
-                           color:#0b1f3a;
-                           font-size:0.79rem;
-                           font-weight:800;
-                           margin-bottom:7px;
-                       ">
-
-                    Name *
-
-                </label>
+            <div class="form-row">
 
 
-                <input type="text"
-                       id="clientName"
-                       required
-                       placeholder="Your full name"
-                       style="
-                           width:100%;
-                           padding:13px;
-                           border:1px solid #dfe6ed;
-                           border-radius:9px;
-                           outline:none;
-                       ">
+                <div class="form-group">
 
-            </div>
+                    <label for="clientName">
+                        Name *
+                    </label>
+
+                    <input type="text"
+                           id="clientName"
+                           name="name"
+                           required
+                           autocomplete="name"
+                           placeholder="Your full name">
+
+                </div>
 
 
 
-            <!-- ORGANISATION -->
+                <div class="form-group">
 
-            <div style="margin-bottom:17px;">
+                    <label for="organisation">
+                        Organisation
+                    </label>
 
-                <label for="organisation"
-                       style="
-                           display:block;
-                           color:#0b1f3a;
-                           font-size:0.79rem;
-                           font-weight:800;
-                           margin-bottom:7px;
-                       ">
+                    <input type="text"
+                           id="organisation"
+                           name="organisation"
+                           autocomplete="organization"
+                           placeholder="Company or organisation">
 
-                    Organisation
-
-                </label>
-
-
-                <input type="text"
-                       id="organisation"
-                       placeholder="Organisation or company name"
-                       style="
-                           width:100%;
-                           padding:13px;
-                           border:1px solid #dfe6ed;
-                           border-radius:9px;
-                           outline:none;
-                       ">
+                </div>
 
             </div>
 
 
 
-            <!-- EMAIL -->
+            <!-- EMAIL + PHONE -->
 
-            <div style="margin-bottom:17px;">
-
-                <label for="clientEmail"
-                       style="
-                           display:block;
-                           color:#0b1f3a;
-                           font-size:0.79rem;
-                           font-weight:800;
-                           margin-bottom:7px;
-                       ">
-
-                    Email *
-
-                </label>
+            <div class="form-row">
 
 
-                <input type="email"
-                       id="clientEmail"
-                       required
-                       placeholder="you@example.com"
-                       style="
-                           width:100%;
-                           padding:13px;
-                           border:1px solid #dfe6ed;
-                           border-radius:9px;
-                           outline:none;
-                       ">
+                <div class="form-group">
+
+                    <label for="clientEmail">
+                        Email *
+                    </label>
+
+                    <input type="email"
+                           id="clientEmail"
+                           name="email"
+                           required
+                           autocomplete="email"
+                           placeholder="you@example.com">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="clientPhone">
+                        Phone / WhatsApp
+                    </label>
+
+                    <input type="tel"
+                           id="clientPhone"
+                           name="phone"
+                           autocomplete="tel"
+                           placeholder="+254 ...">
+
+                </div>
 
             </div>
 
@@ -697,62 +1022,100 @@
 
             <!-- SERVICE -->
 
-            <div style="margin-bottom:17px;">
+            <div class="form-group">
 
-                <label for="service"
-                       style="
-                           display:block;
-                           color:#0b1f3a;
-                           font-size:0.79rem;
-                           font-weight:800;
-                           margin-bottom:7px;
-                       ">
-
+                <label for="service">
                     Area of Support
-
                 </label>
 
 
                 <select id="service"
-                        style="
-                            width:100%;
-                            padding:13px;
-                            border:1px solid #dfe6ed;
-                            border-radius:9px;
-                            outline:none;
-                            background:white;
-                        ">
+                        name="service">
 
                     <option value="">
                         Select a service
                     </option>
 
-                    <option>
-                        Research & Analysis
+                    <option value="Research & Analysis">
+                        Research &amp; Analysis
                     </option>
 
-                    <option>
+                    <option value="Data Analytics">
                         Data Analytics
                     </option>
 
-                    <option>
+                    <option value="Market Intelligence">
                         Market Intelligence
                     </option>
 
-                    <option>
-                        Monitoring & Evaluation
+                    <option value="Monitoring & Evaluation">
+                        Monitoring &amp; Evaluation
                     </option>
 
-                    <option>
+                    <option value="Professional Reporting">
                         Professional Reporting
                     </option>
 
-                    <option>
-                        Business Insights
+                    <option value="Business Insights">
+                        Business Insights &amp; Decision Support
                     </option>
 
-                    <option>
+                    <option value="Research Collaboration">
+                        Research Collaboration
+                    </option>
+
+                    <option value="Other / Not Sure">
                         Other / Not Sure
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- TIMEFRAME -->
+
+            <div class="form-group">
+
+                <label for="timeframe">
+                    Preferred Timeframe
+                </label>
+
+
+                <select id="timeframe"
+                        name="timeframe">
+
+                    <option value="">
+                        Select timeframe
+                    </option>
+
+                    <option value="As soon as possible">
+                        As soon as possible
+                    </option>
+
+                    <option value="Within one week">
+                        Within one week
+                    </option>
+
+                    <option value="Within two weeks">
+                        Within two weeks
+                    </option>
+
+                    <option value="Within one month">
+                        Within one month
+                    </option>
+
+                    <option value="Within two months">
+                        Within two months
+                    </option>
+
+                    <option value="Ongoing / Flexible">
+                        Ongoing / Flexible
+                    </option>
+
+                    <option value="Not yet determined">
+                        Not yet determined
                     </option>
 
                 </select>
@@ -763,34 +1126,18 @@
 
             <!-- MESSAGE -->
 
-            <div style="margin-bottom:20px;">
+            <div class="form-group">
 
-                <label for="projectMessage"
-                       style="
-                           display:block;
-                           color:#0b1f3a;
-                           font-size:0.79rem;
-                           font-weight:800;
-                           margin-bottom:7px;
-                       ">
-
+                <label for="projectMessage">
                     Project or Enquiry Details *
-
                 </label>
 
 
                 <textarea id="projectMessage"
+                          name="message"
                           required
                           rows="7"
-                          placeholder="Briefly describe the problem, research question, data need, project or decision you need support with."
-                          style="
-                              width:100%;
-                              padding:13px;
-                              border:1px solid #dfe6ed;
-                              border-radius:9px;
-                              resize:vertical;
-                              outline:none;
-                          "></textarea>
+                          placeholder="Briefly describe the problem, research question, data need, project or decision you need support with."></textarea>
 
             </div>
 
@@ -810,18 +1157,17 @@
 
 
             <div id="formMessage"
-                 class="form-message">
+                 class="form-message"
+                 role="status"
+                 aria-live="polite">
             </div>
 
 
-            <p style="
-                margin-top:14px;
-                font-size:0.72rem;
-                color:#687789;
-            ">
+            <p class="form-note">
                 This form does not store your information.
-                It prepares an email addressed to EKO Analytics &amp; Research
-                using your device's email application.
+                When submitted, it prepares an email addressed
+                to EKO Analytics &amp; Research using your device's
+                default email application.
             </p>
 
         </form>
@@ -833,7 +1179,7 @@
 
 
 <!-- =========================================================
-     TYPES OF ENQUIRIES
+     COMMON ENQUIRIES
 ========================================================= -->
 
 <section class="section">
@@ -847,6 +1193,11 @@
         <h2>
             What can you contact EKO about?
         </h2>
+
+        <p>
+            EKO can support a range of research,
+            analytical and decision-support requirements.
+        </p>
 
     </div>
 
@@ -870,6 +1221,7 @@
         </article>
 
 
+
         <article class="service-card">
 
             <i class="fas fa-magnifying-glass-chart"></i>
@@ -879,11 +1231,12 @@
             </h3>
 
             <p>
-                Desk research, evidence review,
-                survey support or analytical research.
+                Desk research, evidence reviews,
+                survey support and analytical research.
             </p>
 
         </article>
+
 
 
         <article class="service-card">
@@ -895,11 +1248,12 @@
             </h3>
 
             <p>
-                Customers, competitors,
-                market conditions or opportunities.
+                Customer behaviour, competitors,
+                market conditions and commercial opportunities.
             </p>
 
         </article>
+
 
 
         <article class="service-card">
@@ -918,21 +1272,22 @@
         </article>
 
 
+
         <article class="service-card">
 
             <i class="fas fa-file-lines"></i>
 
             <h3>
-                Reporting
+                Professional Reporting
             </h3>
 
             <p>
-                Executive reports,
-                research briefs, presentations
-                or analytical documents.
+                Executive reports, research briefs,
+                presentations and analytical documents.
             </p>
 
         </article>
+
 
 
         <article class="service-card">
@@ -945,10 +1300,11 @@
 
             <p>
                 Partnership, subcontracting,
-                research support or analytical collaboration.
+                research support and analytical collaboration.
             </p>
 
         </article>
+
 
     </div>
 
@@ -981,82 +1337,82 @@
             </p>
 
 
-            <div style="
-                display:grid;
-                gap:12px;
-                margin-top:22px;
-            ">
+            <div class="consultation-steps">
 
-                <div style="
-                    padding:14px;
-                    border:1px solid #dfe6ed;
-                    border-radius:12px;
-                    background:white;
-                ">
 
-                    <strong style="color:#0b1f3a;">
+                <div class="consultation-step">
+
+                    <strong>
                         01 — Understand the need
                     </strong>
 
-                    <p style="margin-top:4px;">
-                        Clarify the business, research or programme question.
+                    <p>
+                        Clarify the business, research,
+                        programme or decision-making question.
                     </p>
 
                 </div>
 
 
-                <div style="
-                    padding:14px;
-                    border:1px solid #dfe6ed;
-                    border-radius:12px;
-                    background:white;
-                ">
 
-                    <strong style="color:#0b1f3a;">
-                        02 — Review the available information
+                <div class="consultation-step">
+
+                    <strong>
+                        02 — Review available information
                     </strong>
 
-                    <p style="margin-top:4px;">
-                        Determine what data, documents or research already exist.
+                    <p>
+                        Determine what data, documents,
+                        records or research already exist.
                     </p>
 
                 </div>
 
 
-                <div style="
-                    padding:14px;
-                    border:1px solid #dfe6ed;
-                    border-radius:12px;
-                    background:white;
-                ">
 
-                    <strong style="color:#0b1f3a;">
-                        03 — Define deliverables
+                <div class="consultation-step">
+
+                    <strong>
+                        03 — Define the analytical approach
                     </strong>
 
-                    <p style="margin-top:4px;">
-                        Agree what the client needs to receive.
+                    <p>
+                        Identify the research or analytical method
+                        appropriate to the assignment.
                     </p>
 
                 </div>
 
 
-                <div style="
-                    padding:14px;
-                    border:1px solid #dfe6ed;
-                    border-radius:12px;
-                    background:white;
-                ">
 
-                    <strong style="color:#0b1f3a;">
-                        04 — Agree timeframe and scope
+                <div class="consultation-step">
+
+                    <strong>
+                        04 — Agree deliverables
                     </strong>
 
-                    <p style="margin-top:4px;">
-                        Structure the assignment around practical requirements.
+                    <p>
+                        Establish what the client needs to receive
+                        and how the findings will be used.
                     </p>
 
                 </div>
+
+
+
+                <div class="consultation-step">
+
+                    <strong>
+                        05 — Confirm scope and timeframe
+                    </strong>
+
+                    <p>
+                        Structure the assignment around practical
+                        requirements, priorities and deadlines.
+                    </p>
+
+                </div>
+
 
             </div>
 
@@ -1091,12 +1447,14 @@
                     The right analysis begins with the right question.
                 </h3>
 
+
                 <p style="
-                    color:rgba(255,255,255,0.70);
+                    color:rgba(255,255,255,.70);
                 ">
-                    EKO aims to avoid unnecessary work by first understanding
-                    what evidence the client actually needs and how that evidence
-                    will be used.
+                    EKO aims to avoid unnecessary analytical work
+                    by first understanding what evidence the client
+                    actually needs, why it is needed and how the
+                    findings will be used.
                 </p>
 
             </div>
@@ -1110,7 +1468,108 @@
 
 
 <!-- =========================================================
-     CTA
+     BEFORE YOU CONTACT
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            HELPFUL INFORMATION
+        </span>
+
+        <h2>
+            What should you include in your enquiry?
+        </h2>
+
+        <p>
+            You do not need a complete project brief.
+            A few basic details can help EKO understand
+            the assignment more quickly.
+        </p>
+
+    </div>
+
+
+    <div class="client-grid">
+
+
+        <div>
+
+            <i class="fas fa-circle-question"></i>
+
+            <strong>
+                The Question
+            </strong>
+
+            <span>
+                What problem, question or decision
+                are you trying to address?
+            </span>
+
+        </div>
+
+
+
+        <div>
+
+            <i class="fas fa-database"></i>
+
+            <strong>
+                Available Information
+            </strong>
+
+            <span>
+                What data, documents or other
+                evidence are currently available?
+            </span>
+
+        </div>
+
+
+
+        <div>
+
+            <i class="fas fa-file-circle-check"></i>
+
+            <strong>
+                Expected Output
+            </strong>
+
+            <span>
+                Do you need a report, dashboard,
+                research brief or another deliverable?
+            </span>
+
+        </div>
+
+
+
+        <div>
+
+            <i class="fas fa-clock"></i>
+
+            <strong>
+                Timeframe
+            </strong>
+
+            <span>
+                When do you need the work
+                or final deliverable completed?
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL CTA
 ========================================================= -->
 
 <section class="cta-band">
@@ -1126,7 +1585,8 @@
         </h2>
 
         <p>
-            A clear scope can begin with a simple conversation.
+            A clear analytical scope can begin
+            with a simple conversation.
         </p>
 
     </div>
@@ -1159,15 +1619,15 @@
 
         <div>
 
-            <div class="footer-brand">
 
-                <span>
-                    EKO
-                </span>
+            <!-- OFFICIAL EKO LOGO -->
 
-                <strong>
-                    EKO Analytics &amp; Research
-                </strong>
+            <div class="footer-brand footer-brand-logo">
+
+                <img
+                    src="file_000000005e7c7243ba74d1018716cc17.png"
+                    alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                    class="footer-logo">
 
             </div>
 
@@ -1244,9 +1704,12 @@
         </span>
 
 
+        <!-- ADMINISTRATOR PADLOCK -->
+
         <a href="admin.html"
            class="admin-link"
-           title="Administrator">
+           title="Administrator"
+           aria-label="Administrator">
 
             <i class="fas fa-lock"></i>
 
@@ -1267,65 +1730,165 @@
 
 
 <!-- =========================================================
-     MOBILE SUPPORT
+     CONSULTATION FORM
 ========================================================= -->
 
-<style>
+<script>
 
-.form-message {
-
-    display:none;
-
-    margin-top:14px;
-
-    padding:12px 14px;
-
-    border-radius:9px;
-
-    font-size:0.78rem;
-
-    font-weight:700;
-
-}
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-.form-message.show {
-
-    display:block;
-
-}
-
-
-.form-message.success {
-
-    background:#e8f6f0;
-
-    color:#087f5b;
-
-}
+        const form =
+            document.getElementById(
+                "consultationForm"
+            );
 
 
-.form-message.error {
-
-    background:#fff0ee;
-
-    color:#a62f23;
-
-}
+        const formMessage =
+            document.getElementById(
+                "formMessage"
+            );
 
 
-@media (max-width: 800px) {
+        if (!form) {
 
-    .contact-layout {
+            return;
 
-        grid-template-columns:
-            1fr !important;
+        }
+
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                    .getElementById("clientName")
+                    .value
+                    .trim();
+
+
+                const organisation =
+                    document
+                    .getElementById("organisation")
+                    .value
+                    .trim();
+
+
+                const email =
+                    document
+                    .getElementById("clientEmail")
+                    .value
+                    .trim();
+
+
+                const phone =
+                    document
+                    .getElementById("clientPhone")
+                    .value
+                    .trim();
+
+
+                const service =
+                    document
+                    .getElementById("service")
+                    .value;
+
+
+                const timeframe =
+                    document
+                    .getElementById("timeframe")
+                    .value;
+
+
+                const message =
+                    document
+                    .getElementById("projectMessage")
+                    .value
+                    .trim();
+
+
+
+                if (
+                    !name ||
+                    !email ||
+                    !message
+                ) {
+
+                    formMessage.textContent =
+                        "Please complete your name, email and project enquiry before continuing.";
+
+
+                    formMessage.className =
+                        "form-message error show";
+
+
+                    return;
+
+                }
+
+
+
+                const subject =
+                    service
+                    ? "EKO Consultation Enquiry — " + service
+                    : "EKO Consultation Enquiry";
+
+
+                const body =
+
+`Dear EKO Analytics & Research,
+
+I would like to enquire about a possible research or analytical assignment.
+
+Name: ${name}
+Organisation: ${organisation || "Not provided"}
+Email: ${email}
+Phone / WhatsApp: ${phone || "Not provided"}
+Area of Support: ${service || "Not yet determined"}
+Preferred Timeframe: ${timeframe || "Not yet determined"}
+
+Project / Enquiry Details:
+
+${message}
+
+Kind regards,
+${name}`;
+
+
+
+                formMessage.textContent =
+                    "Your enquiry is ready. Your email application should open automatically.";
+
+
+                formMessage.className =
+                    "form-message success show";
+
+
+                const mailto =
+                    "mailto:edwinokello24@gmail.com" +
+                    "?subject=" +
+                    encodeURIComponent(subject) +
+                    "&body=" +
+                    encodeURIComponent(body);
+
+
+                window.location.href =
+                    mailto;
+
+            }
+        );
+
 
     }
+);
 
-}
-
-</style>
+</script>
 
 
 </body>
