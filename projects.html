@@ -13,7 +13,7 @@
     </title>
 
     <meta name="description"
-          content="Explore selected EKO Analytics & Research projects and case studies in business analytics, market research, customer analysis, monitoring and evaluation, and decision support.">
+          content="Explore EKO Analytics & Research projects and case studies in business analytics, customer experience, market research, monitoring and evaluation, programme analysis and decision support.">
 
 
     <!-- GOOGLE FONTS -->
@@ -45,7 +45,517 @@
     <link rel="stylesheet"
           href="style.css">
 
+
+    <!-- PROJECT PAGE STYLING -->
+
+    <style>
+
+        /* =====================================================
+           PROJECT PORTFOLIO GRID
+        ===================================================== */
+
+        .portfolio-project-grid {
+
+            width:
+                min(92%,1120px);
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                24px;
+
+        }
+
+
+        /* =====================================================
+           PROJECT CARD
+        ===================================================== */
+
+        .portfolio-project-card {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            min-height:
+                470px;
+
+            padding:
+                31px;
+
+            background:
+                #ffffff;
+
+            border:
+                1px solid #dfe6ed;
+
+            border-radius:
+                20px;
+
+            box-shadow:
+                0 8px 25px rgba(7,20,38,.06);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+
+        }
+
+
+        .portfolio-project-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #087f5b,
+                    #c79a3b
+                );
+
+        }
+
+
+        .portfolio-project-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(8,127,91,.30);
+
+            box-shadow:
+                0 18px 45px rgba(7,20,38,.10);
+
+        }
+
+
+        /* =====================================================
+           PROJECT ICON
+        ===================================================== */
+
+        .portfolio-project-icon {
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                19px;
+
+            border-radius:
+                15px;
+
+            background:
+                #e8f6f0;
+
+            color:
+                #087f5b;
+
+            font-size:
+                1.4rem;
+
+        }
+
+
+        /* =====================================================
+           PROJECT STATUS
+        ===================================================== */
+
+        .project-status {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            width:
+                fit-content;
+
+            gap:
+                6px;
+
+            padding:
+                6px 10px;
+
+            margin-bottom:
+                12px;
+
+            border-radius:
+                30px;
+
+            background:
+                #e8f6f0;
+
+            color:
+                #087f5b;
+
+            font-size:
+                .67rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .08em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        /* =====================================================
+           PROJECT NUMBER
+        ===================================================== */
+
+        .portfolio-project-number {
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                #087f5b;
+
+            font-size:
+                .69rem;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .13em;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        /* =====================================================
+           PROJECT TITLE
+        ===================================================== */
+
+        .portfolio-project-card h3 {
+
+            font-family:
+                "Playfair Display",
+                Georgia,
+                serif;
+
+            font-size:
+                1.55rem;
+
+            line-height:
+                1.25;
+
+            color:
+                #0b1f3a;
+
+            margin-bottom:
+                13px;
+
+        }
+
+
+        .portfolio-project-card p {
+
+            font-size:
+                .84rem;
+
+            margin-bottom:
+                15px;
+
+        }
+
+
+        /* =====================================================
+           PROJECT FOOTER
+        ===================================================== */
+
+        .project-card-footer {
+
+            margin-top:
+                auto;
+
+            padding-top:
+                12px;
+
+        }
+
+
+        .project-card-footer .btn {
+
+            width:
+                100%;
+
+        }
+
+
+        /* =====================================================
+           COMPLETED PROJECT PREVIEW
+        ===================================================== */
+
+        .project-showcase {
+
+            width:
+                min(92%,1100px);
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                55px;
+
+            align-items:
+                center;
+
+        }
+
+
+        /* =====================================================
+           PROJECT 02 CUSTOMER PREVIEW
+        ===================================================== */
+
+        .cx-preview {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            min-height:
+                410px;
+
+            padding:
+                34px;
+
+            border-radius:
+                26px;
+
+            background:
+
+                radial-gradient(
+                    circle at 80% 15%,
+                    rgba(199,154,59,.18),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    145deg,
+                    #071426,
+                    #0c2d46
+                );
+
+            color:
+                white;
+
+            box-shadow:
+                0 26px 75px rgba(7,20,38,.17);
+
+        }
+
+
+        .cx-preview::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                230px;
+
+            height:
+                230px;
+
+            right:
+                -100px;
+
+            bottom:
+                -110px;
+
+            border-radius:
+                50%;
+
+            border:
+                1px solid rgba(255,255,255,.06);
+
+        }
+
+
+        .cx-kpis {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                13px;
+
+            margin-top:
+                28px;
+
+        }
+
+
+        .cx-kpis div {
+
+            padding:
+                18px;
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(255,255,255,.065);
+
+            border:
+                1px solid rgba(255,255,255,.075);
+
+        }
+
+
+        .cx-kpis small {
+
+            display:
+                block;
+
+            color:
+                rgba(255,255,255,.55);
+
+            font-size:
+                .62rem;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .07em;
+
+        }
+
+
+        .cx-kpis strong {
+
+            display:
+                block;
+
+            margin-top:
+                4px;
+
+            color:
+                white;
+
+            font-size:
+                1.12rem;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .portfolio-project-grid,
+            .project-showcase {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .portfolio-project-card {
+
+                padding:
+                    25px 21px;
+
+                min-height:
+                    auto;
+
+            }
+
+
+            .cx-kpis {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 
 <body data-page="projects">
@@ -128,7 +638,7 @@
 
 
 <!-- =========================================================
-     PAGE HERO
+     HERO
 ========================================================= -->
 
 <header class="page-hero">
@@ -143,8 +653,9 @@
 
     <p>
         A growing portfolio demonstrating how EKO Analytics &amp; Research
-        approaches business data, market information, customer insight,
-        programme evidence and decision-support assignments.
+        applies research, analytics, customer insight, monitoring
+        and evaluation, market intelligence and business intelligence
+        to practical decision-making.
     </p>
 
 </header>
@@ -155,7 +666,7 @@
 
 
 <!-- =========================================================
-     PORTFOLIO INTRODUCTION
+     PORTFOLIO INTRO
 ========================================================= -->
 
 <section class="section">
@@ -167,19 +678,21 @@
         </span>
 
         <h2>
-            Evidence of how EKO approaches analytical work.
+            Turning information into decision-ready evidence.
         </h2>
 
         <p>
-            Each portfolio project demonstrates a complete analytical
-            process — from defining the problem and preparing information
-            to analysis, visualisation, interpretation and recommendation.
+            Each EKO project demonstrates a structured analytical process
+            — defining the problem, preparing information, analysing evidence,
+            visualising results, interpreting findings and translating them
+            into practical recommendations.
         </p>
 
     </div>
 
 
     <div class="client-grid">
+
 
         <div>
 
@@ -190,8 +703,8 @@
             </strong>
 
             <span>
-                Cleaning, structuring and preparing information
-                for reliable analysis.
+                Cleaning, organising and validating information
+                before analysis.
             </span>
 
         </div>
@@ -206,8 +719,8 @@
             </strong>
 
             <span>
-                Identifying trends, patterns, performance gaps
-                and relationships.
+                Identifying patterns, performance gaps,
+                relationships and trends.
             </span>
 
         </div>
@@ -222,8 +735,8 @@
             </strong>
 
             <span>
-                Presenting important findings through clear
-                dashboards and charts.
+                Creating clear dashboards and
+                management-ready visualisations.
             </span>
 
         </div>
@@ -238,11 +751,12 @@
             </strong>
 
             <span>
-                Turning findings into practical and
-                decision-ready actions.
+                Translating evidence into
+                practical next steps.
             </span>
 
         </div>
+
 
     </div>
 
@@ -251,12 +765,12 @@
 
 
 <!-- =========================================================
-     PROJECT 01 — FEATURED
+     PROJECT 01
 ========================================================= -->
 
 <section class="section alt">
 
-    <div class="split">
+    <div class="project-showcase">
 
 
         <div class="case-preview">
@@ -276,6 +790,7 @@
 
             <div class="kpi-mini">
 
+
                 <div>
 
                     <small>
@@ -283,7 +798,7 @@
                     </small>
 
                     <strong>
-                        KES 7.05M
+                        KES 24.95M
                     </strong>
 
                 </div>
@@ -296,7 +811,7 @@
                     </small>
 
                     <strong>
-                        384
+                        520
                     </strong>
 
                 </div>
@@ -305,11 +820,11 @@
                 <div>
 
                     <small>
-                        Units Sold
+                        Customers
                     </small>
 
                     <strong>
-                        963
+                        80
                     </strong>
 
                 </div>
@@ -318,26 +833,32 @@
                 <div>
 
                     <small>
-                        Avg. Transaction
+                        Gross Margin
                     </small>
 
                     <strong>
-                        KES 18.4K
+                        45.7%
                     </strong>
 
                 </div>
+
 
             </div>
 
 
             <div class="preview-bars">
 
-                <span style="height:42%"></span>
-                <span style="height:58%"></span>
-                <span style="height:64%"></span>
-                <span style="height:55%"></span>
-                <span style="height:72%"></span>
-                <span style="height:88%"></span>
+                <span style="height:44%"></span>
+
+                <span style="height:53%"></span>
+
+                <span style="height:63%"></span>
+
+                <span style="height:57%"></span>
+
+                <span style="height:71%"></span>
+
+                <span style="height:91%"></span>
 
             </div>
 
@@ -347,27 +868,36 @@
 
         <div>
 
-            <span class="eyebrow">
-                FEATURED PROJECT
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
             </span>
 
+
+            <span class="eyebrow">
+                PROJECT 01
+            </span>
+
+
             <h2>
-                Project 01:
                 SME Sales &amp; Customer Performance Analysis
             </h2>
 
 
             <p>
                 An end-to-end business analytics case study examining
-                sales performance, customer behaviour, service contribution,
-                geographic performance and revenue trends for a simulated SME.
+                revenue, transactions, services, customers,
+                geographic performance and management priorities.
             </p>
 
 
             <p>
-                The project demonstrates how transaction-level data can
-                be transformed into management KPIs, dashboards,
-                business insights and practical recommendations.
+                The project demonstrates how transaction-level records
+                can be transformed into KPIs, dashboards,
+                business insights and practical management recommendations.
             </p>
 
 
@@ -386,11 +916,11 @@
                 </span>
 
                 <span>
-                    Business Intelligence
+                    Dashboard
                 </span>
 
                 <span>
-                    Dashboard
+                    Business Intelligence
                 </span>
 
             </div>
@@ -403,7 +933,7 @@
 
                     <i class="fas fa-arrow-right"></i>
 
-                    Explore Full Case Study
+                    Explore Case Study
 
                 </a>
 
@@ -411,6 +941,7 @@
 
         </div>
 
+
     </div>
 
 </section>
@@ -418,182 +949,51 @@
 
 
 <!-- =========================================================
-     PROJECT 01 SCOPE
+     PROJECT 02
 ========================================================= -->
 
 <section class="section">
 
-    <div class="section-head center">
-
-        <span class="eyebrow">
-            PROJECT 01 ANALYTICAL SCOPE
-        </span>
-
-        <h2>
-            What the SME analysis examines.
-        </h2>
-
-        <p>
-            The project is designed around the questions a business owner
-            or manager would need answered before making sales,
-            customer and growth decisions.
-        </p>
-
-    </div>
+    <div class="project-showcase">
 
 
-    <div class="service-grid">
+        <div>
+
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
+            </span>
 
 
-        <article class="service-card">
-
-            <i class="fas fa-money-bill-trend-up"></i>
-
-            <h3>
-                Revenue Performance
-            </h3>
-
-            <p>
-                Analysis of total revenue, monthly performance
-                and changes in sales over time.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <i class="fas fa-cart-shopping"></i>
-
-            <h3>
-                Transaction Analysis
-            </h3>
-
-            <p>
-                Examination of transaction volumes, average
-                transaction value and purchasing activity.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <i class="fas fa-users"></i>
-
-            <h3>
-                Customer Performance
-            </h3>
-
-            <p>
-                Identification of customer segments,
-                contribution patterns and high-value groups.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <i class="fas fa-boxes-stacked"></i>
-
-            <h3>
-                Product &amp; Service Mix
-            </h3>
-
-            <p>
-                Assessment of which products or services
-                contribute most strongly to overall performance.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <i class="fas fa-location-dot"></i>
-
-            <h3>
-                Geographic Performance
-            </h3>
-
-            <p>
-                Comparison of revenue and activity across
-                business locations or operating markets.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <i class="fas fa-bullseye"></i>
-
-            <h3>
-                Management Priorities
-            </h3>
-
-            <p>
-                Translation of analytical findings into
-                practical priorities for management action.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     PROJECT PIPELINE
-========================================================= -->
-
-<section class="section alt">
-
-    <div class="section-head center">
-
-        <span class="eyebrow">
-            EKO PROJECT PIPELINE
-        </span>
-
-        <h2>
-            Building a broader research and analytics portfolio.
-        </h2>
-
-        <p>
-            Additional portfolio projects will demonstrate EKO's
-            capabilities across customer research, monitoring and evaluation,
-            market research and social-development analysis.
-        </p>
-
-    </div>
-
-
-    <div class="service-grid">
-
-
-        <!-- PROJECT 02 -->
-
-        <article class="service-card">
-
-            <i class="fas fa-face-smile"></i>
-
-            <span class="project-category">
+            <span class="eyebrow">
                 PROJECT 02
             </span>
 
-            <h3>
+
+            <h2>
                 Customer Satisfaction &amp;
                 Service Quality Analysis
-            </h3>
+            </h2>
+
 
             <p>
-                A customer research project examining satisfaction,
-                service experience, loyalty drivers and areas
-                requiring improvement.
+                A structured customer-experience research case study
+                examining satisfaction, service quality,
+                recommendation likelihood, loyalty,
+                complaint behaviour and service improvement priorities.
             </p>
+
+
+            <p>
+                The project demonstrates how customer survey responses
+                can be transformed into service-quality KPIs,
+                segment comparisons, experience insights
+                and practical management recommendations.
+            </p>
+
 
             <div class="tag-row">
 
@@ -605,77 +1005,314 @@
                     Customer Experience
                 </span>
 
+                <span>
+                    Service Quality
+                </span>
+
+                <span>
+                    NPS
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
             </div>
 
-            <strong style="color:#c79a3b;font-size:0.75rem;">
-                PLANNED
-            </strong>
 
-        </article>
+            <div class="hero-actions">
+
+                <a class="btn primary"
+                   href="project-02.html">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                    Explore Case Study
+
+                </a>
+
+            </div>
+
+        </div>
 
 
 
-        <!-- PROJECT 03 -->
+        <div class="cx-preview">
 
-        <article class="service-card">
+            <div class="preview-top">
 
-            <i class="fas fa-clipboard-check"></i>
+                <span>
+                    PROJECT 02
+                </span>
 
-            <span class="project-category">
-                PROJECT 03
+                <strong>
+                    CUSTOMER EXPERIENCE
+                </strong>
+
+            </div>
+
+
+            <div class="cx-kpis">
+
+
+                <div>
+
+                    <small>
+                        Responses
+                    </small>
+
+                    <strong>
+                        360
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Satisfaction
+                    </small>
+
+                    <strong>
+                        3.95 / 5
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Repeat Intention
+                    </small>
+
+                    <strong>
+                        76.7%
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        NPS
+                    </small>
+
+                    <strong>
+                        -5.6
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Reliability
+                    </small>
+
+                    <strong>
+                        4.17 / 5
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Responsiveness
+                    </small>
+
+                    <strong>
+                        3.75 / 5
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECTS 03–07
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            EKO PROJECT PORTFOLIO
+        </span>
+
+        <h2>
+            Seven analytical case studies.
+        </h2>
+
+        <p>
+            Every project already has its permanent case-study link.
+            As each individual project page is developed,
+            the existing Explore Case Study button will automatically
+            lead to the completed analysis.
+        </p>
+
+    </div>
+
+
+
+    <div class="portfolio-project-grid">
+
+
+        <!-- =================================================
+             PROJECT 03
+        ================================================== -->
+
+        <article class="portfolio-project-card">
+
+            <div class="portfolio-project-icon">
+
+                <i class="fas fa-clipboard-check"></i>
+
+            </div>
+
+
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
             </span>
+
+
+            <span class="portfolio-project-number">
+                Project 03
+            </span>
+
 
             <h3>
                 Youth Empowerment Programme
                 M&amp;E Dashboard
             </h3>
 
+
             <p>
-                A monitoring and evaluation case study focused on
-                beneficiary tracking, programme indicators,
-                targets and performance reporting.
+                A monitoring and evaluation case study examining
+                beneficiary reach, programme indicators,
+                targets, implementation progress,
+                outcomes and management reporting.
             </p>
+
+
+            <p>
+                The project demonstrates how programme monitoring
+                data can be transformed into structured indicators,
+                performance dashboards and evidence for programme
+                management and decision-making.
+            </p>
+
 
             <div class="tag-row">
 
                 <span>
-                    M&amp;E
+                    Monitoring &amp; Evaluation
                 </span>
 
                 <span>
                     Programme Data
                 </span>
 
+                <span>
+                    Indicators
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+                <span>
+                    Reporting
+                </span>
+
             </div>
 
-            <strong style="color:#c79a3b;font-size:0.75rem;">
-                PLANNED
-            </strong>
+
+            <div class="project-card-footer">
+
+                <a class="btn primary"
+                   href="project-03.html">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                    Explore Case Study
+
+                </a>
+
+            </div>
 
         </article>
 
 
 
-        <!-- PROJECT 04 -->
+        <!-- =================================================
+             PROJECT 04
+        ================================================== -->
 
-        <article class="service-card">
+        <article class="portfolio-project-card">
 
-            <i class="fas fa-store"></i>
+            <div class="portfolio-project-icon">
 
-            <span class="project-category">
-                PROJECT 04
+                <i class="fas fa-store"></i>
+
+            </div>
+
+
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
             </span>
 
+
+            <span class="portfolio-project-number">
+                Project 04
+            </span>
+
+
             <h3>
-                Consumer Purchasing Behaviour
-                &amp; Market Opportunity Study
+                Consumer Purchasing Behaviour &amp;
+                Market Opportunity Study
             </h3>
 
+
             <p>
-                A market research study exploring purchasing behaviour,
-                customer preferences, market segments and
-                commercial opportunities.
+                A market-research case study examining consumer
+                purchasing behaviour, preferences,
+                market segments, purchasing motivations
+                and commercial opportunities.
             </p>
+
+
+            <p>
+                The project demonstrates how consumer information
+                can support segmentation, positioning,
+                customer targeting and evidence-based
+                commercial strategy.
+            </p>
+
 
             <div class="tag-row">
 
@@ -687,36 +1324,85 @@
                     Consumer Insight
                 </span>
 
+                <span>
+                    Segmentation
+                </span>
+
+                <span>
+                    Opportunity Analysis
+                </span>
+
+                <span>
+                    Strategy
+                </span>
+
             </div>
 
-            <strong style="color:#c79a3b;font-size:0.75rem;">
-                PLANNED
-            </strong>
+
+            <div class="project-card-footer">
+
+                <a class="btn primary"
+                   href="project-04.html">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                    Explore Case Study
+
+                </a>
+
+            </div>
 
         </article>
 
 
 
-        <!-- PROJECT 05 -->
+        <!-- =================================================
+             PROJECT 05
+        ================================================== -->
 
-        <article class="service-card">
+        <article class="portfolio-project-card">
 
-            <i class="fas fa-people-group"></i>
+            <div class="portfolio-project-icon">
 
-            <span class="project-category">
-                PROJECT 05
+                <i class="fas fa-people-group"></i>
+
+            </div>
+
+
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
             </span>
+
+
+            <span class="portfolio-project-number">
+                Project 05
+            </span>
+
 
             <h3>
                 Youth Employment &amp;
                 Skills Development Analysis
             </h3>
 
+
             <p>
-                A research project examining youth employment,
-                skills development, barriers to opportunity
-                and evidence-based interventions.
+                A social and labour-market research project
+                examining youth employment, skills development,
+                employability, labour-market readiness
+                and barriers to opportunity.
             </p>
+
+
+            <p>
+                The project demonstrates how social and employment
+                data can support programme design,
+                policy thinking and youth-development interventions.
+            </p>
+
 
             <div class="tag-row">
 
@@ -725,38 +1411,88 @@
                 </span>
 
                 <span>
+                    Employment
+                </span>
+
+                <span>
+                    Skills Development
+                </span>
+
+                <span>
+                    Youth
+                </span>
+
+                <span>
                     Policy Insight
                 </span>
 
             </div>
 
-            <strong style="color:#c79a3b;font-size:0.75rem;">
-                PLANNED
-            </strong>
+
+            <div class="project-card-footer">
+
+                <a class="btn primary"
+                   href="project-05.html">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                    Explore Case Study
+
+                </a>
+
+            </div>
 
         </article>
 
 
 
-        <!-- PROJECT 06 -->
+        <!-- =================================================
+             PROJECT 06
+        ================================================== -->
 
-        <article class="service-card">
+        <article class="portfolio-project-card">
 
-            <i class="fas fa-chart-column"></i>
+            <div class="portfolio-project-icon">
 
-            <span class="project-category">
-                PROJECT 06
+                <i class="fas fa-chart-column"></i>
+
+            </div>
+
+
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
             </span>
+
+
+            <span class="portfolio-project-number">
+                Project 06
+            </span>
+
 
             <h3>
                 NGO Programme Performance Review
             </h3>
 
+
             <p>
-                An analytical review of programme outputs,
-                beneficiary reach, indicator performance
-                and implementation trends.
+                A programme-analysis case study examining
+                implementation, outputs, beneficiary reach,
+                indicator performance, programme delivery
+                and management priorities.
             </p>
+
+
+            <p>
+                The project demonstrates how programme evidence
+                can support performance assessment,
+                donor reporting, organisational learning
+                and programme improvement.
+            </p>
+
 
             <div class="tag-row">
 
@@ -765,56 +1501,128 @@
                 </span>
 
                 <span>
+                    NGOs
+                </span>
+
+                <span>
+                    M&amp;E
+                </span>
+
+                <span>
+                    Performance
+                </span>
+
+                <span>
                     Reporting
                 </span>
 
             </div>
 
-            <strong style="color:#c79a3b;font-size:0.75rem;">
-                PLANNED
-            </strong>
+
+            <div class="project-card-footer">
+
+                <a class="btn primary"
+                   href="project-06.html">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                    Explore Case Study
+
+                </a>
+
+            </div>
 
         </article>
 
 
 
-        <!-- PROJECT 07 -->
+        <!-- =================================================
+             PROJECT 07
+        ================================================== -->
 
-        <article class="service-card">
+        <article class="portfolio-project-card">
 
-            <i class="fas fa-chart-pie"></i>
+            <div class="portfolio-project-icon">
 
-            <span class="project-category">
-                PROJECT 07
+                <i class="fas fa-chart-pie"></i>
+
+            </div>
+
+
+            <span class="project-status">
+
+                <i class="fas fa-chart-line"></i>
+
+                Portfolio Case Study
+
             </span>
+
+
+            <span class="portfolio-project-number">
+                Project 07
+            </span>
+
 
             <h3>
                 SME Business Performance Dashboard
             </h3>
 
+
             <p>
-                A management dashboard integrating financial,
-                customer and operational indicators into
-                a single decision-support view.
+                A management analytics project integrating
+                financial, sales, customer and operational indicators
+                into a consolidated business-performance dashboard.
             </p>
 
+
+            <p>
+                The project demonstrates how multiple business
+                performance measures can be brought together
+                into a concise management view for monitoring,
+                comparison and decision-making.
+            </p>
+
+
             <div class="tag-row">
+
+                <span>
+                    Business Intelligence
+                </span>
 
                 <span>
                     Dashboard
                 </span>
 
                 <span>
-                    Business Intelligence
+                    KPIs
+                </span>
+
+                <span>
+                    SME Analytics
+                </span>
+
+                <span>
+                    Decision Support
                 </span>
 
             </div>
 
-            <strong style="color:#c79a3b;font-size:0.75rem;">
-                PLANNED
-            </strong>
+
+            <div class="project-card-footer">
+
+                <a class="btn primary"
+                   href="project-07.html">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                    Explore Case Study
+
+                </a>
+
+            </div>
 
         </article>
+
 
     </div>
 
@@ -823,7 +1631,240 @@
 
 
 <!-- =========================================================
-     PORTFOLIO DISCLAIMER
+     CASE STUDY FRAMEWORK
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            CASE STUDY FRAMEWORK
+        </span>
+
+        <h2>
+            Every EKO project follows a consistent analytical structure.
+        </h2>
+
+        <p>
+            This ensures that each case study demonstrates
+            not only technical analysis but also clear reasoning,
+            professional reporting and decision-support capability.
+        </p>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card">
+
+            <i class="fas fa-circle-question"></i>
+
+            <h3>
+                Problem Definition
+            </h3>
+
+            <p>
+                Clarify the management, research,
+                market or programme question.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <i class="fas fa-database"></i>
+
+            <h3>
+                Data Preparation
+            </h3>
+
+            <p>
+                Structure, clean and validate
+                the information needed for analysis.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <i class="fas fa-chart-line"></i>
+
+            <h3>
+                Analytical Model
+            </h3>
+
+            <p>
+                Develop relevant indicators,
+                comparisons and analytical measures.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <i class="fas fa-chart-pie"></i>
+
+            <h3>
+                Dashboard
+            </h3>
+
+            <p>
+                Present the most important findings
+                through clear visualisations.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <i class="fas fa-magnifying-glass-chart"></i>
+
+            <h3>
+                Interpretation
+            </h3>
+
+            <p>
+                Explain what the analytical results
+                mean and why they matter.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <i class="fas fa-lightbulb"></i>
+
+            <h3>
+                Recommendations
+            </h3>
+
+            <p>
+                Translate evidence into practical
+                management or programme actions.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT DELIVERABLES
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            PROJECT DELIVERABLES
+        </span>
+
+        <h2>
+            Completed case studies can include full analytical resources.
+        </h2>
+
+        <p>
+            The project pages are connected to the EKO project-resource
+            system so supporting files can be made available
+            through separate View and Download controls.
+        </p>
+
+    </div>
+
+
+    <div class="client-grid">
+
+
+        <div>
+
+            <i class="fas fa-file-pdf"></i>
+
+            <strong>
+                Final Report
+            </strong>
+
+            <span>
+                Comprehensive analytical report
+                with findings and recommendations.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <i class="fas fa-file-excel"></i>
+
+            <strong>
+                Analytical Workbook
+            </strong>
+
+            <span>
+                Dataset, calculations, analysis tables
+                and management dashboard.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <i class="fas fa-file-word"></i>
+
+            <strong>
+                Editable Document
+            </strong>
+
+            <span>
+                Editable professional version
+                of the analytical report.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <i class="fas fa-chart-column"></i>
+
+            <strong>
+                Dashboard
+            </strong>
+
+            <span>
+                Clear visual summary
+                of important indicators.
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TRANSPARENCY
 ========================================================= -->
 
 <section class="section">
@@ -838,23 +1879,34 @@
             </span>
 
             <h2>
-                Professional demonstration projects.
+                Demonstration work is clearly identified.
             </h2>
+
 
             <p>
                 Where a project has not been commissioned by an external
-                client, EKO clearly identifies it as an independent
-                portfolio project.
+                client, EKO identifies it as an independent
+                portfolio case study.
             </p>
 
+
             <p>
-                Demonstration projects may use simulated or publicly
-                available information to showcase analytical methodology,
-                reporting capability and decision-support thinking
-                without representing fictional organisations as real clients.
+                Demonstration projects may use synthetic or publicly
+                available information to showcase research methodology,
+                analytical capability, reporting and decision-support
+                thinking without representing fictional organisations
+                as real clients.
+            </p>
+
+
+            <p>
+                Client confidentiality will also be respected
+                whenever commissioned assignments are included
+                in the EKO portfolio.
             </p>
 
         </div>
+
 
 
         <div class="case-preview">
@@ -887,29 +1939,29 @@
 
 
                 <p style="
-                    color:rgba(255,255,255,0.70);
+                    color:rgba(255,255,255,.70);
                     margin-bottom:20px;
                 ">
 
-                    EKO does not present demonstration work
+                    Portfolio demonstration work is not presented
                     as commissioned client work.
 
                 </p>
 
 
                 <p style="
-                    color:rgba(255,255,255,0.70);
+                    color:rgba(255,255,255,.70);
                 ">
 
-                    Client confidentiality will also be respected
-                    whenever real engagements are included
-                    in the portfolio.
+                    Methods, limitations and the nature
+                    of the information are clearly disclosed.
 
                 </p>
 
             </div>
 
         </div>
+
 
     </div>
 
@@ -929,14 +1981,16 @@
             WORK WITH EKO
         </span>
 
+
         <h2>
             Need analysis similar to one of these projects?
         </h2>
 
+
         <p>
             EKO can adapt its research and analytical approach
-            to your organisation's data, market, programme
-            or decision-making needs.
+            to your organisation's data, customers,
+            markets, programmes and decision-making needs.
         </p>
 
     </div>
@@ -1042,6 +2096,7 @@
 
         </div>
 
+
     </div>
 
 
@@ -1054,7 +2109,7 @@
         </span>
 
 
-        <!-- ADMINISTRATOR PADLOCK -->
+        <!-- ADMINISTRATOR -->
 
         <a href="admin.html"
            class="admin-link"
@@ -1072,7 +2127,7 @@
 
 
 <!-- =========================================================
-     MAIN JAVASCRIPT
+     SHARED JAVASCRIPT
 ========================================================= -->
 
 <script src="script.js"></script>
