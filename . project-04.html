@@ -1,138 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Consumer Purchasing Behaviour & Market Opportunity Study | EKO Analytics & Research</title>
-<meta name="description" content="EKO Analytics & Research consumer behaviour and market opportunity case study.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link rel="stylesheet" href="style.css">
+    <title>Project 04 | Consumer Purchasing Behaviour & Market Opportunity Study | EKO Analytics & Research</title>
 
-<style>
-.case-study-wrap{width:min(92%,1100px);margin:auto}.case-study-section{padding:85px 0}.case-study-section.alt{background:#f7f9fc}.case-study-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:start}.case-study-card{padding:30px;background:#fff;border:1px solid #dfe6ed;border-radius:18px;box-shadow:0 8px 25px rgba(7,20,38,.06)}.case-study-card i{color:#087f5b;font-size:1.5rem;margin-bottom:15px}.case-study-card h2,.case-study-section h2{font-family:"Playfair Display",Georgia,serif;margin-bottom:15px}.case-study-card p,.case-study-section p{margin-bottom:13px}.case-study-list{padding-left:20px;color:#687789}.case-study-list li{margin-bottom:10px}.project-number{color:#e7c978;font-weight:800;letter-spacing:.14em;font-size:.75rem}.project-navigation{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:35px}@media(max-width:760px){.case-study-grid{grid-template-columns:1fr}}
-</style>
+    <meta name="description"
+          content="EKO Analytics & Research market research case study examining consumer purchasing behaviour and market opportunities.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .case-study-wrap{width:min(92%,1100px);margin:auto}
+        .case-study-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:start}
+        .case-study-block{padding:28px;background:#fff;border:1px solid #dfe6ed;border-radius:18px;box-shadow:0 8px 25px rgba(7,20,38,.06)}
+        .case-study-block h2,.case-study-block h3{font-family:"Playfair Display",Georgia,serif;margin-bottom:12px}
+        .case-study-block p{margin-bottom:14px}
+        .case-study-list{padding-left:20px;color:#687789}
+        .case-study-list li{margin-bottom:9px}
+        .project-meta{display:grid;gap:12px}
+        .project-meta div{padding:15px;background:#f7f9fc;border-radius:12px}
+        .project-meta small{display:block;color:#087f5b;font-weight:800;margin-bottom:3px}
+        .project-meta strong{color:#0b1f3a}
+        .project-navigation{width:min(92%,1100px);margin:45px auto 0;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+        [data-project-files]{width:min(92%,1000px);margin:35px auto 0;display:grid;gap:18px}
+        @media(max-width:850px){.case-study-grid{grid-template-columns:1fr}}
+    </style>
 </head>
 
-<body>
+<body data-page="project-04">
 
-<nav class="site-nav"><div class="nav-wrap">
-<a href="index.html" class="brand-official-logo"><img src="assets/eko-logo.png" alt="EKO Analytics & Research" class="brand-logo"></a>
-<button class="nav-toggle" id="navToggle" aria-label="Open navigation"><i class="fas fa-bars"></i></button>
-<div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="projects.html">Projects</a><a href="founder.html">Founder</a><a href="contact.html" class="nav-cta">Start a Project</a></div>
-</div></nav>
+<nav class="site-nav">
+    <div class="nav-wrap">
+
+        <a class="brand brand-official-logo" href="index.html" aria-label="EKO Analytics & Research Home">
+            <img src="file_000000005e7c7243ba74d1018716cc17.png"
+                 alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                 class="brand-logo">
+        </a>
+
+        <button class="nav-toggle" id="navToggle" type="button"
+                aria-label="Open navigation" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="projects.html">Projects</a>
+            <a href="insights.html">Insights</a>
+            <a href="contact.html">Contact</a>
+            <a class="nav-cta" href="contact.html#consultation">Request Consultation</a>
+        </div>
+
+    </div>
+</nav>
 
 <header class="page-hero">
-<span class="project-number">EKO PROJECT 04</span>
-<h1>Consumer Purchasing Behaviour &amp; Market Opportunity Study</h1>
-<p>A market research case study examining purchasing behaviour, customer preferences, market segments and commercial opportunities.</p>
-<div class="hero-actions" style="justify-content:center;">
-<a href="#caseStudy" class="btn primary"><i class="fas fa-magnifying-glass-chart"></i> Explore Case Study</a>
-<a href="#project04Files" class="btn ghost"><i class="fas fa-folder-open"></i> Project Resources</a>
-</div>
+
+    <span class="eyebrow light">PROJECT 04 • MARKET RESEARCH</span>
+
+    <h1>Consumer Purchasing Behaviour &amp; Market Opportunity Study</h1>
+
+    <p>
+        A market-research case study examining consumer preferences,
+        purchasing behaviour, market segments and opportunities
+        for stronger market positioning.
+    </p>
+
 </header>
 
-<main id="caseStudy">
+<main>
 
-<section class="case-study-section"><div class="case-study-wrap">
-<span class="eyebrow">PROJECT OVERVIEW</span>
-<div class="case-study-grid">
-<div>
-<h2>Understanding Markets Through Consumer Evidence</h2>
-<p>Successful market decisions depend on understanding why consumers purchase, what influences their choices and where unmet market needs exist.</p>
-<p>This project demonstrates EKO's approach to transforming consumer and market information into commercially useful insights.</p>
-</div>
-<div class="case-study-card">
-<i class="fas fa-cart-shopping"></i>
-<h2>Project Profile</h2>
-<ul class="case-study-list">
-<li><strong>Category:</strong> Market Research</li>
-<li><strong>Focus:</strong> Consumer purchasing behaviour</li>
-<li><strong>Analysis:</strong> Market segmentation and opportunity assessment</li>
-<li><strong>Application:</strong> Product and market strategy</li>
-<li><strong>Period:</strong> 2025–2026</li>
-</ul>
-</div>
-</div>
-</div></section>
+<section class="section">
 
-<section class="case-study-section alt"><div class="case-study-wrap">
-<div class="case-study-grid">
-<div class="case-study-card">
-<i class="fas fa-question"></i>
-<h2>The Business Question</h2>
-<p>Businesses need reliable evidence about customer preferences, purchasing drivers, price sensitivity, competing alternatives and emerging market opportunities before committing resources.</p>
-</div>
-<div class="case-study-card">
-<i class="fas fa-bullseye"></i>
-<h2>Objectives</h2>
-<ul class="case-study-list">
-<li>Analyse consumer purchasing patterns.</li>
-<li>Identify major purchase drivers.</li>
-<li>Examine customer preferences.</li>
-<li>Identify meaningful market segments.</li>
-<li>Assess competitive alternatives.</li>
-<li>Identify potential market opportunities.</li>
-</ul>
-</div>
-</div>
-</div></section>
+    <div class="case-study-wrap">
 
-<section class="case-study-section"><div class="case-study-wrap">
-<span class="eyebrow">RESEARCH APPROACH</span>
-<h2>From Consumer Data to Market Intelligence</h2>
-<div class="service-grid" style="margin-top:35px;">
-<article class="service-card"><i class="fas fa-clipboard-list"></i><h3>Market Research</h3><p>Structured information is collected or organised around consumer needs, behaviours and preferences.</p></article>
-<article class="service-card"><i class="fas fa-users"></i><h3>Segmentation</h3><p>Consumers are examined across meaningful characteristics and behavioural patterns.</p></article>
-<article class="service-card"><i class="fas fa-lightbulb"></i><h3>Opportunity Analysis</h3><p>Evidence is translated into potential commercial and strategic opportunities.</p></article>
-</div>
-</div></section>
+        <div class="case-study-grid">
 
-<section class="case-study-section alt"><div class="case-study-wrap">
-<span class="eyebrow">ANALYSIS</span>
-<h2>Key Areas of Investigation</h2>
-<div class="case-study-grid">
-<div class="case-study-card"><h2>Consumer Behaviour</h2><ul class="case-study-list"><li>Purchase frequency</li><li>Product preferences</li><li>Price considerations</li><li>Brand influence</li><li>Purchase channels</li><li>Customer priorities</li></ul></div>
-<div class="case-study-card"><h2>Market Opportunity</h2><ul class="case-study-list"><li>Unmet customer needs</li><li>Potential customer segments</li><li>Competitive positioning</li><li>Product/service opportunities</li><li>Channel opportunities</li><li>Market-entry considerations</li></ul></div>
-</div>
-</div></section>
+            <div>
 
-<section class="case-study-section"><div class="case-study-wrap">
-<span class="eyebrow">DECISION SUPPORT</span>
-<h2>Turning Market Evidence into Strategy</h2>
-<p>The study is designed to support decisions relating to market positioning, customer targeting, product development, pricing, marketing communication and channel strategy.</p>
-</div></section>
+                <div class="case-study-block">
 
-<section class="case-study-section alt"><div class="case-study-wrap">
-<span class="eyebrow">PROJECT DELIVERABLES</span>
-<h2>Project 04 Resources</h2>
-<p>Approved research reports, datasets, workbooks and supporting resources will appear here automatically.</p>
-<div id="project04Files" data-project-files data-project="project-04"></div>
-</div></section>
+                    <span class="eyebrow">CASE STUDY OVERVIEW</span>
 
-<section class="cta-band">
-<div><span class="eyebrow light">MARKET INTELLIGENCE</span><h2>Planning a new market, product or customer strategy?</h2><p>EKO can help turn market information into evidence for better commercial decisions.</p></div>
-<a href="contact.html" class="btn gold">Start a Project <i class="fas fa-arrow-right"></i></a>
+                    <h2>Understanding customers before making market decisions.</h2>
+
+                    <p>
+                        Project 04 demonstrates how consumer research can help
+                        organisations understand purchasing motivations,
+                        preferences, customer segments and market opportunities.
+                    </p>
+
+                    <p>
+                        The project transforms consumer evidence into practical
+                        insights for targeting, positioning and market strategy.
+                    </p>
+
+                </div>
+
+                <br>
+
+                <div class="case-study-block">
+
+                    <span class="eyebrow">RESEARCH QUESTIONS</span>
+
+                    <h3>What the study investigates</h3>
+
+                    <ul class="case-study-list">
+                        <li>What factors influence consumer purchasing decisions?</li>
+                        <li>Which product or service attributes matter most?</li>
+                        <li>How do purchasing behaviours vary across segments?</li>
+                        <li>What barriers affect purchasing decisions?</li>
+                        <li>Which customer groups offer stronger market potential?</li>
+                        <li>What opportunities exist for improved market positioning?</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <aside class="case-study-block">
+
+                <span class="eyebrow">PROJECT PROFILE</span>
+
+                <div class="project-meta">
+                    <div><small>PROJECT</small><strong>04</strong></div>
+                    <div><small>DOMAIN</small><strong>Market Research</strong></div>
+                    <div><small>FOCUS</small><strong>Consumer Purchasing Behaviour</strong></div>
+                    <div><small>ANALYSIS</small><strong>Segmentation &amp; Market Opportunity</strong></div>
+                    <div><small>OUTPUT</small><strong>Market Insights &amp; Strategic Recommendations</strong></div>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
 </section>
 
-<section class="case-study-section"><div class="case-study-wrap"><div class="project-navigation">
-<a href="project-03.html" class="btn outline-dark"><i class="fas fa-arrow-left"></i> Project 03</a>
-<a href="projects.html" class="btn outline-dark">All Projects</a>
-<a href="project-05.html" class="btn primary">Project 05 <i class="fas fa-arrow-right"></i></a>
-</div></div></section>
+<section class="section alt">
+
+    <div class="section-head center">
+        <span class="eyebrow">MARKET INTELLIGENCE</span>
+        <h2>From consumer evidence to market opportunity.</h2>
+    </div>
+
+    <div class="service-grid">
+
+        <article class="service-card">
+            <i class="fas fa-cart-shopping"></i>
+            <h3>Purchasing Behaviour</h3>
+            <p>Examine how consumers make purchasing decisions.</p>
+        </article>
+
+        <article class="service-card">
+            <i class="fas fa-users-viewfinder"></i>
+            <h3>Segmentation</h3>
+            <p>Identify meaningful customer groups based on behaviours and characteristics.</p>
+        </article>
+
+        <article class="service-card">
+            <i class="fas fa-heart"></i>
+            <h3>Preferences</h3>
+            <p>Understand which attributes and benefits matter most to consumers.</p>
+        </article>
+
+        <article class="service-card">
+            <i class="fas fa-magnifying-glass-chart"></i>
+            <h3>Opportunity</h3>
+            <p>Identify potential gaps and areas of stronger market potential.</p>
+        </article>
+
+        <article class="service-card">
+            <i class="fas fa-location-crosshairs"></i>
+            <h3>Positioning</h3>
+            <p>Translate research findings into clearer market positioning.</p>
+        </article>
+
+        <article class="service-card">
+            <i class="fas fa-chess"></i>
+            <h3>Strategy</h3>
+            <p>Develop evidence-based recommendations for market decisions.</p>
+        </article>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-head center">
+        <span class="eyebrow">PROJECT 04 DELIVERABLES</span>
+        <h2>View or download project resources.</h2>
+        <p>
+            Resources uploaded to Project 04 through the administrator
+            will automatically appear below.
+        </p>
+    </div>
+
+    <div id="project04Files"
+         data-project-files
+         data-project="project-04">
+    </div>
+
+</section>
+
+<div class="project-navigation">
+
+    <a class="btn outline-dark" href="project-03.html">
+        <i class="fas fa-arrow-left"></i>
+        Project 03
+    </a>
+
+    <a class="btn outline-dark" href="projects.html">
+        <i class="fas fa-table-cells-large"></i>
+        All Projects
+    </a>
+
+    <a class="btn primary" href="project-05.html">
+        Project 05
+        <i class="fas fa-arrow-right"></i>
+    </a>
+
+</div>
+
+<section class="cta-band">
+    <div>
+        <span class="eyebrow light">WORK WITH EKO</span>
+        <h2>Need stronger market intelligence?</h2>
+        <p>
+            EKO can support consumer research, market analysis,
+            segmentation and evidence-based market strategy.
+        </p>
+    </div>
+
+    <a class="btn gold" href="contact.html#consultation">
+        <i class="fas fa-comments"></i>
+        Discuss Your Project
+    </a>
+</section>
 
 </main>
 
-<footer class="site-footer"><div class="footer-grid">
-<div><a href="index.html" class="footer-brand-logo"><img src="assets/eko-logo.png" alt="EKO Analytics & Research" class="footer-logo"></a><p>Research, analytics and evidence-based insight for stronger organisational and business decisions.</p></div>
-<div><h4>Explore</h4><a href="about.html">About</a><a href="services.html">Services</a><a href="projects.html">Projects</a><a href="founder.html">Founder</a></div>
-<div><h4>Contact</h4><a href="contact.html">Start a Project</a></div>
-</div><div class="footer-bottom"><span>© <span id="year"></span> EKO Analytics &amp; Research. All rights reserved.</span><a href="admin.html" class="admin-link" aria-label="Administrator"><i class="fas fa-lock"></i></a></div></footer>
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+        <div>
+            <div class="footer-brand footer-brand-logo">
+                <img src="file_000000005e7c7243ba74d1018716cc17.png"
+                     alt="EKO Analytics & Research"
+                     class="footer-logo">
+            </div>
+            <p>Research, analytics and decision-support services for organisations that need clearer evidence and better decisions.</p>
+        </div>
+
+        <div>
+            <h4>Explore</h4>
+            <a href="about.html">About EKO</a>
+            <a href="services.html">Services</a>
+            <a href="projects.html">Projects</a>
+            <a href="insights.html">Insights</a>
+        </div>
+
+        <div>
+            <h4>Contact</h4>
+            <a href="mailto:edwinokello24@gmail.com">edwinokello24@gmail.com</a>
+            <a href="tel:+254143947048">+254 143 947 048</a>
+            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+               target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© <span id="year"></span> EKO Analytics &amp; Research</span>
+
+        <a href="admin.html" class="admin-link"
+           title="Administrator" aria-label="Administrator">
+            <i class="fas fa-lock"></i>
+        </a>
+    </div>
+
+</footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
