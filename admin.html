@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,14 +27,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
           rel="stylesheet">
 
+
     <!-- FONT AWESOME -->
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
     <!-- SUPABASE -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
     <!-- MAIN CSS -->
 
@@ -231,7 +234,8 @@
 
             align-items: flex-start;
 
-            padding: 16px 18px;
+            padding:
+                16px 18px;
 
             margin-bottom: 24px;
 
@@ -335,18 +339,6 @@
             display: grid;
 
             gap: 18px;
-
-        }
-
-
-        .admin-form-row {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 16px;
 
         }
 
@@ -669,10 +661,6 @@
         }
 
 
-        /* =====================================================
-           PROJECT STATUS
-        ===================================================== */
-
         .project-badge {
 
             display: inline-flex;
@@ -802,6 +790,8 @@
 
             align-items: center;
 
+            justify-content: center;
+
             gap: 6px;
 
             background: #0b1f3a;
@@ -823,6 +813,22 @@
         .admin-file-actions a:hover {
 
             background: #12395c;
+
+        }
+
+
+        .admin-file-actions
+        .download-link {
+
+            background: #087f5b;
+
+        }
+
+
+        .admin-file-actions
+        .download-link:hover {
+
+            background: #056044;
 
         }
 
@@ -942,14 +948,6 @@
             }
 
 
-            .admin-form-row {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
             .admin-file {
 
                 grid-template-columns:
@@ -1038,7 +1036,6 @@
         ====================================================== -->
 
         <div class="admin-home-bar">
-
 
             <div class="admin-brand">
 
@@ -1133,7 +1130,6 @@
             <form id="adminLoginForm"
                   class="admin-form">
 
-
                 <div class="admin-form-group">
 
                     <label for="adminEmail">
@@ -1198,15 +1194,11 @@
              class="hidden">
 
 
-            <!-- =================================================
-                 PROJECT MANAGER
-            ================================================== -->
+            <!-- PROJECT MANAGER -->
 
             <section class="admin-card">
 
-
                 <div class="admin-toolbar">
-
 
                     <div class="admin-user">
 
@@ -1220,7 +1212,6 @@
 
 
                     <div class="admin-toolbar-actions">
-
 
                         <a
                             href="index.html"
@@ -1267,71 +1258,37 @@
 
                     <select id="projectSelector">
 
-
                         <option value="project-01">
-
-                            Project 01 —
-                            SME Sales &amp; Customer Performance Analysis
-
+                            Project 01 — SME Sales &amp; Customer Performance Analysis
                         </option>
-
 
                         <option value="project-02">
-
-                            Project 02 —
-                            Customer Satisfaction &amp; Service Quality Analysis
-
+                            Project 02 — Customer Satisfaction &amp; Service Quality Analysis
                         </option>
-
 
                         <option value="project-03">
-
-                            Project 03 —
-                            Youth Empowerment Programme M&amp;E Dashboard
-
+                            Project 03 — Youth Empowerment Programme M&amp;E Dashboard
                         </option>
-
 
                         <option value="project-04">
-
-                            Project 04 —
-                            Consumer Purchasing Behaviour &amp;
-                            Market Opportunity Study
-
+                            Project 04 — Consumer Purchasing Behaviour &amp; Market Opportunity Study
                         </option>
-
 
                         <option value="project-05">
-
-                            Project 05 —
-                            Youth Employment &amp;
-                            Skills Development Analysis
-
+                            Project 05 — Youth Employment &amp; Skills Development Analysis
                         </option>
-
 
                         <option value="project-06">
-
-                            Project 06 —
-                            NGO Programme Performance Review
-
+                            Project 06 — NGO Programme Performance Review
                         </option>
-
 
                         <option value="project-07">
-
-                            Project 07 —
-                            SME Business Performance Dashboard
-
+                            Project 07 — SME Business Performance Dashboard
                         </option>
-
 
                         <option value="general">
-
                             General EKO Materials
-
                         </option>
-
 
                     </select>
 
@@ -1341,14 +1298,12 @@
                 <div class="project-information">
 
                     <strong id="selectedProjectTitle">
-                        Project 01 —
-                        SME Sales &amp; Customer Performance Analysis
+                        Project 01 — SME Sales &amp; Customer Performance Analysis
                     </strong>
 
 
                     <span id="selectedProjectPath">
-                        Storage folder:
-                        eko/project-01/
+                        Storage folder: eko/project-01/
                     </span>
 
 
@@ -1387,7 +1342,6 @@
 
 
                 <div class="admin-form">
-
 
                     <div class="admin-form-group">
 
@@ -1434,9 +1388,7 @@
 
             <section class="admin-card">
 
-
                 <div class="admin-toolbar">
-
 
                     <div>
 
@@ -1471,7 +1423,6 @@
                 <div id="projectFileList"
                      class="file-list">
 
-
                     <div class="admin-empty">
 
                         <i class="fas fa-spinner fa-spin"></i>
@@ -1487,7 +1438,7 @@
 
 
             <!-- =================================================
-                 SECURITY INFORMATION
+                 SECURITY INFO
             ================================================== -->
 
             <section class="admin-card">
@@ -1495,6 +1446,7 @@
                 <h2>
                     Administrator Security
                 </h2>
+
 
                 <div class="security-note">
 
@@ -1571,70 +1523,45 @@ if (
 
 const PROJECTS = {
 
-
     "project-01": {
-
         title:
             "Project 01 — SME Sales & Customer Performance Analysis"
-
     },
-
 
     "project-02": {
-
         title:
             "Project 02 — Customer Satisfaction & Service Quality Analysis"
-
     },
-
 
     "project-03": {
-
         title:
             "Project 03 — Youth Empowerment Programme M&E Dashboard"
-
     },
-
 
     "project-04": {
-
         title:
             "Project 04 — Consumer Purchasing Behaviour & Market Opportunity Study"
-
     },
-
 
     "project-05": {
-
         title:
             "Project 05 — Youth Employment & Skills Development Analysis"
-
     },
-
 
     "project-06": {
-
         title:
             "Project 06 — NGO Programme Performance Review"
-
     },
-
 
     "project-07": {
-
         title:
             "Project 07 — SME Business Performance Dashboard"
-
     },
 
-
     "general": {
-
         title:
             "General EKO Materials"
-
     }
-
 
 };
 
@@ -1714,9 +1641,7 @@ function showStatus(
 
 
     if (!element) {
-
         return;
-
     }
 
 
@@ -1740,9 +1665,7 @@ function clearStatus(
 
 
     if (!element) {
-
         return;
-
     }
 
 
@@ -1801,14 +1724,11 @@ async function initialiseAdmin() {
         "change",
         async function () {
 
-
             updateSelectedProject();
-
 
             clearStatus(
                 "uploadStatus"
             );
-
 
             await loadProjectFiles();
 
@@ -1844,13 +1764,6 @@ async function login(
 
 
     event.preventDefault();
-
-
-    if (!supabaseClient) {
-
-        return;
-
-    }
 
 
     const email =
@@ -2126,9 +2039,7 @@ async function logout() {
 
 
     if (!supabaseClient) {
-
         return;
-
     }
 
 
@@ -2174,9 +2085,7 @@ function updateSelectedProject() {
 
 
     if (!projectData) {
-
         return;
-
     }
 
 
@@ -2275,7 +2184,7 @@ function makeSafeFileName(
 
 
 /* =========================================================
-   CHECK CURRENT SESSION BEFORE WRITE
+   REQUIRE ADMIN SESSION
 ========================================================= */
 
 async function requireSession() {
@@ -2330,9 +2239,7 @@ async function uploadFiles() {
 
 
     if (!session) {
-
         return;
-
     }
 
 
@@ -2434,7 +2341,10 @@ async function uploadFiles() {
 
                         contentType:
                             file.type ||
-                            "application/octet-stream"
+                            "application/octet-stream",
+
+                        cacheControl:
+                            "3600"
 
                     }
                 );
@@ -2650,7 +2560,6 @@ async function loadProjectFiles() {
 
         const files =
             (data || [])
-
             .filter(
                 function (file) {
 
@@ -2722,6 +2631,13 @@ async function loadProjectFiles() {
                         : "#";
 
 
+                const viewUrl =
+                    createViewUrl(
+                        file.name,
+                        publicUrl
+                    );
+
+
                 const item =
                     document.createElement(
                         "div"
@@ -2758,7 +2674,7 @@ async function loadProjectFiles() {
 
 
                         <a
-                            href="${escapeAttribute(publicUrl)}"
+                            href="${escapeAttribute(viewUrl)}"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -2771,8 +2687,9 @@ async function loadProjectFiles() {
 
 
                         <a
+                            class="download-link"
                             href="${escapeAttribute(publicUrl)}"
-                            download
+                            download="${escapeAttribute(file.name)}"
                         >
 
                             <i class="fas fa-download"></i>
@@ -2837,9 +2754,9 @@ async function loadProjectFiles() {
 
 
                 projectFileList
-                .appendChild(
-                    item
-                );
+                    .appendChild(
+                        item
+                    );
 
             }
         );
@@ -2874,6 +2791,116 @@ async function loadProjectFiles() {
 
 
 /* =========================================================
+   CREATE TRUE VIEW URL
+========================================================= */
+
+function createViewUrl(
+    fileName,
+    publicUrl
+) {
+
+
+    const parts =
+        String(fileName)
+        .split(".");
+
+
+    const extension =
+        parts.length > 1
+            ? parts
+              .pop()
+              .toLowerCase()
+            : "";
+
+
+    /* =====================================================
+       DIRECT BROWSER PREVIEW
+    ===================================================== */
+
+    const directViewTypes = [
+
+        "pdf",
+
+        "jpg",
+
+        "jpeg",
+
+        "png",
+
+        "webp",
+
+        "gif",
+
+        "svg",
+
+        "txt"
+
+    ];
+
+
+    if (
+        directViewTypes.includes(
+            extension
+        )
+    ) {
+
+        return publicUrl;
+
+    }
+
+
+    /* =====================================================
+       MICROSOFT OFFICE VIEWER
+    ===================================================== */
+
+    const officeTypes = [
+
+        "doc",
+
+        "docx",
+
+        "xls",
+
+        "xlsx",
+
+        "ppt",
+
+        "pptx"
+
+    ];
+
+
+    if (
+        officeTypes.includes(
+            extension
+        )
+    ) {
+
+
+        return (
+
+            "https://view.officeapps.live.com/op/view.aspx?src=" +
+
+            encodeURIComponent(
+                publicUrl
+            )
+
+        );
+
+    }
+
+
+    /* =====================================================
+       FALLBACK
+    ===================================================== */
+
+    return publicUrl;
+
+}
+
+
+
+/* =========================================================
    DELETE FILE
 ========================================================= */
 
@@ -2887,9 +2914,7 @@ async function deleteProjectFile(
 
 
     if (!session) {
-
         return;
-
     }
 
 
@@ -2901,9 +2926,7 @@ async function deleteProjectFile(
 
 
     if (!confirmed) {
-
         return;
-
     }
 
 
@@ -3025,7 +3048,9 @@ function getFileIcon(
         extension === "jpg" ||
         extension === "jpeg" ||
         extension === "png" ||
-        extension === "webp"
+        extension === "webp" ||
+        extension === "gif" ||
+        extension === "svg"
     ) {
 
         return "fa-file-image";
