@@ -48,8 +48,7 @@
 </head>
 
 
-
-<body>
+<body data-page="projects">
 
 
 <!-- =========================================================
@@ -60,31 +59,25 @@
 
     <div class="nav-wrap">
 
-        <a class="brand"
-           href="index.html">
 
-            <span class="brand-mark">
-                EKO
-            </span>
+        <!-- OFFICIAL EKO LOGO -->
 
-            <span class="brand-copy">
+        <a class="brand brand-official-logo"
+           href="index.html"
+           aria-label="EKO Analytics & Research Home">
 
-                <strong>
-                    EKO Analytics &amp; Research
-                </strong>
-
-                <small>
-                    Turning Data into Actionable Insights
-                </small>
-
-            </span>
+            <img
+                src="file_000000005e7c7243ba74d1018716cc17.png"
+                alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                class="brand-logo">
 
         </a>
 
 
         <button class="nav-toggle"
                 id="navToggle"
-                aria-label="Open navigation">
+                aria-label="Open navigation"
+                aria-expanded="false">
 
             <i class="fas fa-bars"></i>
 
@@ -106,7 +99,8 @@
                 Services
             </a>
 
-            <a href="projects.html">
+            <a href="projects.html"
+               aria-current="page">
                 Projects
             </a>
 
@@ -339,15 +333,10 @@
             <div class="preview-bars">
 
                 <span style="height:42%"></span>
-
                 <span style="height:58%"></span>
-
                 <span style="height:64%"></span>
-
                 <span style="height:55%"></span>
-
                 <span style="height:72%"></span>
-
                 <span style="height:88%"></span>
 
             </div>
@@ -580,7 +569,6 @@
         </p>
 
     </div>
-
 
 
     <div class="service-grid">
@@ -981,17 +969,18 @@
 
         <div>
 
-            <div class="footer-brand">
 
-                <span>
-                    EKO
-                </span>
+            <!-- OFFICIAL EKO LOGO -->
 
-                <strong>
-                    EKO Analytics &amp; Research
-                </strong>
+            <div class="footer-brand footer-brand-logo">
+
+                <img
+                    src="file_000000005e7c7243ba74d1018716cc17.png"
+                    alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                    class="footer-logo">
 
             </div>
+
 
             <p>
                 Research, analytics and decision-support services
@@ -1065,9 +1054,12 @@
         </span>
 
 
+        <!-- ADMINISTRATOR PADLOCK -->
+
         <a href="admin.html"
            class="admin-link"
-           title="Administrator">
+           title="Administrator"
+           aria-label="Administrator">
 
             <i class="fas fa-lock"></i>
 
