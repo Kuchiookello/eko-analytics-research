@@ -4,14 +4,17 @@
 
    Supports:
    - Navigation
-   - Active/mobile menu behaviour
+   - Mobile menu
+   - Navigation scroll state
    - Back to top
    - Footer year
    - Contact consultation form
    - Supabase public project resources
    - Projects 01–07
+   - Actual uploaded filenames
    - Office document viewing
-   - File downloads
+   - Direct PDF/image viewing
+   - Reliable downloads
 ========================================================= */
 
 
@@ -49,180 +52,55 @@ if (
 }
 
 
-
 /* =========================================================
-   EKO PROJECT DEFINITIONS
+   PROJECT DEFINITIONS
 ========================================================= */
 
 const EKO_PROJECTS = {
 
-
     "project-01": {
-
-        number:
-            "01",
-
-        title:
-            "SME Sales & Customer Performance Analysis",
-
-        folder:
-            "project-01",
-
-        knownFiles: [
-
-            {
-
-                file:
-                    "EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf",
-
-                title:
-                    "Final SME Sales & Customer Performance Analysis Report",
-
-                description:
-                    "The complete professional analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
-
-                label:
-                    "FINAL REPORT",
-
-                icon:
-                    "fa-file-pdf"
-
-            },
-
-
-            {
-
-                file:
-                    "EKO_Project_01_SME_Sales_Customer_Performance.xlsx",
-
-                title:
-                    "SME Sales & Customer Performance Analytical Workbook",
-
-                description:
-                    "The supporting Excel workbook containing the synthetic dataset, KPI analysis, dashboard, revenue trends, service analysis and customer performance analysis.",
-
-                label:
-                    "EXCEL DASHBOARD",
-
-                icon:
-                    "fa-file-excel"
-
-            }
-
-        ]
-
+        number: "01",
+        title: "SME Sales & Customer Performance Analysis",
+        folder: "project-01"
     },
-
-
 
     "project-02": {
-
-        number:
-            "02",
-
-        title:
-            "Customer Satisfaction & Service Quality Analysis",
-
-        folder:
-            "project-02",
-
-        knownFiles:
-            []
-
+        number: "02",
+        title: "Customer Satisfaction & Service Quality Analysis",
+        folder: "project-02"
     },
-
-
 
     "project-03": {
-
-        number:
-            "03",
-
-        title:
-            "Youth Empowerment Programme M&E Dashboard",
-
-        folder:
-            "project-03",
-
-        knownFiles:
-            []
-
+        number: "03",
+        title: "Youth Empowerment Programme M&E Dashboard",
+        folder: "project-03"
     },
-
-
 
     "project-04": {
-
-        number:
-            "04",
-
-        title:
-            "Consumer Purchasing Behaviour & Market Opportunity Study",
-
-        folder:
-            "project-04",
-
-        knownFiles:
-            []
-
+        number: "04",
+        title: "Consumer Purchasing Behaviour & Market Opportunity Study",
+        folder: "project-04"
     },
-
-
 
     "project-05": {
-
-        number:
-            "05",
-
-        title:
-            "Youth Employment & Skills Development Analysis",
-
-        folder:
-            "project-05",
-
-        knownFiles:
-            []
-
+        number: "05",
+        title: "Youth Employment & Skills Development Analysis",
+        folder: "project-05"
     },
-
-
 
     "project-06": {
-
-        number:
-            "06",
-
-        title:
-            "NGO Programme Performance Review",
-
-        folder:
-            "project-06",
-
-        knownFiles:
-            []
-
+        number: "06",
+        title: "NGO Programme Performance Review",
+        folder: "project-06"
     },
 
-
-
     "project-07": {
-
-        number:
-            "07",
-
-        title:
-            "SME Business Performance Dashboard",
-
-        folder:
-            "project-07",
-
-        knownFiles:
-            []
-
+        number: "07",
+        title: "SME Business Performance Dashboard",
+        folder: "project-07"
     }
 
 };
-
 
 
 /* =========================================================
@@ -233,31 +111,22 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-
         initialiseYear();
-
 
         initialiseNavigation();
 
-
         initialiseNavigationScrollState();
-
 
         initialiseBackToTop();
 
-
         initialiseContactForm();
-
 
         initialisePublicProjectFiles();
 
-
         initialiseDownloadLinks();
-
 
     }
 );
-
 
 
 /* =========================================================
@@ -266,16 +135,13 @@ document.addEventListener(
 
 function initialiseYear() {
 
-
     document
         .querySelectorAll("#year")
         .forEach(
             function (year) {
 
-
                 year.textContent =
                     new Date().getFullYear();
-
 
             }
         );
@@ -283,13 +149,11 @@ function initialiseYear() {
 }
 
 
-
 /* =========================================================
    MOBILE NAVIGATION
 ========================================================= */
 
 function initialiseNavigation() {
-
 
     const toggle =
         document.getElementById(
@@ -319,18 +183,11 @@ function initialiseNavigation() {
     );
 
 
-
-    /* ---------------------------------------------------------
-       OPEN / CLOSE
-    --------------------------------------------------------- */
-
     toggle.addEventListener(
         "click",
         function (event) {
 
-
             event.preventDefault();
-
 
             event.stopPropagation();
 
@@ -354,50 +211,34 @@ function initialiseNavigation() {
                 isOpen
             );
 
-
         }
     );
 
-
-
-    /* ---------------------------------------------------------
-       CLOSE AFTER NAVIGATION
-    --------------------------------------------------------- */
 
     links
         .querySelectorAll("a")
         .forEach(
             function (link) {
 
-
                 link.addEventListener(
                     "click",
                     function () {
-
 
                         closeNavigationMenu(
                             toggle,
                             links
                         );
 
-
                     }
                 );
-
 
             }
         );
 
 
-
-    /* ---------------------------------------------------------
-       CLICK OUTSIDE
-    --------------------------------------------------------- */
-
     document.addEventListener(
         "click",
         function (event) {
-
 
             if (
                 !links.contains(
@@ -408,79 +249,57 @@ function initialiseNavigation() {
                 )
             ) {
 
-
                 closeNavigationMenu(
                     toggle,
                     links
                 );
 
-
             }
-
 
         }
     );
 
 
-
-    /* ---------------------------------------------------------
-       ESCAPE KEY
-    --------------------------------------------------------- */
-
     document.addEventListener(
         "keydown",
         function (event) {
-
 
             if (
                 event.key ===
                 "Escape"
             ) {
 
-
                 closeNavigationMenu(
                     toggle,
                     links
                 );
 
-
             }
-
 
         }
     );
 
 
-
-    /* ---------------------------------------------------------
-       RESET ON DESKTOP
-    --------------------------------------------------------- */
-
     window.addEventListener(
         "resize",
         function () {
-
 
             if (
                 window.innerWidth >
                 980
             ) {
 
-
                 closeNavigationMenu(
                     toggle,
                     links
                 );
 
-
             }
-
 
         }
     );
 
 }
-
 
 
 /* =========================================================
@@ -491,7 +310,6 @@ function updateNavigationIcon(
     toggle,
     isOpen
 ) {
-
 
     const icon =
         toggle.querySelector("i");
@@ -506,34 +324,27 @@ function updateNavigationIcon(
 
     if (isOpen) {
 
-
         icon.classList.remove(
             "fa-bars"
         );
 
-
         icon.classList.add(
             "fa-xmark"
         );
-
 
     } else {
 
-
         icon.classList.remove(
             "fa-xmark"
         );
 
-
         icon.classList.add(
             "fa-bars"
         );
-
 
     }
 
 }
-
 
 
 /* =========================================================
@@ -545,11 +356,9 @@ function closeNavigationMenu(
     links
 ) {
 
-
     links.classList.remove(
         "active"
     );
-
 
     links.classList.remove(
         "open"
@@ -570,13 +379,11 @@ function closeNavigationMenu(
 }
 
 
-
 /* =========================================================
    NAVIGATION SCROLL EFFECT
 ========================================================= */
 
 function initialiseNavigationScrollState() {
-
 
     const nav =
         document.querySelector(
@@ -593,28 +400,22 @@ function initialiseNavigationScrollState() {
 
     function updateNavigationState() {
 
-
         if (
             window.scrollY >
             25
         ) {
 
-
             nav.classList.add(
                 "scrolled"
             );
 
-
         } else {
-
 
             nav.classList.remove(
                 "scrolled"
             );
 
-
         }
-
 
     }
 
@@ -633,13 +434,11 @@ function initialiseNavigationScrollState() {
 }
 
 
-
 /* =========================================================
    RETURN TO TOP
 ========================================================= */
 
 function initialiseBackToTop() {
-
 
     let button =
         document.getElementById(
@@ -647,14 +446,7 @@ function initialiseBackToTop() {
         );
 
 
-    /*
-       Automatically create the button
-       if the current page does not
-       already contain one.
-    */
-
     if (!button) {
-
 
         button =
             document.createElement(
@@ -695,38 +487,29 @@ function initialiseBackToTop() {
             button
         );
 
-
     }
 
 
-
     function updateBackToTop() {
-
 
         if (
             window.scrollY >
             450
         ) {
 
-
             button.classList.add(
                 "show"
             );
 
-
         } else {
-
 
             button.classList.remove(
                 "show"
             );
 
-
         }
 
-
     }
-
 
 
     window.addEventListener(
@@ -738,22 +521,18 @@ function initialiseBackToTop() {
     );
 
 
-
     button.addEventListener(
         "click",
         function () {
 
-
             window.scrollTo({
 
-                top:
-                    0,
+                top: 0,
 
                 behavior:
                     "smooth"
 
             });
-
 
         }
     );
@@ -764,13 +543,11 @@ function initialiseBackToTop() {
 }
 
 
-
 /* =========================================================
    CONTACT FORM
 ========================================================= */
 
 function initialiseContactForm() {
-
 
     const form =
         document.getElementById(
@@ -784,11 +561,6 @@ function initialiseContactForm() {
 
     }
 
-
-    /*
-       Prevent another copy of script.js
-       from initialising the same form twice.
-    */
 
     if (
         form.dataset.ekoInitialised ===
@@ -808,18 +580,9 @@ function initialiseContactForm() {
         "submit",
         function (event) {
 
-
-            /*
-               Prevent duplicate inline form
-               listeners on older contact.html
-               versions from running afterwards.
-            */
-
             event.preventDefault();
 
-
             event.stopImmediatePropagation();
-
 
 
             const name =
@@ -864,13 +627,11 @@ function initialiseContactForm() {
                 );
 
 
-
             if (
                 !name ||
                 !email ||
                 !project
             ) {
-
 
                 showFormMessage(
 
@@ -880,11 +641,9 @@ function initialiseContactForm() {
 
                 );
 
-
                 return;
 
             }
-
 
 
             if (
@@ -892,7 +651,6 @@ function initialiseContactForm() {
                     email
                 )
             ) {
-
 
                 showFormMessage(
 
@@ -902,11 +660,9 @@ function initialiseContactForm() {
 
                 );
 
-
                 return;
 
             }
-
 
 
             const subjectText =
@@ -914,7 +670,6 @@ function initialiseContactForm() {
                     ? "EKO Consultation Enquiry — " +
                       service
                     : "EKO Consultation Enquiry";
-
 
 
             const emailBody =
@@ -938,7 +693,6 @@ Kind regards,
 ${name}`;
 
 
-
             const subject =
                 encodeURIComponent(
                     subjectText
@@ -951,7 +705,6 @@ ${name}`;
                 );
 
 
-
             showFormMessage(
 
                 "Your enquiry is ready. Your email application should open automatically.",
@@ -959,7 +712,6 @@ ${name}`;
                 "success"
 
             );
-
 
 
             window.location.href =
@@ -972,12 +724,10 @@ ${name}`;
                 "&body=" +
                 body;
 
-
         }
     );
 
 }
-
 
 
 /* =========================================================
@@ -987,7 +737,6 @@ ${name}`;
 function getValue(
     id
 ) {
-
 
     const field =
         document.getElementById(
@@ -1009,11 +758,9 @@ function getValue(
 }
 
 
-
 function validateEmail(
     email
 ) {
-
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         .test(
@@ -1021,7 +768,6 @@ function validateEmail(
         );
 
 }
-
 
 
 /* =========================================================
@@ -1032,7 +778,6 @@ function showFormMessage(
     message,
     type
 ) {
-
 
     const box =
         document.getElementById(
@@ -1058,13 +803,11 @@ function showFormMessage(
 }
 
 
-
 /* =========================================================
    PUBLIC PROJECT FILE SYSTEM
 ========================================================= */
 
 function initialisePublicProjectFiles() {
-
 
     const containers =
         findProjectFileContainers();
@@ -1083,12 +826,10 @@ function initialisePublicProjectFiles() {
     containers.forEach(
         function (item) {
 
-
             loadPublicProjectFiles(
                 item.container,
                 item.projectKey
             );
-
 
         }
     );
@@ -1096,13 +837,11 @@ function initialisePublicProjectFiles() {
 }
 
 
-
 /* =========================================================
    FIND PROJECT FILE CONTAINERS
 ========================================================= */
 
 function findProjectFileContainers() {
-
 
     const results =
         [];
@@ -1112,24 +851,12 @@ function findProjectFileContainers() {
         new Set();
 
 
-
-    /*
-       Preferred modern format:
-
-       <div
-           data-project-files
-           data-project="project-02">
-       </div>
-    */
-
-
     document
         .querySelectorAll(
             "[data-project-files]"
         )
         .forEach(
             function (container) {
-
 
                 const projectKey =
                     container.dataset.project;
@@ -1143,7 +870,6 @@ function findProjectFileContainers() {
                         container
                     )
                 ) {
-
 
                     used.add(
                         container
@@ -1160,23 +886,10 @@ function findProjectFileContainers() {
 
                     });
 
-
                 }
-
 
             }
         );
-
-
-
-    /*
-       Legacy / convenient IDs:
-
-       project01Files
-       project02Files
-       ...
-       project07Files
-    */
 
 
     for (
@@ -1184,7 +897,6 @@ function findProjectFileContainers() {
         number <= 7;
         number++
     ) {
-
 
         const padded =
             String(number)
@@ -1194,17 +906,17 @@ function findProjectFileContainers() {
             );
 
 
+        const projectKey =
+            "project-" +
+            padded;
+
+
         const container =
             document.getElementById(
                 "project" +
                 padded +
                 "Files"
             );
-
-
-        const projectKey =
-            "project-" +
-            padded;
 
 
         if (
@@ -1216,7 +928,6 @@ function findProjectFileContainers() {
                 container
             )
         ) {
-
 
             used.add(
                 container
@@ -1233,9 +944,7 @@ function findProjectFileContainers() {
 
             });
 
-
         }
-
 
     }
 
@@ -1243,7 +952,6 @@ function findProjectFileContainers() {
     return results;
 
 }
-
 
 
 /* =========================================================
@@ -1254,7 +962,6 @@ async function loadPublicProjectFiles(
     container,
     projectKey
 ) {
-
 
     const project =
         EKO_PROJECTS[
@@ -1274,7 +981,6 @@ async function loadPublicProjectFiles(
 
     if (!supabaseClient) {
 
-
         displayProjectError(
 
             container,
@@ -1283,11 +989,9 @@ async function loadPublicProjectFiles(
 
         );
 
-
         return;
 
     }
-
 
 
     container.innerHTML = `
@@ -1309,9 +1013,7 @@ async function loadPublicProjectFiles(
     `;
 
 
-
     try {
-
 
         const {
             data,
@@ -1343,74 +1045,20 @@ async function loadPublicProjectFiles(
             );
 
 
+        if (error) {
 
-        if (
-            !error &&
-            data
-        ) {
-
-
-            const files =
-                data.filter(
-                    function (file) {
+            console.error(
+                "Project listing error:",
+                projectKey,
+                error
+            );
 
 
-                        return (
-                            file.name &&
-                            file.name !==
-                            ".emptyFolderPlaceholder"
-                        );
-
-
-                    }
-                );
-
-
-            if (
-                files.length >
-                0
-            ) {
-
-
-                displayUploadedProjectFiles(
-
-                    container,
-
-                    projectKey,
-
-                    files
-
-                );
-
-
-                return;
-
-            }
-
-
-        }
-
-
-
-        /*
-           If folder listing is unavailable
-           or the folder is empty, Project 01
-           can fall back to its known resources.
-        */
-
-
-        if (
-            project.knownFiles &&
-            project.knownFiles.length >
-            0
-        ) {
-
-
-            displayKnownProjectFiles(
+            displayProjectError(
 
                 container,
 
-                projectKey
+                "Unable to load project resources."
 
             );
 
@@ -1420,185 +1068,68 @@ async function loadPublicProjectFiles(
         }
 
 
+        const files =
+            (data || [])
+            .filter(
+                function (file) {
 
-        displayProjectEmpty(
+                    return (
+                        file.name &&
+                        file.name !==
+                        ".emptyFolderPlaceholder"
+                    );
 
+                }
+            );
+
+
+        if (
+            files.length ===
+            0
+        ) {
+
+            displayProjectEmpty(
+                container,
+                project
+            );
+
+            return;
+
+        }
+
+
+        displayUploadedProjectFiles(
             container,
-
-            project
-
+            projectKey,
+            files
         );
-
 
     }
 
     catch (error) {
 
-
-        console.warn(
-
-            "Project file listing unavailable:",
-
+        console.error(
+            "Project file loading failed:",
             projectKey,
-
             error
-
         );
-
-
-        if (
-            project.knownFiles &&
-            project.knownFiles.length >
-            0
-        ) {
-
-
-            displayKnownProjectFiles(
-
-                container,
-
-                projectKey
-
-            );
-
-
-        } else {
-
-
-            displayProjectError(
-
-                container,
-
-                "Project resources could not be loaded."
-
-            );
-
-
-        }
-
-
-    }
-
-}
-
-
-
-/* =========================================================
-   DISPLAY KNOWN PROJECT FILES
-========================================================= */
-
-function displayKnownProjectFiles(
-    container,
-    projectKey
-) {
-
-
-    const project =
-        EKO_PROJECTS[
-            projectKey
-        ];
-
-
-    container.innerHTML =
-        "";
-
-
-    project.knownFiles.forEach(
-        function (resource) {
-
-
-            const path =
-
-                project.folder +
-
-                "/" +
-
-                resource.file;
-
-
-
-            const {
-                data
-            } =
-                supabaseClient
-                .storage
-                .from(
-                    EKO_BUCKET
-                )
-                .getPublicUrl(
-                    path
-                );
-
-
-
-            if (
-                !data ||
-                !data.publicUrl
-            ) {
-
-                return;
-
-            }
-
-
-
-            createProjectFileCard(
-
-                container,
-
-                {
-
-                    title:
-                        resource.title,
-
-                    description:
-                        resource.description,
-
-                    label:
-                        resource.label,
-
-                    icon:
-                        resource.icon,
-
-                    url:
-                        data.publicUrl,
-
-                    fileName:
-                        resource.file
-
-                }
-
-            );
-
-
-        }
-    );
-
-
-
-    if (
-        container.children.length ===
-        0
-    ) {
 
 
         displayProjectError(
 
             container,
 
-            "Project files could not be displayed."
+            "Project resources could not be loaded."
 
         );
-
 
     }
 
 }
 
 
-
 /* =========================================================
-   DISPLAY FILES FOUND IN SUPABASE
+   DISPLAY ACTUAL FILES FOUND IN SUPABASE
 ========================================================= */
 
 function displayUploadedProjectFiles(
@@ -1607,7 +1138,6 @@ function displayUploadedProjectFiles(
     files
 ) {
 
-
     const project =
         EKO_PROJECTS[
             projectKey
@@ -1618,10 +1148,8 @@ function displayUploadedProjectFiles(
         "";
 
 
-
     files.forEach(
         function (file) {
-
 
             const path =
 
@@ -1632,7 +1160,6 @@ function displayUploadedProjectFiles(
                 file.name;
 
 
-
             const {
                 data
             } =
@@ -1646,7 +1173,6 @@ function displayUploadedProjectFiles(
                 );
 
 
-
             if (
                 !data ||
                 !data.publicUrl
@@ -1655,7 +1181,6 @@ function displayUploadedProjectFiles(
                 return;
 
             }
-
 
 
             const extension =
@@ -1669,7 +1194,6 @@ function displayUploadedProjectFiles(
                     projectKey,
                     file.name
                 );
-
 
 
             createProjectFileCard(
@@ -1702,12 +1226,26 @@ function displayUploadedProjectFiles(
 
             );
 
-
         }
     );
 
-}
 
+    if (
+        container.children.length ===
+        0
+    ) {
+
+        displayProjectError(
+
+            container,
+
+            "No public project files could be displayed."
+
+        );
+
+    }
+
+}
 
 
 /* =========================================================
@@ -1719,88 +1257,10 @@ function identifyProjectResource(
     fileName
 ) {
 
-
     const project =
         EKO_PROJECTS[
             projectKey
         ];
-
-
-    const lower =
-        String(fileName)
-        .toLowerCase();
-
-
-
-    /*
-       PROJECT 01 CUSTOM TITLES
-    */
-
-
-    if (
-        projectKey ===
-        "project-01"
-    ) {
-
-
-        if (
-            lower.endsWith(
-                ".pdf"
-            )
-        ) {
-
-
-            return {
-
-                title:
-                    "Final SME Sales & Customer Performance Analysis Report",
-
-                description:
-                    "The complete EKO analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
-
-                label:
-                    "FINAL REPORT"
-
-            };
-
-
-        }
-
-
-
-        if (
-            lower.endsWith(
-                ".xlsx"
-            ) ||
-            lower.endsWith(
-                ".xls"
-            )
-        ) {
-
-
-            return {
-
-                title:
-                    "SME Sales & Customer Performance Analytical Workbook",
-
-                description:
-                    "The supporting Excel workbook containing the synthetic dataset, analytical calculations, KPI dashboard and performance charts.",
-
-                label:
-                    "EXCEL DASHBOARD"
-
-            };
-
-
-        }
-
-    }
-
-
-
-    /*
-       GENERIC PROJECT RESOURCE TITLES
-    */
 
 
     const extension =
@@ -1809,29 +1269,105 @@ function identifyProjectResource(
         );
 
 
+    const cleanTitle =
+        cleanFileTitle(
+            fileName
+        );
+
+
+    let description =
+        "Supporting resource for Project " +
+        project.number +
+        " — " +
+        project.title +
+        ".";
+
+
+    let label =
+        getFileTypeLabel(
+            extension
+        );
+
+
+    if (
+        extension ===
+        "pdf"
+    ) {
+
+        description =
+            "Final analytical or research report for Project " +
+            project.number +
+            ".";
+
+    }
+
+
+    if (
+        [
+            "xls",
+            "xlsx",
+            "csv"
+        ].includes(
+            extension
+        )
+    ) {
+
+        description =
+            "Supporting analytical workbook, dataset or dashboard resource for Project " +
+            project.number +
+            ".";
+
+    }
+
+
+    if (
+        [
+            "doc",
+            "docx"
+        ].includes(
+            extension
+        )
+    ) {
+
+        description =
+            "Editable project report or supporting document for Project " +
+            project.number +
+            ".";
+
+    }
+
+
+    if (
+        [
+            "ppt",
+            "pptx"
+        ].includes(
+            extension
+        )
+    ) {
+
+        description =
+            "Presentation resource for Project " +
+            project.number +
+            ".";
+
+    }
+
+
     return {
 
         title:
-            cleanFileTitle(
-                fileName
-            ),
+            cleanTitle,
 
         description:
-            "Supporting resource for Project " +
-            project.number +
-            " — " +
-            project.title +
-            ".",
+            description,
 
         label:
-            getFileTypeLabel(
-                extension
-            )
+            label
 
     };
 
 }
-
 
 
 /* =========================================================
@@ -1841,7 +1377,6 @@ function identifyProjectResource(
 function getFileTypeLabel(
     extension
 ) {
-
 
     if (
         extension ===
@@ -1902,7 +1437,8 @@ function getFileTypeLabel(
             "jpeg",
             "png",
             "webp",
-            "gif"
+            "gif",
+            "svg"
         ].includes(
             extension
         )
@@ -1918,7 +1454,6 @@ function getFileTypeLabel(
 }
 
 
-
 /* =========================================================
    CREATE PROJECT FILE CARD
 ========================================================= */
@@ -1927,7 +1462,6 @@ function createProjectFileCard(
     container,
     resource
 ) {
-
 
     const card =
         document.createElement(
@@ -1944,7 +1478,6 @@ function createProjectFileCard(
             resource.fileName,
             resource.url
         );
-
 
 
     card.innerHTML = `
@@ -2051,7 +1584,6 @@ function createProjectFileCard(
 }
 
 
-
 /* =========================================================
    CREATE VIEW URL
 ========================================================= */
@@ -2061,35 +1593,21 @@ function createViewUrl(
     publicUrl
 ) {
 
-
     const extension =
         getExtension(
             fileName
         );
 
 
-
-    /*
-       Browser-previewable files
-    */
-
-
     const directViewTypes = [
 
         "pdf",
-
         "jpg",
-
         "jpeg",
-
         "png",
-
         "webp",
-
         "gif",
-
         "svg",
-
         "txt"
 
     ];
@@ -2101,30 +1619,18 @@ function createViewUrl(
         )
     ) {
 
-
         return publicUrl;
 
     }
 
 
-
-    /*
-       Microsoft Office documents
-    */
-
-
     const officeTypes = [
 
         "doc",
-
         "docx",
-
         "xls",
-
         "xlsx",
-
         "ppt",
-
         "pptx"
 
     ];
@@ -2135,7 +1641,6 @@ function createViewUrl(
             extension
         )
     ) {
-
 
         return (
 
@@ -2150,11 +1655,9 @@ function createViewUrl(
     }
 
 
-
     return publicUrl;
 
 }
-
 
 
 /* =========================================================
@@ -2163,11 +1666,9 @@ function createViewUrl(
 
 function initialiseDownloadLinks() {
 
-
     document.addEventListener(
         "click",
         function (event) {
-
 
             const link =
                 event.target.closest(
@@ -2212,12 +1713,10 @@ function initialiseDownloadLinks() {
                 fileName
             );
 
-
         }
     );
 
 }
-
 
 
 /* =========================================================
@@ -2229,9 +1728,7 @@ async function downloadPublicFile(
     fileName
 ) {
 
-
     try {
-
 
         const response =
             await fetch(
@@ -2292,24 +1789,20 @@ async function downloadPublicFile(
         setTimeout(
             function () {
 
-
                 URL.revokeObjectURL(
                     objectUrl
                 );
-
 
             },
             1500
         );
 
-
     }
 
     catch (error) {
 
-
         console.warn(
-            "Direct download failed; opening source URL instead.",
+            "Direct download failed; opening public URL instead.",
             error
         );
 
@@ -2320,11 +1813,9 @@ async function downloadPublicFile(
             "noopener,noreferrer"
         );
 
-
     }
 
 }
-
 
 
 /* =========================================================
@@ -2335,7 +1826,6 @@ function displayProjectEmpty(
     container,
     project
 ) {
-
 
     container.innerHTML = `
 
@@ -2349,7 +1839,7 @@ function displayProjectEmpty(
 
             <p>
                 Public resources for this project
-                will appear here once they are available.
+                will appear here once they are uploaded.
             </p>
 
         </div>
@@ -2357,7 +1847,6 @@ function displayProjectEmpty(
     `;
 
 }
-
 
 
 /* =========================================================
@@ -2369,23 +1858,20 @@ function displayProjectError(
     message
 ) {
 
-
     container.innerHTML = `
 
         <div class="project-file-empty">
 
-            <i class="fas fa-folder-open"></i>
+            <i class="fas fa-triangle-exclamation"></i>
 
             <h3>
                 Project Resources
             </h3>
 
             <p>
-
                 ${escapeHTML(
                     message
                 )}
-
             </p>
 
         </div>
@@ -2393,7 +1879,6 @@ function displayProjectError(
     `;
 
 }
-
 
 
 /* =========================================================
@@ -2404,7 +1889,6 @@ function getExtension(
     fileName
 ) {
 
-
     const position =
         String(fileName)
         .lastIndexOf(".");
@@ -2414,7 +1898,6 @@ function getExtension(
         position ===
         -1
     ) {
-
 
         return "file";
 
@@ -2432,7 +1915,6 @@ function getExtension(
 }
 
 
-
 /* =========================================================
    FILE ICON
 ========================================================= */
@@ -2440,7 +1922,6 @@ function getExtension(
 function fileIcon(
     extension
 ) {
-
 
     if (
         extension ===
@@ -2450,7 +1931,6 @@ function fileIcon(
         return "fa-file-pdf";
 
     }
-
 
 
     if (
@@ -2468,7 +1948,6 @@ function fileIcon(
     }
 
 
-
     if (
         [
             "doc",
@@ -2483,7 +1962,6 @@ function fileIcon(
     }
 
 
-
     if (
         [
             "ppt",
@@ -2496,7 +1974,6 @@ function fileIcon(
         return "fa-file-powerpoint";
 
     }
-
 
 
     if (
@@ -2517,11 +1994,9 @@ function fileIcon(
     }
 
 
-
     return "fa-file-lines";
 
 }
-
 
 
 /* =========================================================
@@ -2531,7 +2006,6 @@ function fileIcon(
 function cleanFileTitle(
     fileName
 ) {
-
 
     return String(fileName)
 
@@ -2555,7 +2029,6 @@ function cleanFileTitle(
 }
 
 
-
 /* =========================================================
    OUTPUT SECURITY
 ========================================================= */
@@ -2563,7 +2036,6 @@ function cleanFileTitle(
 function escapeHTML(
     value
 ) {
-
 
     const div =
         document.createElement(
@@ -2580,7 +2052,6 @@ function escapeHTML(
 }
 
 
-
 /* =========================================================
    ATTRIBUTE SECURITY
 ========================================================= */
@@ -2588,7 +2059,6 @@ function escapeHTML(
 function escapeAttribute(
     value
 ) {
-
 
     return String(value)
 
