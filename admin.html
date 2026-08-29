@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -11,9 +12,11 @@
         Administrator | EKO Analytics & Research
     </title>
 
-    <meta name="robots" content="noindex,nofollow">
+    <meta name="robots"
+          content="noindex,nofollow,noarchive">
 
     <!-- GOOGLE FONTS -->
+
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -25,56 +28,110 @@
           rel="stylesheet">
 
     <!-- FONT AWESOME -->
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- SUPABASE -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <!-- MAIN CSS -->
+
     <link rel="stylesheet"
           href="style.css">
 
 
+    <!-- =====================================================
+         ADMIN PAGE CSS
+    ====================================================== -->
+
     <style>
 
         body {
+
             background: #f4f7f9;
+
         }
 
 
         .admin-page {
+
             min-height: 100vh;
-            padding: 90px 20px 70px;
+
+            padding:
+                60px 20px 70px;
+
         }
 
 
         .admin-container {
-            width: min(94%, 1100px);
+
+            width:
+                min(94%, 1100px);
+
             margin: auto;
+
         }
 
 
         /* =====================================================
-           RETURN HOME
+           HOME / BRAND BAR
         ===================================================== */
 
         .admin-home-bar {
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            gap: 15px;
+
+            gap: 20px;
+
             flex-wrap: wrap;
-            margin-bottom: 28px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .admin-brand {
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        .admin-logo {
+
+            display: block;
+
+            width: auto;
+
+            height: 68px;
+
+            max-width: 300px;
+
+            object-fit: contain;
+
         }
 
 
         .admin-back {
+
             display: inline-flex;
+
             align-items: center;
+
+            justify-content: center;
+
             gap: 9px;
 
-            padding: 11px 15px;
+            padding:
+                11px 16px;
 
             border-radius: 9px;
 
@@ -82,61 +139,24 @@
 
             color: white;
 
-            text-decoration: none;
-
             font-size: .82rem;
+
             font-weight: 800;
 
-            transition: .2s ease;
+            transition:
+                background .2s ease,
+                transform .2s ease;
+
         }
 
 
         .admin-back:hover {
-            background: #087f5b;
-        }
-
-
-        .admin-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-
-        .admin-brand-mark {
-            width: 42px;
-            height: 42px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 10px;
 
             background: #087f5b;
 
-            color: white;
+            transform:
+                translateY(-2px);
 
-            font-weight: 900;
-            letter-spacing: .08em;
-        }
-
-
-        .admin-brand-copy {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-
-        .admin-brand-copy strong {
-            color: #0b1f3a;
-            font-size: .86rem;
-        }
-
-
-        .admin-brand-copy span {
-            color: #687789;
-            font-size: .68rem;
         }
 
 
@@ -145,11 +165,14 @@
         ===================================================== */
 
         .admin-header {
+
             margin-bottom: 30px;
+
         }
 
 
-        .admin-header span {
+        .admin-header .admin-eyebrow {
+
             display: inline-block;
 
             color: #087f5b;
@@ -158,29 +181,98 @@
 
             font-size: .72rem;
 
-            letter-spacing: .12em;
+            letter-spacing: .14em;
 
             margin-bottom: 10px;
+
         }
 
 
         .admin-header h1 {
-            font-family: "Playfair Display", serif;
+
+            font-family:
+                "Playfair Display",
+                Georgia,
+                serif;
 
             color: #0b1f3a;
 
-            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-size:
+                clamp(2rem, 5vw, 3.4rem);
 
-            margin: 0 0 12px;
+            line-height: 1.1;
+
+            margin:
+                0 0 12px;
+
         }
 
 
         .admin-header p {
+
             max-width: 760px;
 
             color: #687789;
 
             line-height: 1.7;
+
+        }
+
+
+        /* =====================================================
+           RESTRICTED NOTICE
+        ===================================================== */
+
+        .admin-restricted {
+
+            display: flex;
+
+            gap: 13px;
+
+            align-items: flex-start;
+
+            padding: 16px 18px;
+
+            margin-bottom: 24px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid #ead8a4;
+
+            background: #fff9ea;
+
+        }
+
+
+        .admin-restricted i {
+
+            color: #c79a3b;
+
+            margin-top: 4px;
+
+        }
+
+
+        .admin-restricted strong {
+
+            display: block;
+
+            color: #0b1f3a;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .admin-restricted p {
+
+            color: #687789;
+
+            font-size: .8rem;
+
+            margin: 0;
+
         }
 
 
@@ -189,9 +281,11 @@
         ===================================================== */
 
         .admin-card {
+
             background: white;
 
-            border: 1px solid #dfe6ed;
+            border:
+                1px solid #dfe6ed;
 
             border-radius: 20px;
 
@@ -200,23 +294,35 @@
             margin-bottom: 24px;
 
             box-shadow:
-                0 10px 30px rgba(11,31,58,.05);
+                0 10px 30px
+                rgba(11,31,58,.05);
+
         }
 
 
         .admin-card h2 {
+
             color: #0b1f3a;
 
-            font-family: "Playfair Display", serif;
+            font-family:
+                "Playfair Display",
+                Georgia,
+                serif;
 
-            margin: 0 0 8px;
+            font-size: 1.7rem;
+
+            margin:
+                0 0 8px;
+
         }
 
 
         .admin-card > p {
+
             color: #687789;
 
             margin-bottom: 22px;
+
         }
 
 
@@ -225,35 +331,56 @@
         ===================================================== */
 
         .admin-form {
+
             display: grid;
 
             gap: 18px;
+
+        }
+
+
+        .admin-form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 16px;
+
         }
 
 
         .admin-form-group {
+
             display: grid;
 
             gap: 7px;
+
         }
 
 
         .admin-form-group label {
+
             font-weight: 700;
 
             color: #0b1f3a;
 
             font-size: .86rem;
+
         }
 
 
         .admin-form-group input,
         .admin-form-group select {
+
             width: 100%;
 
-            padding: 14px 15px;
+            padding:
+                14px 15px;
 
-            border: 1px solid #ced8e1;
+            border:
+                1px solid #ced8e1;
 
             border-radius: 10px;
 
@@ -262,17 +389,21 @@
             background: white;
 
             color: #0b1f3a;
+
         }
 
 
         .admin-form-group input:focus,
         .admin-form-group select:focus {
+
             outline: none;
 
             border-color: #087f5b;
 
             box-shadow:
-                0 0 0 3px rgba(8,127,91,.1);
+                0 0 0 3px
+                rgba(8,127,91,.10);
+
         }
 
 
@@ -281,6 +412,7 @@
         ===================================================== */
 
         .admin-button {
+
             display: inline-flex;
 
             align-items: center;
@@ -293,7 +425,8 @@
 
             border-radius: 10px;
 
-            padding: 14px 20px;
+            padding:
+                14px 20px;
 
             background: #087f5b;
 
@@ -305,35 +438,73 @@
 
             font: inherit;
 
-            text-decoration: none;
+            transition:
+                background .2s ease,
+                opacity .2s ease,
+                transform .2s ease;
 
-            transition: .2s ease;
         }
 
 
         .admin-button:hover {
-            opacity: .92;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .admin-button:disabled {
+
+            opacity: .55;
+
+            cursor: not-allowed;
+
+            transform: none;
+
         }
 
 
         .admin-button.secondary {
+
             background: #0b1f3a;
+
+        }
+
+
+        .admin-button.secondary:hover {
+
+            background: #12395c;
+
         }
 
 
         .admin-button.danger {
+
             background: #a52a2a;
 
-            padding: 10px 13px;
+            padding:
+                10px 13px;
 
-            font-size: .78rem;
+            font-size: .76rem;
+
+        }
+
+
+        .admin-button.danger:hover {
+
+            background: #842020;
+
         }
 
 
         .admin-button.small {
-            padding: 10px 13px;
+
+            padding:
+                10px 13px;
 
             font-size: .78rem;
+
         }
 
 
@@ -342,6 +513,7 @@
         ===================================================== */
 
         .admin-toolbar {
+
             display: flex;
 
             justify-content: space-between;
@@ -353,19 +525,23 @@
             margin-bottom: 22px;
 
             flex-wrap: wrap;
+
         }
 
 
         .admin-toolbar-actions {
+
             display: flex;
 
             gap: 9px;
 
             flex-wrap: wrap;
+
         }
 
 
         .admin-user {
+
             display: flex;
 
             align-items: center;
@@ -375,11 +551,14 @@
             color: #0b1f3a;
 
             font-weight: 700;
+
         }
 
 
         .admin-user i {
+
             color: #087f5b;
+
         }
 
 
@@ -388,82 +567,135 @@
         ===================================================== */
 
         .admin-status {
+
             display: none;
 
             margin-top: 18px;
 
-            padding: 14px 16px;
+            padding:
+                14px 16px;
 
             border-radius: 10px;
 
             font-size: .86rem;
 
             line-height: 1.5;
+
+            overflow-wrap: anywhere;
+
         }
 
 
         .admin-status.show {
+
             display: block;
+
         }
 
 
         .admin-status.success {
+
             background: #eaf8f2;
 
             color: #086246;
 
-            border: 1px solid #b8e5d3;
+            border:
+                1px solid #b8e5d3;
+
         }
 
 
         .admin-status.error {
+
             background: #fff0f0;
 
             color: #922;
 
-            border: 1px solid #efc6c6;
+            border:
+                1px solid #efc6c6;
+
         }
 
 
         .admin-status.info {
+
             background: #edf4fa;
 
             color: #274a68;
 
-            border: 1px solid #ccdce9;
+            border:
+                1px solid #ccdce9;
+
         }
 
 
         /* =====================================================
-           SELECTED PROJECT
+           PROJECT INFO
         ===================================================== */
 
         .project-information {
+
             padding: 16px;
 
             border-radius: 12px;
 
             background: #f6f8fa;
 
-            border-left: 4px solid #c79a3b;
+            border-left:
+                4px solid #c79a3b;
 
             margin-top: 15px;
+
         }
 
 
         .project-information strong {
+
             display: block;
 
             color: #0b1f3a;
 
             margin-bottom: 5px;
+
         }
 
 
         .project-information span {
+
             color: #687789;
 
             font-size: .82rem;
+
+        }
+
+
+        /* =====================================================
+           PROJECT STATUS
+        ===================================================== */
+
+        .project-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                6px 10px;
+
+            margin-top: 10px;
+
+            border-radius: 30px;
+
+            background: #e8f6f0;
+
+            color: #087f5b;
+
+            font-size: .68rem;
+
+            font-weight: 800;
+
         }
 
 
@@ -472,14 +704,18 @@
         ===================================================== */
 
         .file-list {
+
             display: grid;
 
             gap: 13px;
+
         }
 
 
         .admin-file {
-            border: 1px solid #dfe6ed;
+
+            border:
+                1px solid #dfe6ed;
 
             border-radius: 13px;
 
@@ -493,10 +729,14 @@
             gap: 15px;
 
             align-items: center;
+
+            background: white;
+
         }
 
 
         .admin-file-icon {
+
             width: 46px;
 
             height: 46px;
@@ -512,15 +752,19 @@
             place-items: center;
 
             font-size: 1.2rem;
+
         }
 
 
         .admin-file-info {
+
             min-width: 0;
+
         }
 
 
         .admin-file-info strong {
+
             display: block;
 
             color: #0b1f3a;
@@ -528,27 +772,37 @@
             overflow-wrap: anywhere;
 
             margin-bottom: 4px;
+
         }
 
 
         .admin-file-info small {
+
             color: #7a8794;
 
             overflow-wrap: anywhere;
+
         }
 
 
         .admin-file-actions {
+
             display: flex;
 
             gap: 8px;
 
             flex-wrap: wrap;
+
         }
 
 
         .admin-file-actions a {
-            text-decoration: none;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
 
             background: #0b1f3a;
 
@@ -556,28 +810,42 @@
 
             border-radius: 8px;
 
-            padding: 10px 12px;
+            padding:
+                10px 12px;
 
             font-size: .76rem;
 
             font-weight: 700;
+
+        }
+
+
+        .admin-file-actions a:hover {
+
+            background: #12395c;
+
         }
 
 
         .admin-empty {
-            padding: 35px 20px;
+
+            padding:
+                35px 20px;
 
             text-align: center;
 
             color: #7a8794;
 
-            border: 1px dashed #ccd6df;
+            border:
+                1px dashed #ccd6df;
 
             border-radius: 14px;
+
         }
 
 
         .admin-empty i {
+
             display: block;
 
             font-size: 2rem;
@@ -585,11 +853,49 @@
             color: #c79a3b;
 
             margin-bottom: 12px;
+
         }
 
 
         .hidden {
+
             display: none !important;
+
+        }
+
+
+        /* =====================================================
+           SECURITY NOTE
+        ===================================================== */
+
+        .security-note {
+
+            padding: 18px;
+
+            border-radius: 13px;
+
+            background: #f6f8fa;
+
+            border:
+                1px solid #dfe6ed;
+
+            color: #687789;
+
+            font-size: .78rem;
+
+            line-height: 1.7;
+
+        }
+
+
+        .security-note strong {
+
+            display: block;
+
+            color: #0b1f3a;
+
+            margin-bottom: 5px;
+
         }
 
 
@@ -600,49 +906,115 @@
         @media (max-width: 700px) {
 
             .admin-page {
-                padding-top: 45px;
+
+                padding-top: 35px;
+
             }
 
 
             .admin-card {
+
                 padding: 20px;
+
             }
 
 
             .admin-home-bar {
+
                 align-items: flex-start;
+
             }
 
 
             .admin-brand {
+
                 width: 100%;
+
+            }
+
+
+            .admin-logo {
+
+                height: 58px;
+
+                max-width: 250px;
+
+            }
+
+
+            .admin-form-row {
+
+                grid-template-columns:
+                    1fr;
+
             }
 
 
             .admin-file {
+
                 grid-template-columns:
                     auto 1fr;
+
             }
 
 
             .admin-file-actions {
+
                 grid-column:
                     1 / -1;
+
             }
 
 
             .admin-toolbar {
+
                 align-items: flex-start;
+
             }
 
 
             .admin-toolbar-actions {
+
                 width: 100%;
+
             }
 
 
-            .admin-toolbar-actions .admin-button {
+            .admin-toolbar-actions
+            .admin-button {
+
                 flex: 1;
+
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .admin-logo {
+
+                height: 50px;
+
+                max-width: 220px;
+
+            }
+
+
+            .admin-file-actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .admin-file-actions a,
+            .admin-file-actions button {
+
+                width: 100%;
+
+                justify-content: center;
+
             }
 
         }
@@ -653,7 +1025,7 @@
 
 
 
-<body>
+<body data-page="admin">
 
 
 <main class="admin-page">
@@ -662,7 +1034,7 @@
 
 
         <!-- =====================================================
-             HOME / BRAND BAR
+             BRAND / HOME BAR
         ====================================================== -->
 
         <div class="admin-home-bar">
@@ -670,28 +1042,15 @@
 
             <div class="admin-brand">
 
-                <div class="admin-brand-mark">
-                    EKO
-                </div>
-
-
-                <div class="admin-brand-copy">
-
-                    <strong>
-                        EKO Analytics &amp; Research
-                    </strong>
-
-                    <span>
-                        Administrator
-                    </span>
-
-                </div>
+                <img
+                    src="file_000000005e7c7243ba74d1018716cc17.png"
+                    alt="EKO Analytics & Research"
+                    class="admin-logo">
 
             </div>
 
 
-
-            <a href="./"
+            <a href="index.html"
                class="admin-back">
 
                 <i class="fas fa-house"></i>
@@ -699,7 +1058,6 @@
                 Return to EKO Home
 
             </a>
-
 
         </div>
 
@@ -711,7 +1069,7 @@
 
         <header class="admin-header">
 
-            <span>
+            <span class="admin-eyebrow">
                 RESTRICTED AREA
             </span>
 
@@ -721,11 +1079,38 @@
 
             <p>
                 Manage project resources for EKO Analytics &amp; Research.
-                Files can be organised by project and made available through
-                the relevant EKO project pages.
+                Files are organised by project and can be made available
+                through the relevant public case-study pages.
             </p>
 
         </header>
+
+
+
+        <!-- =====================================================
+             SECURITY NOTICE
+        ====================================================== -->
+
+        <div class="admin-restricted">
+
+            <i class="fas fa-shield-halved"></i>
+
+            <div>
+
+                <strong>
+                    Administrator access only
+                </strong>
+
+                <p>
+                    Authentication is managed through Supabase.
+                    Uploading, replacing and deleting project files
+                    requires an authorised signed-in account and
+                    appropriate Supabase Storage policies.
+                </p>
+
+            </div>
+
+        </div>
 
 
 
@@ -741,11 +1126,12 @@
             </h2>
 
             <p>
-                Sign in using your authorised Supabase administrator account.
+                Sign in using the authorised EKO administrator account.
             </p>
 
 
-            <div class="admin-form">
+            <form id="adminLoginForm"
+                  class="admin-form">
 
 
                 <div class="admin-form-group">
@@ -754,10 +1140,12 @@
                         Email Address
                     </label>
 
-                    <input type="email"
-                           id="adminEmail"
-                           autocomplete="email"
-                           placeholder="Administrator email">
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        required
+                        autocomplete="email"
+                        placeholder="Administrator email">
 
                 </div>
 
@@ -768,16 +1156,20 @@
                         Password
                     </label>
 
-                    <input type="password"
-                           id="adminPassword"
-                           autocomplete="current-password"
-                           placeholder="Password">
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        required
+                        autocomplete="current-password"
+                        placeholder="Password">
 
                 </div>
 
 
-                <button class="admin-button"
-                        id="loginButton">
+                <button
+                    type="submit"
+                    class="admin-button"
+                    id="loginButton">
 
                     <i class="fas fa-right-to-bracket"></i>
 
@@ -785,11 +1177,13 @@
 
                 </button>
 
-            </div>
+            </form>
 
 
             <div id="loginStatus"
-                 class="admin-status">
+                 class="admin-status"
+                 role="status"
+                 aria-live="polite">
             </div>
 
         </section>
@@ -804,11 +1198,12 @@
              class="hidden">
 
 
-            <!-- ===============================================
-                 DASHBOARD TOOLBAR
-            ================================================ -->
+            <!-- =================================================
+                 PROJECT MANAGER
+            ================================================== -->
 
             <section class="admin-card">
+
 
                 <div class="admin-toolbar">
 
@@ -824,12 +1219,12 @@
                     </div>
 
 
-
                     <div class="admin-toolbar-actions">
 
 
-                        <a href="./"
-                           class="admin-button secondary small">
+                        <a
+                            href="index.html"
+                            class="admin-button secondary small">
 
                             <i class="fas fa-house"></i>
 
@@ -838,15 +1233,16 @@
                         </a>
 
 
-                        <button class="admin-button secondary small"
-                                id="logoutButton">
+                        <button
+                            type="button"
+                            class="admin-button secondary small"
+                            id="logoutButton">
 
                             <i class="fas fa-right-from-bracket"></i>
 
                             Sign Out
 
                         </button>
-
 
                     </div>
 
@@ -858,9 +1254,8 @@
                 </h2>
 
                 <p>
-                    Select the EKO project you want to manage.
+                    Select the EKO project whose files you want to manage.
                 </p>
-
 
 
                 <div class="admin-form-group">
@@ -909,7 +1304,24 @@
                         <option value="project-05">
 
                             Project 05 —
-                            Youth Employment &amp; Skills Development Analysis
+                            Youth Employment &amp;
+                            Skills Development Analysis
+
+                        </option>
+
+
+                        <option value="project-06">
+
+                            Project 06 —
+                            NGO Programme Performance Review
+
+                        </option>
+
+
+                        <option value="project-07">
+
+                            Project 07 —
+                            SME Business Performance Dashboard
 
                         </option>
 
@@ -926,25 +1338,31 @@
                 </div>
 
 
-
                 <div class="project-information">
 
-
                     <strong id="selectedProjectTitle">
-
                         Project 01 —
                         SME Sales &amp; Customer Performance Analysis
-
                     </strong>
 
 
                     <span id="selectedProjectPath">
-
                         Storage folder:
                         eko/project-01/
-
                     </span>
 
+
+                    <div>
+
+                        <span class="project-badge">
+
+                            <i class="fas fa-folder"></i>
+
+                            Supabase Storage
+
+                        </span>
+
+                    </div>
 
                 </div>
 
@@ -963,8 +1381,8 @@
                 </h2>
 
                 <p>
-                    Select one or several files and they will be uploaded
-                    into the currently selected project folder.
+                    Select one or more files. They will be uploaded
+                    to the currently selected project folder.
                 </p>
 
 
@@ -977,16 +1395,19 @@
                             Select Files
                         </label>
 
-                        <input type="file"
-                               id="projectFiles"
-                               multiple
-                               accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.txt,.jpg,.jpeg,.png,.webp">
+                        <input
+                            type="file"
+                            id="projectFiles"
+                            multiple
+                            accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.txt,.jpg,.jpeg,.png,.webp">
 
                     </div>
 
 
-                    <button class="admin-button"
-                            id="uploadButton">
+                    <button
+                        type="button"
+                        class="admin-button"
+                        id="uploadButton">
 
                         <i class="fas fa-cloud-arrow-up"></i>
 
@@ -994,12 +1415,13 @@
 
                     </button>
 
-
                 </div>
 
 
                 <div id="uploadStatus"
-                     class="admin-status">
+                     class="admin-status"
+                     role="status"
+                     aria-live="polite">
                 </div>
 
             </section>
@@ -1032,9 +1454,10 @@
                     </div>
 
 
-
-                    <button class="admin-button secondary small"
-                            id="refreshButton">
+                    <button
+                        type="button"
+                        class="admin-button secondary small"
+                        id="refreshButton">
 
                         <i class="fas fa-rotate"></i>
 
@@ -1042,9 +1465,7 @@
 
                     </button>
 
-
                 </div>
-
 
 
                 <div id="projectFileList"
@@ -1059,6 +1480,34 @@
 
                     </div>
 
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECURITY INFORMATION
+            ================================================== -->
+
+            <section class="admin-card">
+
+                <h2>
+                    Administrator Security
+                </h2>
+
+                <div class="security-note">
+
+                    <strong>
+                        Important
+                    </strong>
+
+                    The publishable Supabase key used by the website is
+                    designed to be visible in browser code. Security does
+                    not depend on hiding that key. Access to upload, update
+                    and delete files must instead be controlled by
+                    Supabase authentication and Storage Row Level
+                    Security policies.
 
                 </div>
 
@@ -1074,11 +1523,15 @@
 
 
 
+<!-- =========================================================
+     ADMIN JAVASCRIPT
+========================================================= -->
+
 <script>
 
 
 /* =========================================================
-   SUPABASE
+   SUPABASE CONFIGURATION
 ========================================================= */
 
 const SUPABASE_URL =
@@ -1089,15 +1542,26 @@ const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
 
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
-
-
 const EKO_BUCKET =
     "eko";
+
+
+let supabaseClient =
+    null;
+
+
+if (
+    window.supabase &&
+    window.supabase.createClient
+) {
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+}
 
 
 
@@ -1148,6 +1612,22 @@ const PROJECTS = {
     },
 
 
+    "project-06": {
+
+        title:
+            "Project 06 — NGO Programme Performance Review"
+
+    },
+
+
+    "project-07": {
+
+        title:
+            "Project 07 — SME Business Performance Dashboard"
+
+    },
+
+
     "general": {
 
         title:
@@ -1173,6 +1653,12 @@ const loginSection =
 const adminDashboard =
     document.getElementById(
         "adminDashboard"
+    );
+
+
+const adminLoginForm =
+    document.getElementById(
+        "adminLoginForm"
     );
 
 
@@ -1214,7 +1700,7 @@ const projectFileList =
 
 
 /* =========================================================
-   STATUS
+   STATUS HELPERS
 ========================================================= */
 
 function showStatus(
@@ -1228,7 +1714,9 @@ function showStatus(
 
 
     if (!element) {
+
         return;
+
     }
 
 
@@ -1243,22 +1731,131 @@ function showStatus(
 }
 
 
+function clearStatus(
+    id
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (!element) {
+
+        return;
+
+    }
+
+
+    element.textContent =
+        "";
+
+
+    element.className =
+        "admin-status";
+
+}
+
+
+
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initialiseAdmin
+);
+
+
+async function initialiseAdmin() {
+
+
+    if (!supabaseClient) {
+
+
+        showStatus(
+            "loginStatus",
+            "Supabase could not be loaded. Refresh the page and try again.",
+            "error"
+        );
+
+
+        return;
+
+    }
+
+
+    adminLoginForm.addEventListener(
+        "submit",
+        login
+    );
+
+
+    logoutButton.addEventListener(
+        "click",
+        logout
+    );
+
+
+    projectSelector.addEventListener(
+        "change",
+        async function () {
+
+
+            updateSelectedProject();
+
+
+            clearStatus(
+                "uploadStatus"
+            );
+
+
+            await loadProjectFiles();
+
+        }
+    );
+
+
+    uploadButton.addEventListener(
+        "click",
+        uploadFiles
+    );
+
+
+    refreshButton.addEventListener(
+        "click",
+        loadProjectFiles
+    );
+
+
+    await checkSession();
+
+}
+
+
 
 /* =========================================================
    LOGIN
 ========================================================= */
 
-loginButton.addEventListener(
-    "click",
-    login
-);
+async function login(
+    event
+) {
 
 
-async function login() {
+    event.preventDefault();
+
+
+    if (!supabaseClient) {
+
+        return;
+
+    }
 
 
     const email =
-        document.getElementById(
+        document
+        .getElementById(
             "adminEmail"
         )
         .value
@@ -1266,13 +1863,17 @@ async function login() {
 
 
     const password =
-        document.getElementById(
+        document
+        .getElementById(
             "adminPassword"
         )
         .value;
 
 
-    if (!email || !password) {
+    if (
+        !email ||
+        !password
+    ) {
 
 
         showStatus(
@@ -1287,6 +1888,10 @@ async function login() {
     }
 
 
+    loginButton.disabled =
+        true;
+
+
     showStatus(
         "loginStatus",
         "Signing in...",
@@ -1294,41 +1899,93 @@ async function login() {
     );
 
 
-    const { data, error } =
-        await supabaseClient.auth
-        .signInWithPassword({
-
-            email: email,
-
-            password: password
-
-        });
+    try {
 
 
-    if (error) {
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .auth
+            .signInWithPassword({
+
+                email:
+                    email,
+
+                password:
+                    password
+
+            });
+
+
+        if (error) {
+
+
+            showStatus(
+                "loginStatus",
+                error.message,
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.session
+        ) {
+
+
+            clearStatus(
+                "loginStatus"
+            );
+
+
+            activateDashboard(
+                data.session.user
+            );
+
+
+        } else {
+
+
+            showStatus(
+                "loginStatus",
+                "A valid administrator session could not be created.",
+                "error"
+            );
+
+        }
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            error
+        );
 
 
         showStatus(
             "loginStatus",
-            error.message,
+            "Unable to sign in. Please try again.",
             "error"
         );
 
 
-        return;
-
     }
 
-
-    if (
-        data &&
-        data.session
-    ) {
+    finally {
 
 
-        activateDashboard(
-            data.session.user
-        );
+        loginButton.disabled =
+            false;
 
     }
 
@@ -1343,19 +2000,57 @@ async function login() {
 async function checkSession() {
 
 
-    const { data } =
-        await supabaseClient.auth
-        .getSession();
+    try {
 
 
-    if (
-        data &&
-        data.session
-    ) {
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .auth
+            .getSession();
 
 
-        activateDashboard(
-            data.session.user
+        if (error) {
+
+
+            console.error(
+                error
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.session
+        ) {
+
+
+            activateDashboard(
+                data.session.user
+            );
+
+
+        } else {
+
+
+            deactivateDashboard();
+
+        }
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            error
         );
 
     }
@@ -1383,11 +2078,15 @@ function activateDashboard(
     );
 
 
-    document.getElementById(
-        "signedInUser"
-    ).textContent =
-        user.email ||
-        "Administrator";
+    document
+        .getElementById(
+            "signedInUser"
+        )
+        .textContent =
+            user &&
+            user.email
+                ? user.email
+                : "Administrator";
 
 
     updateSelectedProject();
@@ -1398,68 +2097,70 @@ function activateDashboard(
 }
 
 
-checkSession();
+
+/* =========================================================
+   DEACTIVATE DASHBOARD
+========================================================= */
+
+function deactivateDashboard() {
+
+
+    adminDashboard.classList.add(
+        "hidden"
+    );
+
+
+    loginSection.classList.remove(
+        "hidden"
+    );
+
+}
 
 
 
 /* =========================================================
-   LOGOUT
+   LOG OUT
 ========================================================= */
 
-logoutButton.addEventListener(
-    "click",
-    async function () {
+async function logout() {
 
 
-        await supabaseClient.auth
+    if (!supabaseClient) {
+
+        return;
+
+    }
+
+
+    await supabaseClient
+        .auth
         .signOut();
 
 
-        adminDashboard.classList.add(
-            "hidden"
-        );
+    deactivateDashboard();
 
 
-        loginSection.classList.remove(
-            "hidden"
-        );
-
-
-        document.getElementById(
+    document
+        .getElementById(
             "adminPassword"
-        ).value =
+        )
+        .value =
             "";
 
 
-        showStatus(
-            "loginStatus",
-            "You have been signed out.",
-            "success"
-        );
+    showStatus(
+        "loginStatus",
+        "You have been signed out.",
+        "success"
+    );
 
-    }
-);
+}
 
 
 
 /* =========================================================
-   PROJECT SELECTOR
+   SELECTED PROJECT
 ========================================================= */
-
-projectSelector.addEventListener(
-    "change",
-    function () {
-
-
-        updateSelectedProject();
-
-
-        loadProjectFiles();
-
-    }
-);
-
-
 
 function updateSelectedProject() {
 
@@ -1468,18 +2169,33 @@ function updateSelectedProject() {
         projectSelector.value;
 
 
-    document.getElementById(
-        "selectedProjectTitle"
-    ).textContent =
-        PROJECTS[project].title;
+    const projectData =
+        PROJECTS[project];
 
 
-    document.getElementById(
-        "selectedProjectPath"
-    ).textContent =
-        "Storage folder: eko/" +
-        project +
-        "/";
+    if (!projectData) {
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "selectedProjectTitle"
+        )
+        .textContent =
+            projectData.title;
+
+
+    document
+        .getElementById(
+            "selectedProjectPath"
+        )
+        .textContent =
+            "Storage folder: eko/" +
+            project +
+            "/";
 
 }
 
@@ -1494,7 +2210,29 @@ function makeSafeFileName(
 ) {
 
 
-    return fileName
+    const dotIndex =
+        fileName.lastIndexOf(".");
+
+
+    let baseName =
+        dotIndex >= 0
+            ? fileName.substring(
+                0,
+                dotIndex
+            )
+            : fileName;
+
+
+    const extension =
+        dotIndex >= 0
+            ? fileName.substring(
+                dotIndex
+            )
+            : "";
+
+
+    baseName =
+        baseName
 
         .trim()
 
@@ -1504,31 +2242,98 @@ function makeSafeFileName(
         )
 
         .replace(
-            /[^a-zA-Z0-9._-]/g,
+            /[^a-zA-Z0-9_-]/g,
             ""
         )
 
         .replace(
             /-+/g,
             "-"
+        )
+
+        .replace(
+            /^-|-$/g,
+            ""
         );
+
+
+    if (!baseName) {
+
+        baseName =
+            "eko-file";
+
+    }
+
+
+    return (
+        baseName +
+        extension.toLowerCase()
+    );
 
 }
 
 
 
 /* =========================================================
-   UPLOAD
+   CHECK CURRENT SESSION BEFORE WRITE
 ========================================================= */
 
-uploadButton.addEventListener(
-    "click",
-    uploadFiles
-);
+async function requireSession() {
 
 
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .auth
+        .getSession();
+
+
+    if (
+        error ||
+        !data ||
+        !data.session
+    ) {
+
+
+        deactivateDashboard();
+
+
+        showStatus(
+            "loginStatus",
+            "Your administrator session has expired. Please sign in again.",
+            "error"
+        );
+
+
+        return null;
+
+    }
+
+
+    return data.session;
+
+}
+
+
+
+/* =========================================================
+   UPLOAD FILES
+========================================================= */
 
 async function uploadFiles() {
+
+
+    const session =
+        await requireSession();
+
+
+    if (!session) {
+
+        return;
+
+    }
 
 
     const input =
@@ -1563,6 +2368,10 @@ async function uploadFiles() {
         projectSelector.value;
 
 
+    const projectData =
+        PROJECTS[project];
+
+
     showStatus(
         "uploadStatus",
         "Uploading files...",
@@ -1582,124 +2391,180 @@ async function uploadFiles() {
         0;
 
 
-    for (
-        const file
-        of files
-    ) {
+    let errors =
+        [];
 
 
-        const safeName =
-            makeSafeFileName(
-                file.name
-            );
+    try {
 
 
-        const path =
-            project +
-            "/" +
-            safeName;
+        for (
+            const file
+            of files
+        ) {
 
 
-        const { error } =
-            await supabaseClient.storage
-            .from(EKO_BUCKET)
-            .upload(
-                path,
-                file,
-                {
-
-                    upsert:
-                        true,
-
-                    contentType:
-                        file.type ||
-                        "application/octet-stream"
-
-                }
-            );
+            const safeName =
+                makeSafeFileName(
+                    file.name
+                );
 
 
-        if (error) {
+            const path =
+                project +
+                "/" +
+                safeName;
 
 
-            console.error(
-                "Upload error:",
+            const {
                 error
+            } =
+                await supabaseClient
+                .storage
+                .from(
+                    EKO_BUCKET
+                )
+                .upload(
+                    path,
+                    file,
+                    {
+
+                        upsert:
+                            true,
+
+                        contentType:
+                            file.type ||
+                            "application/octet-stream"
+
+                    }
+                );
+
+
+            if (error) {
+
+
+                console.error(
+                    "Upload error:",
+                    file.name,
+                    error
+                );
+
+
+                failed++;
+
+
+                errors.push(
+                    file.name +
+                    ": " +
+                    error.message
+                );
+
+
+            } else {
+
+
+                uploaded++;
+
+            }
+
+        }
+
+
+        input.value =
+            "";
+
+
+        if (
+            uploaded > 0 &&
+            failed === 0
+        ) {
+
+
+            showStatus(
+                "uploadStatus",
+                uploaded +
+                " file(s) uploaded successfully to " +
+                projectData.title +
+                ".",
+                "success"
             );
 
 
-            failed++;
+        } else if (
+            uploaded > 0
+        ) {
+
+
+            showStatus(
+                "uploadStatus",
+                uploaded +
+                " uploaded; " +
+                failed +
+                " failed. " +
+                errors.join(" | "),
+                "info"
+            );
 
 
         } else {
 
 
-            uploaded++;
+            const errorMessage =
+                errors.length
+                    ? errors.join(" | ")
+                    : "Supabase rejected the upload.";
+
+
+            showStatus(
+                "uploadStatus",
+                "Upload failed. " +
+                errorMessage,
+                "error"
+            );
 
         }
 
+
+        await loadProjectFiles();
+
+
     }
 
-
-    uploadButton.disabled =
-        false;
+    catch (error) {
 
 
-    input.value =
-        "";
-
-
-    if (
-        uploaded > 0 &&
-        failed === 0
-    ) {
-
-
-        showStatus(
-            "uploadStatus",
-            uploaded +
-            " file(s) uploaded successfully to " +
-            PROJECTS[project].title +
-            ".",
-            "success"
+        console.error(
+            error
         );
 
 
-    } else if (
-        uploaded > 0
-    ) {
-
-
         showStatus(
             "uploadStatus",
-            uploaded +
-            " file(s) uploaded. " +
-            failed +
-            " file(s) failed.",
-            "info"
-        );
-
-
-    } else {
-
-
-        showStatus(
-            "uploadStatus",
-            "Upload failed. Check the Supabase storage policy for the eko bucket.",
+            "Unexpected upload error: " +
+            (
+                error.message ||
+                String(error)
+            ),
             "error"
         );
 
+
     }
 
+    finally {
 
-    await loadProjectFiles();
+
+        uploadButton.disabled =
+            false;
+
+    }
 
 }
 
 
 
 /* =========================================================
-   LOAD FILES
+   LOAD PROJECT FILES
 ========================================================= */
 
 async function loadProjectFiles() {
@@ -1722,35 +2587,270 @@ async function loadProjectFiles() {
     `;
 
 
-    const { data, error } =
-        await supabaseClient.storage
-        .from(EKO_BUCKET)
-        .list(
-            project,
-            {
+    try {
 
-                limit:
-                    100,
 
-                sortBy: {
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .storage
+            .from(
+                EKO_BUCKET
+            )
+            .list(
+                project,
+                {
 
-                    column:
-                        "created_at",
+                    limit:
+                        100,
 
-                    order:
-                        "desc"
+                    sortBy: {
+
+                        column:
+                            "name",
+
+                        order:
+                            "asc"
+
+                    }
 
                 }
+            );
+
+
+        if (error) {
+
+
+            console.error(
+                "File load error:",
+                error
+            );
+
+
+            projectFileList.innerHTML = `
+
+                <div class="admin-empty">
+
+                    <i class="fas fa-triangle-exclamation"></i>
+
+                    Unable to load files:
+                    ${escapeHTML(error.message)}
+
+                </div>
+
+            `;
+
+
+            return;
+
+        }
+
+
+        const files =
+            (data || [])
+
+            .filter(
+                function (file) {
+
+                    return (
+                        file.name &&
+                        file.name !==
+                        ".emptyFolderPlaceholder"
+                    );
+
+                }
+            );
+
+
+        if (
+            files.length === 0
+        ) {
+
+
+            projectFileList.innerHTML = `
+
+                <div class="admin-empty">
+
+                    <i class="fas fa-folder-open"></i>
+
+                    No files have been uploaded
+                    to this project yet.
+
+                </div>
+
+            `;
+
+
+            return;
+
+        }
+
+
+        projectFileList.innerHTML =
+            "";
+
+
+        files.forEach(
+            function (file) {
+
+
+                const path =
+                    project +
+                    "/" +
+                    file.name;
+
+
+                const {
+                    data: urlData
+                } =
+                    supabaseClient
+                    .storage
+                    .from(
+                        EKO_BUCKET
+                    )
+                    .getPublicUrl(
+                        path
+                    );
+
+
+                const publicUrl =
+                    urlData &&
+                    urlData.publicUrl
+                        ? urlData.publicUrl
+                        : "#";
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "admin-file";
+
+
+                item.innerHTML = `
+
+                    <div class="admin-file-icon">
+
+                        <i class="fas ${getFileIcon(file.name)}"></i>
+
+                    </div>
+
+
+                    <div class="admin-file-info">
+
+                        <strong>
+                            ${escapeHTML(file.name)}
+                        </strong>
+
+                        <small>
+                            ${escapeHTML(path)}
+                        </small>
+
+                    </div>
+
+
+                    <div class="admin-file-actions">
+
+
+                        <a
+                            href="${escapeAttribute(publicUrl)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <i class="fas fa-eye"></i>
+
+                            View
+
+                        </a>
+
+
+                        <a
+                            href="${escapeAttribute(publicUrl)}"
+                            download
+                        >
+
+                            <i class="fas fa-download"></i>
+
+                            Download
+
+                        </a>
+
+
+                        <button
+                            type="button"
+                            class="admin-button danger"
+                            data-delete-path="${escapeAttribute(
+                                encodeURIComponent(path)
+                            )}"
+                        >
+
+                            <i class="fas fa-trash"></i>
+
+                            Delete
+
+                        </button>
+
+
+                    </div>
+
+                `;
+
+
+                const deleteButton =
+                    item.querySelector(
+                        "[data-delete-path]"
+                    );
+
+
+                if (deleteButton) {
+
+
+                    deleteButton
+                    .addEventListener(
+                        "click",
+                        function () {
+
+
+                            const encodedPath =
+                                deleteButton
+                                .getAttribute(
+                                    "data-delete-path"
+                                );
+
+
+                            deleteProjectFile(
+                                decodeURIComponent(
+                                    encodedPath
+                                )
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                projectFileList
+                .appendChild(
+                    item
+                );
 
             }
         );
 
 
-    if (error) {
+    }
+
+    catch (error) {
 
 
         console.error(
-            "File load error:",
             error
         );
 
@@ -1761,189 +2861,13 @@ async function loadProjectFiles() {
 
                 <i class="fas fa-triangle-exclamation"></i>
 
-                Unable to load project files.
+                Unexpected error while loading files.
 
             </div>
 
         `;
 
-
-        return;
-
     }
-
-
-    const files =
-        (data || [])
-        .filter(
-            function (file) {
-
-                return (
-                    file.name &&
-                    file.name !==
-                    ".emptyFolderPlaceholder"
-                );
-
-            }
-        );
-
-
-    if (
-        files.length === 0
-    ) {
-
-
-        projectFileList.innerHTML = `
-
-            <div class="admin-empty">
-
-                <i class="fas fa-folder-open"></i>
-
-                No files have been uploaded
-                to this project yet.
-
-            </div>
-
-        `;
-
-
-        return;
-
-    }
-
-
-    projectFileList.innerHTML =
-        "";
-
-
-    files.forEach(
-        function (file) {
-
-
-            const path =
-                project +
-                "/" +
-                file.name;
-
-
-            const { data: urlData } =
-                supabaseClient.storage
-                .from(EKO_BUCKET)
-                .getPublicUrl(
-                    path
-                );
-
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "admin-file";
-
-
-            item.innerHTML = `
-
-                <div class="admin-file-icon">
-
-                    <i class="fas ${getFileIcon(file.name)}"></i>
-
-                </div>
-
-
-                <div class="admin-file-info">
-
-                    <strong>
-                        ${escapeHTML(file.name)}
-                    </strong>
-
-                    <small>
-                        ${escapeHTML(path)}
-                    </small>
-
-                </div>
-
-
-                <div class="admin-file-actions">
-
-
-                    <a
-                        href="${urlData.publicUrl}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <i class="fas fa-eye"></i>
-
-                        View
-
-                    </a>
-
-
-                    <a
-                        href="${urlData.publicUrl}"
-                        download
-                    >
-
-                        <i class="fas fa-download"></i>
-
-                        Download
-
-                    </a>
-
-
-                    <button
-                        class="admin-button danger"
-                        data-delete-path="${encodeURIComponent(path)}"
-                    >
-
-                        <i class="fas fa-trash"></i>
-
-                        Delete
-
-                    </button>
-
-
-                </div>
-
-            `;
-
-
-            const deleteButton =
-                item.querySelector(
-                    "[data-delete-path]"
-                );
-
-
-            deleteButton.addEventListener(
-                "click",
-                function () {
-
-
-                    const encodedPath =
-                        deleteButton.getAttribute(
-                            "data-delete-path"
-                        );
-
-
-                    deleteProjectFile(
-                        decodeURIComponent(
-                            encodedPath
-                        )
-                    );
-
-                }
-            );
-
-
-            projectFileList.appendChild(
-                item
-            );
-
-        }
-    );
 
 }
 
@@ -1958,53 +2882,80 @@ async function deleteProjectFile(
 ) {
 
 
+    const session =
+        await requireSession();
+
+
+    if (!session) {
+
+        return;
+
+    }
+
+
     const confirmed =
         window.confirm(
-            "Delete this file permanently?"
+            "Delete this file permanently?\n\n" +
+            path
         );
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
-    const { error } =
-        await supabaseClient.storage
-        .from(EKO_BUCKET)
-        .remove([
-            path
-        ]);
+    try {
 
 
-    if (error) {
+        const {
+            error
+        } =
+            await supabaseClient
+            .storage
+            .from(
+                EKO_BUCKET
+            )
+            .remove([
+                path
+            ]);
+
+
+        if (error) {
+
+
+            window.alert(
+                "Unable to delete file: " +
+                error.message
+            );
+
+
+            return;
+
+        }
+
+
+        await loadProjectFiles();
+
+
+    }
+
+    catch (error) {
 
 
         window.alert(
-            "Unable to delete file: " +
-            error.message
+            "Unexpected delete error: " +
+            (
+                error.message ||
+                String(error)
+            )
         );
-
-
-        return;
 
     }
 
-
-    await loadProjectFiles();
-
 }
-
-
-
-/* =========================================================
-   REFRESH
-========================================================= */
-
-refreshButton.addEventListener(
-    "click",
-    loadProjectFiles
-);
 
 
 
@@ -2017,11 +2968,17 @@ function getFileIcon(
 ) {
 
 
+    const parts =
+        String(name)
+        .split(".");
+
+
     const extension =
-        name
-        .split(".")
-        .pop()
-        .toLowerCase();
+        parts.length > 1
+            ? parts
+              .pop()
+              .toLowerCase()
+            : "";
 
 
     if (
@@ -2083,7 +3040,7 @@ function getFileIcon(
 
 
 /* =========================================================
-   SECURITY
+   SECURITY / OUTPUT HELPERS
 ========================================================= */
 
 function escapeHTML(
@@ -2102,6 +3059,36 @@ function escapeHTML(
 
 
     return element.innerHTML;
+
+}
+
+
+function escapeAttribute(
+    value
+) {
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        );
 
 }
 
