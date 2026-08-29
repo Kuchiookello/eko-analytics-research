@@ -1,6 +1,17 @@
 /* =========================================================
    EKO ANALYTICS & RESEARCH
-   COMPLETE WEBSITE JAVASCRIPT
+   COMPLETE SHARED WEBSITE JAVASCRIPT
+
+   Supports:
+   - Navigation
+   - Active/mobile menu behaviour
+   - Back to top
+   - Footer year
+   - Contact consultation form
+   - Supabase public project resources
+   - Projects 01–07
+   - Office document viewing
+   - File downloads
 ========================================================= */
 
 
@@ -20,11 +31,8 @@ const EKO_BUCKET =
     "eko";
 
 
-const PROJECT_01_FOLDER =
-    "project-01";
-
-
-let supabaseClient = null;
+let supabaseClient =
+    null;
 
 
 if (
@@ -41,69 +49,180 @@ if (
 }
 
 
-/* =========================================================
-   PROJECT 01 DELIVERABLES
 
-   These names match the files created for Project 01
-   and uploaded through the EKO administrator.
+/* =========================================================
+   EKO PROJECT DEFINITIONS
 ========================================================= */
 
-const PROJECT_01_FILES = [
+const EKO_PROJECTS = {
 
-    {
-        file:
-            "EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf",
+
+    "project-01": {
+
+        number:
+            "01",
 
         title:
-            "Final SME Sales & Customer Performance Analysis Report",
+            "SME Sales & Customer Performance Analysis",
 
-        description:
-            "The complete professional analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
+        folder:
+            "project-01",
 
-        label:
-            "FINAL REPORT",
+        knownFiles: [
 
-        icon:
-            "fa-file-pdf"
+            {
+
+                file:
+                    "EKO_Project_01_SME_Sales_Customer_Performance_Report.pdf",
+
+                title:
+                    "Final SME Sales & Customer Performance Analysis Report",
+
+                description:
+                    "The complete professional analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
+
+                label:
+                    "FINAL REPORT",
+
+                icon:
+                    "fa-file-pdf"
+
+            },
+
+
+            {
+
+                file:
+                    "EKO_Project_01_SME_Sales_Customer_Performance.xlsx",
+
+                title:
+                    "SME Sales & Customer Performance Analytical Workbook",
+
+                description:
+                    "The supporting Excel workbook containing the synthetic dataset, KPI analysis, dashboard, revenue trends, service analysis and customer performance analysis.",
+
+                label:
+                    "EXCEL DASHBOARD",
+
+                icon:
+                    "fa-file-excel"
+
+            }
+
+        ]
+
     },
 
 
-    {
-        file:
-            "EKO_Project_01_SME_Sales_Customer_Performance.xlsx",
+
+    "project-02": {
+
+        number:
+            "02",
 
         title:
-            "SME Sales & Customer Performance Analytical Workbook",
+            "Customer Satisfaction & Service Quality Analysis",
 
-        description:
-            "The supporting Excel workbook containing the synthetic dataset, KPI analysis, dashboard, revenue trends, service analysis and customer performance analysis.",
+        folder:
+            "project-02",
 
-        label:
-            "EXCEL DASHBOARD",
+        knownFiles:
+            []
 
-        icon:
-            "fa-file-excel"
     },
 
 
-    {
-        file:
-            "EKO_Project_01_SME_Sales_Customer_Performance_Report.docx",
+
+    "project-03": {
+
+        number:
+            "03",
 
         title:
-            "Editable Project 01 Analytical Report",
+            "Youth Empowerment Programme M&E Dashboard",
 
-        description:
-            "The editable Word version of the Project 01 analytical report.",
+        folder:
+            "project-03",
 
-        label:
-            "WORD REPORT",
+        knownFiles:
+            []
 
-        icon:
-            "fa-file-word"
+    },
+
+
+
+    "project-04": {
+
+        number:
+            "04",
+
+        title:
+            "Consumer Purchasing Behaviour & Market Opportunity Study",
+
+        folder:
+            "project-04",
+
+        knownFiles:
+            []
+
+    },
+
+
+
+    "project-05": {
+
+        number:
+            "05",
+
+        title:
+            "Youth Employment & Skills Development Analysis",
+
+        folder:
+            "project-05",
+
+        knownFiles:
+            []
+
+    },
+
+
+
+    "project-06": {
+
+        number:
+            "06",
+
+        title:
+            "NGO Programme Performance Review",
+
+        folder:
+            "project-06",
+
+        knownFiles:
+            []
+
+    },
+
+
+
+    "project-07": {
+
+        number:
+            "07",
+
+        title:
+            "SME Business Performance Dashboard",
+
+        folder:
+            "project-07",
+
+        knownFiles:
+            []
+
     }
 
-];
+};
+
 
 
 /* =========================================================
@@ -114,18 +233,31 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
+
         initialiseYear();
+
 
         initialiseNavigation();
 
+
+        initialiseNavigationScrollState();
+
+
         initialiseBackToTop();
+
 
         initialiseContactForm();
 
-        initialiseProject01Files();
+
+        initialisePublicProjectFiles();
+
+
+        initialiseDownloadLinks();
+
 
     }
 );
+
 
 
 /* =========================================================
@@ -134,13 +266,16 @@ document.addEventListener(
 
 function initialiseYear() {
 
+
     document
         .querySelectorAll("#year")
         .forEach(
             function (year) {
 
+
                 year.textContent =
                     new Date().getFullYear();
+
 
             }
         );
@@ -148,11 +283,13 @@ function initialiseYear() {
 }
 
 
+
 /* =========================================================
    MOBILE NAVIGATION
 ========================================================= */
 
 function initialiseNavigation() {
+
 
     const toggle =
         document.getElementById(
@@ -182,11 +319,18 @@ function initialiseNavigation() {
     );
 
 
+
+    /* ---------------------------------------------------------
+       OPEN / CLOSE
+    --------------------------------------------------------- */
+
     toggle.addEventListener(
         "click",
         function (event) {
 
+
             event.preventDefault();
+
 
             event.stopPropagation();
 
@@ -205,64 +349,55 @@ function initialiseNavigation() {
             );
 
 
-            const icon =
-                toggle.querySelector("i");
+            updateNavigationIcon(
+                toggle,
+                isOpen
+            );
 
-
-            if (icon) {
-
-                if (isOpen) {
-
-                    icon.classList.remove(
-                        "fa-bars"
-                    );
-
-                    icon.classList.add(
-                        "fa-xmark"
-                    );
-
-                } else {
-
-                    icon.classList.remove(
-                        "fa-xmark"
-                    );
-
-                    icon.classList.add(
-                        "fa-bars"
-                    );
-
-                }
-
-            }
 
         }
     );
 
+
+
+    /* ---------------------------------------------------------
+       CLOSE AFTER NAVIGATION
+    --------------------------------------------------------- */
 
     links
         .querySelectorAll("a")
         .forEach(
             function (link) {
 
+
                 link.addEventListener(
                     "click",
                     function () {
+
 
                         closeNavigationMenu(
                             toggle,
                             links
                         );
 
+
                     }
                 );
+
 
             }
         );
 
 
+
+    /* ---------------------------------------------------------
+       CLICK OUTSIDE
+    --------------------------------------------------------- */
+
     document.addEventListener(
         "click",
         function (event) {
+
 
             if (
                 !links.contains(
@@ -273,52 +408,73 @@ function initialiseNavigation() {
                 )
             ) {
 
+
                 closeNavigationMenu(
                     toggle,
                     links
                 );
 
+
             }
+
 
         }
     );
 
 
+
+    /* ---------------------------------------------------------
+       ESCAPE KEY
+    --------------------------------------------------------- */
+
     document.addEventListener(
         "keydown",
         function (event) {
+
 
             if (
                 event.key ===
                 "Escape"
             ) {
 
+
                 closeNavigationMenu(
                     toggle,
                     links
                 );
 
+
             }
+
 
         }
     );
 
 
+
+    /* ---------------------------------------------------------
+       RESET ON DESKTOP
+    --------------------------------------------------------- */
+
     window.addEventListener(
         "resize",
         function () {
+
 
             if (
                 window.innerWidth >
                 980
             ) {
 
+
                 closeNavigationMenu(
                     toggle,
                     links
                 );
 
+
             }
+
 
         }
     );
@@ -327,10 +483,68 @@ function initialiseNavigation() {
 
 
 
+/* =========================================================
+   NAVIGATION ICON
+========================================================= */
+
+function updateNavigationIcon(
+    toggle,
+    isOpen
+) {
+
+
+    const icon =
+        toggle.querySelector("i");
+
+
+    if (!icon) {
+
+        return;
+
+    }
+
+
+    if (isOpen) {
+
+
+        icon.classList.remove(
+            "fa-bars"
+        );
+
+
+        icon.classList.add(
+            "fa-xmark"
+        );
+
+
+    } else {
+
+
+        icon.classList.remove(
+            "fa-xmark"
+        );
+
+
+        icon.classList.add(
+            "fa-bars"
+        );
+
+
+    }
+
+}
+
+
+
+/* =========================================================
+   CLOSE NAVIGATION
+========================================================= */
+
 function closeNavigationMenu(
     toggle,
     links
 ) {
+
 
     links.classList.remove(
         "active"
@@ -348,24 +562,76 @@ function closeNavigationMenu(
     );
 
 
-    const icon =
-        toggle.querySelector("i");
+    updateNavigationIcon(
+        toggle,
+        false
+    );
+
+}
 
 
-    if (icon) {
 
-        icon.classList.remove(
-            "fa-xmark"
+/* =========================================================
+   NAVIGATION SCROLL EFFECT
+========================================================= */
+
+function initialiseNavigationScrollState() {
+
+
+    const nav =
+        document.querySelector(
+            ".site-nav"
         );
 
 
-        icon.classList.add(
-            "fa-bars"
-        );
+    if (!nav) {
+
+        return;
 
     }
 
+
+    function updateNavigationState() {
+
+
+        if (
+            window.scrollY >
+            25
+        ) {
+
+
+            nav.classList.add(
+                "scrolled"
+            );
+
+
+        } else {
+
+
+            nav.classList.remove(
+                "scrolled"
+            );
+
+
+        }
+
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateNavigationState,
+        {
+            passive: true
+        }
+    );
+
+
+    updateNavigationState();
+
 }
+
 
 
 /* =========================================================
@@ -374,13 +640,21 @@ function closeNavigationMenu(
 
 function initialiseBackToTop() {
 
+
     let button =
         document.getElementById(
             "backToTop"
         );
 
 
+    /*
+       Automatically create the button
+       if the current page does not
+       already contain one.
+    */
+
     if (!button) {
+
 
         button =
             document.createElement(
@@ -394,6 +668,10 @@ function initialiseBackToTop() {
 
         button.className =
             "back-to-top";
+
+
+        button.type =
+            "button";
 
 
         button.title =
@@ -417,29 +695,38 @@ function initialiseBackToTop() {
             button
         );
 
+
     }
 
 
+
     function updateBackToTop() {
+
 
         if (
             window.scrollY >
             450
         ) {
 
+
             button.classList.add(
                 "show"
             );
 
+
         } else {
+
 
             button.classList.remove(
                 "show"
             );
 
+
         }
 
+
     }
+
 
 
     window.addEventListener(
@@ -451,18 +738,22 @@ function initialiseBackToTop() {
     );
 
 
+
     button.addEventListener(
         "click",
         function () {
 
+
             window.scrollTo({
 
-                top: 0,
+                top:
+                    0,
 
                 behavior:
                     "smooth"
 
             });
+
 
         }
     );
@@ -473,11 +764,13 @@ function initialiseBackToTop() {
 }
 
 
+
 /* =========================================================
    CONTACT FORM
 ========================================================= */
 
 function initialiseContactForm() {
+
 
     const form =
         document.getElementById(
@@ -492,11 +785,41 @@ function initialiseContactForm() {
     }
 
 
+    /*
+       Prevent another copy of script.js
+       from initialising the same form twice.
+    */
+
+    if (
+        form.dataset.ekoInitialised ===
+        "true"
+    ) {
+
+        return;
+
+    }
+
+
+    form.dataset.ekoInitialised =
+        "true";
+
+
     form.addEventListener(
         "submit",
         function (event) {
 
+
+            /*
+               Prevent duplicate inline form
+               listeners on older contact.html
+               versions from running afterwards.
+            */
+
             event.preventDefault();
+
+
+            event.stopImmediatePropagation();
+
 
 
             const name =
@@ -517,9 +840,21 @@ function initialiseContactForm() {
                 );
 
 
+            const phone =
+                getValue(
+                    "clientPhone"
+                );
+
+
             const service =
                 getValue(
                     "service"
+                );
+
+
+            const timeframe =
+                getValue(
+                    "timeframe"
                 );
 
 
@@ -529,11 +864,13 @@ function initialiseContactForm() {
                 );
 
 
+
             if (
                 !name ||
                 !email ||
                 !project
             ) {
+
 
                 showFormMessage(
 
@@ -543,14 +880,19 @@ function initialiseContactForm() {
 
                 );
 
+
                 return;
 
             }
 
 
+
             if (
-                !validateEmail(email)
+                !validateEmail(
+                    email
+                )
             ) {
+
 
                 showFormMessage(
 
@@ -560,57 +902,64 @@ function initialiseContactForm() {
 
                 );
 
+
                 return;
 
             }
 
 
+
+            const subjectText =
+                service
+                    ? "EKO Consultation Enquiry — " +
+                      service
+                    : "EKO Consultation Enquiry";
+
+
+
+            const emailBody =
+
+`Dear EKO Analytics & Research,
+
+I would like to enquire about a possible research or analytical assignment.
+
+Name: ${name}
+Organisation: ${organisation || "Not provided"}
+Email: ${email}
+Phone / WhatsApp: ${phone || "Not provided"}
+Area of Support: ${service || "Not yet determined"}
+Preferred Timeframe: ${timeframe || "Not yet determined"}
+
+Project / Enquiry Details:
+
+${project}
+
+Kind regards,
+${name}`;
+
+
+
             const subject =
                 encodeURIComponent(
-                    "EKO Analytics & Research Consultation Request"
+                    subjectText
                 );
 
 
             const body =
                 encodeURIComponent(
-
-                    "EKO ANALYTICS & RESEARCH" +
-
-                    "\n\nConsultation Request" +
-
-                    "\n\nName: " +
-                    name +
-
-                    "\nEmail: " +
-                    email +
-
-                    "\nOrganisation: " +
-                    (
-                        organisation ||
-                        "Not provided"
-                    ) +
-
-                    "\nArea of Support: " +
-                    (
-                        service ||
-                        "Not specified"
-                    ) +
-
-                    "\n\nProject / Enquiry Details:" +
-
-                    "\n" +
-                    project
-
+                    emailBody
                 );
+
 
 
             showFormMessage(
 
-                "Your email application is being opened with your enquiry prepared.",
+                "Your enquiry is ready. Your email application should open automatically.",
 
                 "success"
 
             );
+
 
 
             window.location.href =
@@ -623,20 +972,27 @@ function initialiseContactForm() {
                 "&body=" +
                 body;
 
+
         }
     );
 
 }
 
 
+
 /* =========================================================
    FORM HELPERS
 ========================================================= */
 
-function getValue(id) {
+function getValue(
+    id
+) {
+
 
     const field =
-        document.getElementById(id);
+        document.getElementById(
+            id
+        );
 
 
     if (!field) {
@@ -646,25 +1002,37 @@ function getValue(id) {
     }
 
 
-    return field.value.trim();
+    return String(
+        field.value || ""
+    ).trim();
 
 }
 
 
 
-function validateEmail(email) {
+function validateEmail(
+    email
+) {
+
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(email);
+        .test(
+            email
+        );
 
 }
 
 
+
+/* =========================================================
+   FORM MESSAGE
+========================================================= */
 
 function showFormMessage(
     message,
     type
 ) {
+
 
     const box =
         document.getElementById(
@@ -690,43 +1058,214 @@ function showFormMessage(
 }
 
 
+
 /* =========================================================
-   PROJECT 01 PUBLIC DELIVERABLES
+   PUBLIC PROJECT FILE SYSTEM
 ========================================================= */
 
-function initialiseProject01Files() {
-
-    const container =
-        document.getElementById(
-            "project01Files"
-        );
+function initialisePublicProjectFiles() {
 
 
-    if (!container) {
+    const containers =
+        findProjectFileContainers();
+
+
+    if (
+        containers.length ===
+        0
+    ) {
 
         return;
 
     }
 
 
-    loadProject01Files();
+    containers.forEach(
+        function (item) {
+
+
+            loadPublicProjectFiles(
+                item.container,
+                item.projectKey
+            );
+
+
+        }
+    );
 
 }
 
 
+
 /* =========================================================
-   LOAD PROJECT 01
+   FIND PROJECT FILE CONTAINERS
 ========================================================= */
 
-async function loadProject01Files() {
+function findProjectFileContainers() {
 
-    const container =
-        document.getElementById(
-            "project01Files"
+
+    const results =
+        [];
+
+
+    const used =
+        new Set();
+
+
+
+    /*
+       Preferred modern format:
+
+       <div
+           data-project-files
+           data-project="project-02">
+       </div>
+    */
+
+
+    document
+        .querySelectorAll(
+            "[data-project-files]"
+        )
+        .forEach(
+            function (container) {
+
+
+                const projectKey =
+                    container.dataset.project;
+
+
+                if (
+                    EKO_PROJECTS[
+                        projectKey
+                    ] &&
+                    !used.has(
+                        container
+                    )
+                ) {
+
+
+                    used.add(
+                        container
+                    );
+
+
+                    results.push({
+
+                        container:
+                            container,
+
+                        projectKey:
+                            projectKey
+
+                    });
+
+
+                }
+
+
+            }
         );
 
 
-    if (!container) {
+
+    /*
+       Legacy / convenient IDs:
+
+       project01Files
+       project02Files
+       ...
+       project07Files
+    */
+
+
+    for (
+        let number = 1;
+        number <= 7;
+        number++
+    ) {
+
+
+        const padded =
+            String(number)
+            .padStart(
+                2,
+                "0"
+            );
+
+
+        const container =
+            document.getElementById(
+                "project" +
+                padded +
+                "Files"
+            );
+
+
+        const projectKey =
+            "project-" +
+            padded;
+
+
+        if (
+            container &&
+            EKO_PROJECTS[
+                projectKey
+            ] &&
+            !used.has(
+                container
+            )
+        ) {
+
+
+            used.add(
+                container
+            );
+
+
+            results.push({
+
+                container:
+                    container,
+
+                projectKey:
+                    projectKey
+
+            });
+
+
+        }
+
+
+    }
+
+
+    return results;
+
+}
+
+
+
+/* =========================================================
+   LOAD PUBLIC PROJECT FILES
+========================================================= */
+
+async function loadPublicProjectFiles(
+    container,
+    projectKey
+) {
+
+
+    const project =
+        EKO_PROJECTS[
+            projectKey
+        ];
+
+
+    if (
+        !container ||
+        !project
+    ) {
 
         return;
 
@@ -734,6 +1273,7 @@ async function loadProject01Files() {
 
 
     if (!supabaseClient) {
+
 
         displayProjectError(
 
@@ -743,9 +1283,11 @@ async function loadProject01Files() {
 
         );
 
+
         return;
 
     }
+
 
 
     container.innerHTML = `
@@ -755,7 +1297,7 @@ async function loadProject01Files() {
             <i class="fas fa-spinner fa-spin"></i>
 
             <strong>
-                Loading Project 01 deliverables...
+                Loading Project ${escapeHTML(project.number)} resources...
             </strong>
 
             <p>
@@ -767,54 +1309,51 @@ async function loadProject01Files() {
     `;
 
 
-    /*
-       We first try to list the folder.
-
-       If the public Supabase storage policy does not permit
-       anonymous folder listing, we automatically fall back
-       to the known Project 01 deliverables.
-    */
 
     try {
+
 
         const {
             data,
             error
         } =
-            await supabaseClient.storage
-                .from(
-                    EKO_BUCKET
-                )
-                .list(
-                    PROJECT_01_FOLDER,
-                    {
+            await supabaseClient
+            .storage
+            .from(
+                EKO_BUCKET
+            )
+            .list(
+                project.folder,
+                {
 
-                        limit:
-                            100,
+                    limit:
+                        100,
 
-                        sortBy: {
+                    sortBy: {
 
-                            column:
-                                "name",
+                        column:
+                            "name",
 
-                            order:
-                                "asc"
-
-                        }
+                        order:
+                            "asc"
 
                     }
-                );
+
+                }
+            );
+
 
 
         if (
             !error &&
-            data &&
-            data.length > 0
+            data
         ) {
+
 
             const files =
                 data.filter(
                     function (file) {
+
 
                         return (
                             file.name &&
@@ -822,33 +1361,72 @@ async function loadProject01Files() {
                             ".emptyFolderPlaceholder"
                         );
 
+
                     }
                 );
 
 
             if (
-                files.length > 0
+                files.length >
+                0
             ) {
 
+
                 displayUploadedProjectFiles(
+
                     container,
+
+                    projectKey,
+
                     files
+
                 );
+
 
                 return;
 
             }
 
+
         }
 
 
+
         /*
-           Anonymous LIST was unavailable or empty.
-           Use the known Project 01 deliverables instead.
+           If folder listing is unavailable
+           or the folder is empty, Project 01
+           can fall back to its known resources.
         */
 
-        displayKnownProject01Files(
-            container
+
+        if (
+            project.knownFiles &&
+            project.knownFiles.length >
+            0
+        ) {
+
+
+            displayKnownProjectFiles(
+
+                container,
+
+                projectKey
+
+            );
+
+
+            return;
+
+        }
+
+
+
+        displayProjectEmpty(
+
+            container,
+
+            project
+
         );
 
 
@@ -856,56 +1434,101 @@ async function loadProject01Files() {
 
     catch (error) {
 
+
         console.warn(
-            "Folder listing unavailable. Using known Project 01 deliverables.",
+
+            "Project file listing unavailable:",
+
+            projectKey,
+
             error
+
         );
 
 
-        displayKnownProject01Files(
-            container
-        );
+        if (
+            project.knownFiles &&
+            project.knownFiles.length >
+            0
+        ) {
+
+
+            displayKnownProjectFiles(
+
+                container,
+
+                projectKey
+
+            );
+
+
+        } else {
+
+
+            displayProjectError(
+
+                container,
+
+                "Project resources could not be loaded."
+
+            );
+
+
+        }
+
 
     }
 
 }
 
 
+
 /* =========================================================
-   DISPLAY KNOWN PROJECT 01 FILES
+   DISPLAY KNOWN PROJECT FILES
 ========================================================= */
 
-function displayKnownProject01Files(
-    container
+function displayKnownProjectFiles(
+    container,
+    projectKey
 ) {
+
+
+    const project =
+        EKO_PROJECTS[
+            projectKey
+        ];
+
 
     container.innerHTML =
         "";
 
 
-    PROJECT_01_FILES.forEach(
+    project.knownFiles.forEach(
         function (resource) {
 
 
             const path =
 
-                PROJECT_01_FOLDER +
+                project.folder +
 
                 "/" +
 
                 resource.file;
 
 
+
             const {
                 data
             } =
-                supabaseClient.storage
-                    .from(
-                        EKO_BUCKET
-                    )
-                    .getPublicUrl(
-                        path
-                    );
+                supabaseClient
+                .storage
+                .from(
+                    EKO_BUCKET
+                )
+                .getPublicUrl(
+                    path
+                );
+
 
 
             if (
@@ -918,8 +1541,11 @@ function displayKnownProject01Files(
             }
 
 
+
             createProjectFileCard(
+
                 container,
+
                 {
 
                     title:
@@ -941,16 +1567,20 @@ function displayKnownProject01Files(
                         resource.file
 
                 }
+
             );
+
 
         }
     );
+
 
 
     if (
         container.children.length ===
         0
     ) {
+
 
         displayProjectError(
 
@@ -960,22 +1590,33 @@ function displayKnownProject01Files(
 
         );
 
+
     }
 
 }
 
 
+
 /* =========================================================
-   DISPLAY FILES FOUND THROUGH SUPABASE LIST
+   DISPLAY FILES FOUND IN SUPABASE
 ========================================================= */
 
 function displayUploadedProjectFiles(
     container,
+    projectKey,
     files
 ) {
 
+
+    const project =
+        EKO_PROJECTS[
+            projectKey
+        ];
+
+
     container.innerHTML =
         "";
+
 
 
     files.forEach(
@@ -984,23 +1625,26 @@ function displayUploadedProjectFiles(
 
             const path =
 
-                PROJECT_01_FOLDER +
+                project.folder +
 
                 "/" +
 
                 file.name;
 
 
+
             const {
                 data
             } =
-                supabaseClient.storage
-                    .from(
-                        EKO_BUCKET
-                    )
-                    .getPublicUrl(
-                        path
-                    );
+                supabaseClient
+                .storage
+                .from(
+                    EKO_BUCKET
+                )
+                .getPublicUrl(
+                    path
+                );
+
 
 
             if (
@@ -1013,6 +1657,7 @@ function displayUploadedProjectFiles(
             }
 
 
+
             const extension =
                 getExtension(
                     file.name
@@ -1020,13 +1665,17 @@ function displayUploadedProjectFiles(
 
 
             const resource =
-                identifyProject01Resource(
+                identifyProjectResource(
+                    projectKey,
                     file.name
                 );
 
 
+
             createProjectFileCard(
+
                 container,
+
                 {
 
                     title:
@@ -1050,7 +1699,9 @@ function displayUploadedProjectFiles(
                         file.name
 
                 }
+
             );
+
 
         }
     );
@@ -1058,78 +1709,104 @@ function displayUploadedProjectFiles(
 }
 
 
+
 /* =========================================================
-   IDENTIFY PROJECT 01 RESOURCE
+   IDENTIFY PROJECT RESOURCE
 ========================================================= */
 
-function identifyProject01Resource(
+function identifyProjectResource(
+    projectKey,
     fileName
 ) {
 
+
+    const project =
+        EKO_PROJECTS[
+            projectKey
+        ];
+
+
     const lower =
-        fileName.toLowerCase();
+        String(fileName)
+        .toLowerCase();
+
+
+
+    /*
+       PROJECT 01 CUSTOM TITLES
+    */
 
 
     if (
-        lower.endsWith(".pdf")
+        projectKey ===
+        "project-01"
     ) {
 
-        return {
 
-            title:
-                "Final SME Sales & Customer Performance Analysis Report",
+        if (
+            lower.endsWith(
+                ".pdf"
+            )
+        ) {
 
-            description:
-                "The complete EKO analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
 
-            label:
-                "FINAL REPORT"
+            return {
 
-        };
+                title:
+                    "Final SME Sales & Customer Performance Analysis Report",
+
+                description:
+                    "The complete EKO analytical report containing the executive summary, methodology, findings, interpretation and management recommendations.",
+
+                label:
+                    "FINAL REPORT"
+
+            };
+
+
+        }
+
+
+
+        if (
+            lower.endsWith(
+                ".xlsx"
+            ) ||
+            lower.endsWith(
+                ".xls"
+            )
+        ) {
+
+
+            return {
+
+                title:
+                    "SME Sales & Customer Performance Analytical Workbook",
+
+                description:
+                    "The supporting Excel workbook containing the synthetic dataset, analytical calculations, KPI dashboard and performance charts.",
+
+                label:
+                    "EXCEL DASHBOARD"
+
+            };
+
+
+        }
 
     }
 
 
-    if (
-        lower.endsWith(".xlsx") ||
-        lower.endsWith(".xls")
-    ) {
 
-        return {
-
-            title:
-                "SME Sales & Customer Performance Analytical Workbook",
-
-            description:
-                "The supporting Excel workbook containing the synthetic dataset, analytical calculations, KPI dashboard and performance charts.",
-
-            label:
-                "EXCEL DASHBOARD"
-
-        };
-
-    }
+    /*
+       GENERIC PROJECT RESOURCE TITLES
+    */
 
 
-    if (
-        lower.endsWith(".docx") ||
-        lower.endsWith(".doc")
-    ) {
-
-        return {
-
-            title:
-                "Editable Project 01 Analytical Report",
-
-            description:
-                "Editable Word version of the complete Project 01 analytical report.",
-
-            label:
-                "WORD REPORT"
-
-        };
-
-    }
+    const extension =
+        getExtension(
+            fileName
+        );
 
 
     return {
@@ -1140,14 +1817,106 @@ function identifyProject01Resource(
             ),
 
         description:
-            "Supporting resource for Project 01.",
+            "Supporting resource for Project " +
+            project.number +
+            " — " +
+            project.title +
+            ".",
 
         label:
-            "PROJECT RESOURCE"
+            getFileTypeLabel(
+                extension
+            )
 
     };
 
 }
+
+
+
+/* =========================================================
+   FILE TYPE LABEL
+========================================================= */
+
+function getFileTypeLabel(
+    extension
+) {
+
+
+    if (
+        extension ===
+        "pdf"
+    ) {
+
+        return "PDF REPORT";
+
+    }
+
+
+    if (
+        [
+            "xls",
+            "xlsx",
+            "csv"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "DATA / WORKBOOK";
+
+    }
+
+
+    if (
+        [
+            "doc",
+            "docx"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "DOCUMENT";
+
+    }
+
+
+    if (
+        [
+            "ppt",
+            "pptx"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "PRESENTATION";
+
+    }
+
+
+    if (
+        [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp",
+            "gif"
+        ].includes(
+            extension
+        )
+    ) {
+
+        return "IMAGE";
+
+    }
+
+
+    return "PROJECT RESOURCE";
+
+}
+
 
 
 /* =========================================================
@@ -1159,6 +1928,7 @@ function createProjectFileCard(
     resource
 ) {
 
+
     const card =
         document.createElement(
             "article"
@@ -1167,6 +1937,14 @@ function createProjectFileCard(
 
     card.className =
         "project-file-card";
+
+
+    const viewUrl =
+        createViewUrl(
+            resource.fileName,
+            resource.url
+        );
+
 
 
     card.innerHTML = `
@@ -1225,7 +2003,7 @@ function createProjectFileCard(
                 class="file-view"
 
                 href="${escapeAttribute(
-                    resource.url
+                    viewUrl
                 )}"
 
                 target="_blank"
@@ -1247,7 +2025,9 @@ function createProjectFileCard(
                     resource.url
                 )}"
 
-                download="${escapeAttribute(
+                data-eko-download
+
+                data-file-name="${escapeAttribute(
                     resource.fileName
                 )}"
             >
@@ -1271,6 +2051,315 @@ function createProjectFileCard(
 }
 
 
+
+/* =========================================================
+   CREATE VIEW URL
+========================================================= */
+
+function createViewUrl(
+    fileName,
+    publicUrl
+) {
+
+
+    const extension =
+        getExtension(
+            fileName
+        );
+
+
+
+    /*
+       Browser-previewable files
+    */
+
+
+    const directViewTypes = [
+
+        "pdf",
+
+        "jpg",
+
+        "jpeg",
+
+        "png",
+
+        "webp",
+
+        "gif",
+
+        "svg",
+
+        "txt"
+
+    ];
+
+
+    if (
+        directViewTypes.includes(
+            extension
+        )
+    ) {
+
+
+        return publicUrl;
+
+    }
+
+
+
+    /*
+       Microsoft Office documents
+    */
+
+
+    const officeTypes = [
+
+        "doc",
+
+        "docx",
+
+        "xls",
+
+        "xlsx",
+
+        "ppt",
+
+        "pptx"
+
+    ];
+
+
+    if (
+        officeTypes.includes(
+            extension
+        )
+    ) {
+
+
+        return (
+
+            "https://view.officeapps.live.com/op/view.aspx?src=" +
+
+            encodeURIComponent(
+                publicUrl
+            )
+
+        );
+
+    }
+
+
+
+    return publicUrl;
+
+}
+
+
+
+/* =========================================================
+   PUBLIC DOWNLOAD SYSTEM
+========================================================= */
+
+function initialiseDownloadLinks() {
+
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+
+            const link =
+                event.target.closest(
+                    "[data-eko-download]"
+                );
+
+
+            if (!link) {
+
+                return;
+
+            }
+
+
+            const url =
+                link.getAttribute(
+                    "href"
+                );
+
+
+            const fileName =
+                link.dataset.fileName ||
+                "eko-resource";
+
+
+            if (
+                !url ||
+                url ===
+                "#"
+            ) {
+
+                return;
+
+            }
+
+
+            event.preventDefault();
+
+
+            downloadPublicFile(
+                url,
+                fileName
+            );
+
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   DOWNLOAD PUBLIC FILE
+========================================================= */
+
+async function downloadPublicFile(
+    url,
+    fileName
+) {
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                url
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Unable to retrieve file."
+            );
+
+        }
+
+
+        const blob =
+            await response.blob();
+
+
+        const objectUrl =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        const anchor =
+            document.createElement(
+                "a"
+            );
+
+
+        anchor.href =
+            objectUrl;
+
+
+        anchor.download =
+            fileName;
+
+
+        anchor.style.display =
+            "none";
+
+
+        document.body.appendChild(
+            anchor
+        );
+
+
+        anchor.click();
+
+
+        anchor.remove();
+
+
+        setTimeout(
+            function () {
+
+
+                URL.revokeObjectURL(
+                    objectUrl
+                );
+
+
+            },
+            1500
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.warn(
+            "Direct download failed; opening source URL instead.",
+            error
+        );
+
+
+        window.open(
+            url,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+
+    }
+
+}
+
+
+
+/* =========================================================
+   PROJECT EMPTY MESSAGE
+========================================================= */
+
+function displayProjectEmpty(
+    container,
+    project
+) {
+
+
+    container.innerHTML = `
+
+        <div class="project-file-empty">
+
+            <i class="fas fa-folder-open"></i>
+
+            <h3>
+                Project ${escapeHTML(project.number)} Resources
+            </h3>
+
+            <p>
+                Public resources for this project
+                will appear here once they are available.
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+
 /* =========================================================
    PROJECT ERROR
 ========================================================= */
@@ -1280,6 +2369,7 @@ function displayProjectError(
     message
 ) {
 
+
     container.innerHTML = `
 
         <div class="project-file-empty">
@@ -1287,12 +2377,14 @@ function displayProjectError(
             <i class="fas fa-folder-open"></i>
 
             <h3>
-                Project Deliverables
+                Project Resources
             </h3>
 
             <p>
 
-                ${escapeHTML(message)}
+                ${escapeHTML(
+                    message
+                )}
 
             </p>
 
@@ -1303,48 +2395,62 @@ function displayProjectError(
 }
 
 
+
 /* =========================================================
-   FILE HELPERS
+   FILE EXTENSION
 ========================================================= */
 
 function getExtension(
     fileName
 ) {
 
+
     const position =
-        fileName.lastIndexOf(".");
+        String(fileName)
+        .lastIndexOf(".");
 
 
     if (
-        position === -1
+        position ===
+        -1
     ) {
+
 
         return "file";
 
     }
 
 
-    return fileName
+    return String(fileName)
+
         .substring(
             position + 1
         )
+
         .toLowerCase();
 
 }
 
 
 
+/* =========================================================
+   FILE ICON
+========================================================= */
+
 function fileIcon(
     extension
 ) {
 
+
     if (
-        extension === "pdf"
+        extension ===
+        "pdf"
     ) {
 
         return "fa-file-pdf";
 
     }
+
 
 
     if (
@@ -1362,6 +2468,7 @@ function fileIcon(
     }
 
 
+
     if (
         [
             "doc",
@@ -1374,6 +2481,7 @@ function fileIcon(
         return "fa-file-word";
 
     }
+
 
 
     if (
@@ -1390,12 +2498,15 @@ function fileIcon(
     }
 
 
+
     if (
         [
             "jpg",
             "jpeg",
             "png",
-            "webp"
+            "webp",
+            "gif",
+            "svg"
         ].includes(
             extension
         )
@@ -1406,17 +2517,23 @@ function fileIcon(
     }
 
 
+
     return "fa-file-lines";
 
 }
 
 
 
+/* =========================================================
+   CLEAN FILE TITLE
+========================================================= */
+
 function cleanFileTitle(
     fileName
 ) {
 
-    return fileName
+
+    return String(fileName)
 
         .replace(
             /\.[^/.]+$/,
@@ -1438,6 +2555,7 @@ function cleanFileTitle(
 }
 
 
+
 /* =========================================================
    OUTPUT SECURITY
 ========================================================= */
@@ -1445,6 +2563,7 @@ function cleanFileTitle(
 function escapeHTML(
     value
 ) {
+
 
     const div =
         document.createElement(
@@ -1462,9 +2581,14 @@ function escapeHTML(
 
 
 
+/* =========================================================
+   ATTRIBUTE SECURITY
+========================================================= */
+
 function escapeAttribute(
     value
 ) {
+
 
     return String(value)
 
