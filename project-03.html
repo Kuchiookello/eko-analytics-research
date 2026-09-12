@@ -1,1047 +1,1615 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Project 03 | Youth Empowerment Programme M&E Dashboard | EKO Analytics & Research</title>
+    <title>Project 03 | Youth Empowerment Programme M&E Dashboard | EKO Analytics & Research</title>
 
-  <meta
-    name="description"
-    content="Project 03 by EKO Analytics & Research: Youth Empowerment Programme monitoring and evaluation case study covering programme reach, completion, attendance, skills improvement, employment outcomes and programme delivery."
-  >
+    <meta name="description"
+          content="EKO Analytics & Research monitoring and evaluation case study examining youth programme reach, participation, skills development, employment outcomes and programme performance.">
 
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .case-study-wrap {
+            width: min(92%, 1100px);
+            margin: auto;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 55px;
+            align-items: start;
+        }
+
+        .case-study-block {
+            padding: 28px;
+            background: #fff;
+            border: 1px solid #dfe6ed;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(7,20,38,.06);
+        }
+
+        .case-study-block h2,
+        .case-study-block h3 {
+            font-family: "Playfair Display", Georgia, serif;
+            margin-bottom: 12px;
+        }
+
+        .case-study-block p {
+            margin-bottom: 14px;
+        }
+
+        .case-study-list {
+            padding-left: 20px;
+            color: #687789;
+        }
+
+        .case-study-list li {
+            margin-bottom: 9px;
+        }
+
+        .project-meta {
+            display: grid;
+            gap: 12px;
+        }
+
+        .project-meta div {
+            padding: 15px;
+            background: #f7f9fc;
+            border-radius: 12px;
+        }
+
+        .project-meta small {
+            display: block;
+            color: #087f5b;
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .project-meta strong {
+            color: #0b1f3a;
+        }
+
+        .project-navigation {
+            width: min(92%,1100px);
+            margin: 45px auto 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        [data-project-files] {
+            width: min(92%,1000px);
+            margin: 35px auto 0;
+            display: grid;
+            gap: 18px;
+        }
+
+        .kpi-grid {
+            width: min(92%, 1100px);
+            margin: 35px auto 0;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .kpi-card {
+            padding: 24px 20px;
+
+            background: #ffffff;
+
+            border: 1px solid #dfe6ed;
+            border-radius: 16px;
+
+            box-shadow: 0 8px 25px rgba(7,20,38,.05);
+
+            text-align: center;
+        }
+
+        .kpi-card strong {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #087f5b;
+
+            font-family: "Playfair Display", Georgia, serif;
+
+            font-size: 1.8rem;
+        }
+
+        .kpi-card span {
+            display: block;
+
+            color: #687789;
+
+            font-size: .8rem;
+            font-weight: 600;
+        }
+
+        .performance-table-wrap {
+            width: min(92%, 1100px);
+            margin: 35px auto 0;
+            overflow-x: auto;
+        }
+
+        .performance-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            background: #fff;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow: 0 8px 25px rgba(7,20,38,.05);
+        }
+
+        .performance-table th,
+        .performance-table td {
+            padding: 15px 14px;
+
+            border-bottom: 1px solid #e6ebf0;
+
+            text-align: left;
+        }
+
+        .performance-table th {
+            background: #0b1f3a;
+            color: #fff;
+
+            font-size: .76rem;
+
+            letter-spacing: .04em;
+        }
+
+        .performance-table td {
+            color: #596a7c;
+
+            font-size: .84rem;
+        }
+
+        .management-note {
+            width: min(92%, 950px);
+
+            margin: 35px auto 0;
+
+            padding: 28px;
+
+            border-left: 5px solid #087f5b;
+
+            border-radius: 14px;
+
+            background: #f7f9fc;
+        }
+
+        .management-note h3 {
+            margin-bottom: 10px;
+
+            color: #0b1f3a;
+
+            font-family: "Playfair Display", Georgia, serif;
+        }
+
+        .management-note p {
+            color: #687789;
+        }
+
+        @media(max-width:850px) {
+
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+        }
+
+        @media(max-width:520px) {
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
 
-<body>
+<body data-page="project-03">
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <nav class="site-nav">
-      <div class="nav-wrap">
 
-        <a href="index.html" class="brand-official-logo" aria-label="EKO Analytics & Research Home">
-          <img
-            src="file_000000005e7c7243ba74d1018716cc17.png"
-            alt="EKO Analytics & Research"
-            class="brand-logo"
-          >
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="site-nav">
+
+    <div class="nav-wrap">
+
+        <a class="brand brand-official-logo"
+           href="index.html"
+           aria-label="EKO Analytics & Research Home">
+
+            <img src="file_000000005e7c7243ba74d1018716cc17.png"
+                 alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                 class="brand-logo">
+
         </a>
 
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
-        >
-          ☰
+
+        <button class="nav-toggle"
+                id="navToggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+
+            <i class="fas fa-bars"></i>
+
         </button>
 
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="projects.html" class="active">Projects</a>
-          <a href="insights.html">Insights</a>
-          <a href="contact.html">Contact</a>
-          <a href="contact.html" class="nav-cta">Request Consultation</a>
+
+        <div class="nav-links"
+             id="navLinks">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="projects.html">
+                Projects
+            </a>
+
+            <a href="insights.html">
+                Insights
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a class="nav-cta"
+               href="contact.html#consultation">
+
+                Request Consultation
+
+            </a>
+
         </div>
 
-      </div>
-    </nav>
-  </header>
+    </div>
+
+</nav>
 
 
-  <main>
 
-    <!-- HERO -->
-    <section class="hero project-hero">
-      <div class="container">
+<!-- =========================================================
+     PAGE HERO
+========================================================= -->
 
-        <div class="eyebrow">
-          PROJECT 03 • MONITORING & EVALUATION
+<header class="page-hero">
+
+    <span class="eyebrow light">
+        PROJECT 03 • MONITORING &amp; EVALUATION
+    </span>
+
+    <h1>
+        Youth Empowerment Programme M&amp;E Dashboard
+    </h1>
+
+    <p>
+        A monitoring and evaluation case study examining programme reach,
+        participation, completion, attendance, skills development,
+        employment outcomes and programme-delivery performance.
+    </p>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     CASE STUDY OVERVIEW
+========================================================= -->
+
+<section class="section">
+
+    <div class="case-study-wrap">
+
+        <div class="case-study-grid">
+
+            <div>
+
+                <div class="case-study-block">
+
+                    <span class="eyebrow">
+                        CASE STUDY OVERVIEW
+                    </span>
+
+                    <h2>
+                        Turning programme data into evidence for management and learning.
+                    </h2>
+
+                    <p>
+                        Project 03 demonstrates how monitoring and evaluation
+                        data can be transformed into practical evidence for
+                        programme management, accountability and learning.
+                    </p>
+
+                    <p>
+                        The case study examines a synthetic youth empowerment
+                        programme involving 400 beneficiaries across Nairobi,
+                        Kiambu, Nakuru, Kisumu and Mombasa.
+                    </p>
+
+                    <p>
+                        Beneficiary participation, programme implementation,
+                        skills development and employment-related outcomes
+                        are analysed through a structured indicator framework.
+                    </p>
+
+                </div>
+
+
+                <br>
+
+
+                <div class="case-study-block">
+
+                    <span class="eyebrow">
+                        ANALYTICAL QUESTIONS
+                    </span>
+
+                    <h3>
+                        What the project investigates
+                    </h3>
+
+                    <ul class="case-study-list">
+
+                        <li>
+                            How many beneficiaries were reached by the programme?
+                        </li>
+
+                        <li>
+                            What proportion successfully completed their training?
+                        </li>
+
+                        <li>
+                            How consistently did beneficiaries participate in programme activities?
+                        </li>
+
+                        <li>
+                            To what extent did participant skills improve?
+                        </li>
+
+                        <li>
+                            What employment, self-employment or internship outcomes were achieved?
+                        </li>
+
+                        <li>
+                            How did performance differ across counties and training tracks?
+                        </li>
+
+                        <li>
+                            Which programme indicators require management attention?
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+
+            <aside class="case-study-block">
+
+                <span class="eyebrow">
+                    PROJECT PROFILE
+                </span>
+
+                <div class="project-meta">
+
+                    <div>
+                        <small>PROJECT</small>
+                        <strong>03</strong>
+                    </div>
+
+                    <div>
+                        <small>DOMAIN</small>
+                        <strong>Monitoring &amp; Evaluation</strong>
+                    </div>
+
+                    <div>
+                        <small>METHOD</small>
+                        <strong>Programme Performance Analysis</strong>
+                    </div>
+
+                    <div>
+                        <small>PROGRAMME SIZE</small>
+                        <strong>400 Beneficiaries</strong>
+                    </div>
+
+                    <div>
+                        <small>GEOGRAPHIC COVERAGE</small>
+                        <strong>Nairobi, Kiambu, Nakuru, Kisumu &amp; Mombasa</strong>
+                    </div>
+
+                    <div>
+                        <small>CORE AREAS</small>
+                        <strong>Reach, Participation, Skills, Outcomes &amp; Delivery</strong>
+                    </div>
+
+                    <div>
+                        <small>OUTPUT</small>
+                        <strong>M&amp;E Analysis, Dashboard &amp; Management Recommendations</strong>
+                    </div>
+
+                </div>
+
+            </aside>
+
         </div>
 
-        <h1>Youth Empowerment Programme M&amp;E Dashboard</h1>
+    </div>
 
-        <p class="hero-lead">
-          A practical monitoring and evaluation case study showing how
-          beneficiary-level data, programme activity records and performance
-          indicators can be transformed into decision-ready evidence.
+</section>
+
+
+
+<!-- =========================================================
+     ANALYTICAL FRAMEWORK
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            ANALYTICAL FRAMEWORK
+        </span>
+
+        <h2>
+            From programme records to management evidence.
+        </h2>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card">
+
+            <i class="fas fa-users"></i>
+
+            <h3>
+                Programme Reach
+            </h3>
+
+            <p>
+                Measure beneficiary enrolment and participation across
+                locations and programme groups.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-user-check"></i>
+
+            <h3>
+                Completion
+            </h3>
+
+            <p>
+                Examine programme completion and dropout patterns
+                across the beneficiary population.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <h3>
+                Attendance
+            </h3>
+
+            <p>
+                Measure consistency of beneficiary participation
+                across programme activities.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-graduation-cap"></i>
+
+            <h3>
+                Skills Development
+            </h3>
+
+            <p>
+                Compare baseline and endline assessment performance
+                to measure skills improvement.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-briefcase"></i>
+
+            <h3>
+                Employment Outcomes
+            </h3>
+
+            <p>
+                Assess employment, self-employment and internship
+                outcomes following programme participation.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-lightbulb"></i>
+
+            <h3>
+                Management Learning
+            </h3>
+
+            <p>
+                Translate monitoring evidence into programme-improvement
+                and decision-support recommendations.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     KPI PERFORMANCE
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            PERFORMANCE SNAPSHOT
+        </span>
+
+        <h2>
+            Core programme indicators.
+        </h2>
+
+        <p>
+            Eight indicators provide a concise view of programme reach,
+            participation, learning outcomes and implementation performance.
         </p>
 
-        <div class="hero-actions">
-          <a href="#project03Files" class="btn btn-primary">
-            View Project Files
-          </a>
+    </div>
 
-          <a href="projects.html" class="btn btn-secondary">
-            Back to All Projects
-          </a>
-        </div>
 
-      </div>
-    </section>
+    <div class="kpi-grid">
 
 
-    <!-- PROJECT OVERVIEW -->
-    <section class="section">
-      <div class="container">
+        <div class="kpi-card">
 
-        <div class="section-heading">
-          <span class="section-kicker">Project Overview</span>
-          <h2>From routine programme data to actionable management insight</h2>
-        </div>
+            <strong>
+                400
+            </strong>
 
-        <div class="two-column-grid">
-
-          <div>
-            <p>
-              Youth empowerment programmes often collect substantial amounts
-              of operational information through enrolment forms, attendance
-              registers, training records, baseline assessments, endline
-              assessments and post-programme follow-up.
-            </p>
-
-            <p>
-              The challenge is turning those records into a coherent monitoring
-              system that helps programme managers understand whether activities
-              are being delivered as planned, whether participants remain
-              engaged, whether skills are improving and whether programme
-              participation is translating into meaningful employment-related
-              outcomes.
-            </p>
-
-            <p>
-              Project 03 demonstrates a structured M&amp;E approach using a
-              synthetic dataset of <strong>400 beneficiaries</strong> across
-              Nairobi, Kiambu, Nakuru, Kisumu and Mombasa.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Project Scope</h3>
-
-            <ul>
-              <li>400 synthetic beneficiary records</li>
-              <li>5 counties</li>
-              <li>4 training tracks</li>
-              <li>January–August 2026 programme period</li>
-              <li>8 core performance indicators</li>
-              <li>County and training-track comparisons</li>
-              <li>Management dashboard and analytical report</li>
-            </ul>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- TRANSPARENCY -->
-    <section class="section section-soft">
-      <div class="container">
-
-        <div class="card">
-          <h3>Portfolio Transparency</h3>
-
-          <p>
-            This is an independent EKO Analytics &amp; Research portfolio case
-            study. All data are synthetic and were created for demonstration
-            purposes. The findings do not represent a real youth programme,
-            implementing organisation, county or labour market.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- OBJECTIVES -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Objectives</span>
-          <h2>What the analysis was designed to answer</h2>
-        </div>
-
-        <div class="cards-grid">
-
-          <article class="card">
-            <h3>Programme Reach</h3>
-            <p>
-              Track how many beneficiaries were enrolled and how participation
-              was distributed across counties, gender groups and training tracks.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Participation &amp; Retention</h3>
-            <p>
-              Assess completion, attendance and dropout to understand whether
-              participants remained consistently engaged.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Skills Development</h3>
-            <p>
-              Compare baseline and endline assessment scores to measure changes
-              in participant capability.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Employment Outcomes</h3>
-            <p>
-              Measure the proportion of participants moving into employment,
-              self-employment or internships.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Programme Delivery</h3>
-            <p>
-              Compare planned and completed activities to assess implementation
-              performance.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Management Learning</h3>
-            <p>
-              Translate programme evidence into practical recommendations for
-              stronger participation, delivery and post-training outcomes.
-            </p>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- KPI SNAPSHOT -->
-    <section class="section section-soft">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Performance Snapshot</span>
-          <h2>Headline Project 03 indicators</h2>
-        </div>
-
-        <div class="kpi-grid">
-
-          <div class="kpi-card">
-            <span class="kpi-value">400</span>
-            <span class="kpi-label">Beneficiaries Enrolled</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">72.3%</span>
-            <span class="kpi-label">Completion Rate</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">67.1%</span>
-            <span class="kpi-label">Average Attendance</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">20.4 pts</span>
-            <span class="kpi-label">Average Skills Improvement</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">56.8%</span>
-            <span class="kpi-label">Employment Outcome Rate</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">51.0%</span>
-            <span class="kpi-label">Female Participation</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">97.3%</span>
-            <span class="kpi-label">Activity Completion</span>
-          </div>
-
-          <div class="kpi-card">
-            <span class="kpi-value">8.3%</span>
-            <span class="kpi-label">Dropout Rate</span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- METHODOLOGY -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Methodology</span>
-          <h2>How the monitoring framework was structured</h2>
-        </div>
-
-        <div class="cards-grid">
-
-          <article class="card">
-            <h3>1. Define Indicators</h3>
-            <p>
-              Establish measures for reach, completion, attendance, skills
-              change, employment outcomes, gender participation, activity
-              completion and dropout.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>2. Structure Data</h3>
-            <p>
-              Organise beneficiary and programme-delivery records into clean,
-              analysis-ready datasets.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>3. Calculate Performance</h3>
-            <p>
-              Compute actual indicator values and compare them with programme
-              targets.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>4. Disaggregate Results</h3>
-            <p>
-              Compare performance by county and training track to identify
-              meaningful differences.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>5. Visualise Evidence</h3>
-            <p>
-              Present key indicators through a management dashboard for faster
-              interpretation.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>6. Translate to Action</h3>
-            <p>
-              Use the evidence to identify programme priorities, operational
-              gaps and learning opportunities.
-            </p>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- DASHBOARD -->
-    <section class="section section-soft">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Dashboard View</span>
-          <h2>Programme performance by location and training track</h2>
-        </div>
-
-        <div class="chart-grid">
-
-          <div class="card">
-            <h3>Completion Rate by County</h3>
-            <canvas id="countyCompletionChart"></canvas>
-          </div>
-
-          <div class="card">
-            <h3>Employment Outcomes by County</h3>
-            <canvas id="countyEmploymentChart"></canvas>
-          </div>
-
-          <div class="card">
-            <h3>Employment Outcomes by Training Track</h3>
-            <canvas id="trackEmploymentChart"></canvas>
-          </div>
-
-          <div class="card">
-            <h3>Average Skills Improvement by Training Track</h3>
-            <canvas id="skillsImprovementChart"></canvas>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- KEY FINDINGS -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Key Findings</span>
-          <h2>What the evidence shows</h2>
-        </div>
-
-        <div class="cards-grid">
-
-          <article class="card">
-            <h3>Reach Target Achieved</h3>
-            <p>
-              The programme enrolled all 400 planned beneficiaries,
-              demonstrating full achievement of the reach target.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Completion Slightly Below Target</h3>
-            <p>
-              The 72.3% completion rate fell slightly below the 75% target,
-              suggesting a need for stronger retention measures.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Attendance Is the Main Operational Gap</h3>
-            <p>
-              Average attendance was 67.1% against an 80% target, making
-              participation consistency the clearest management priority.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Skills Outcomes Are Encouraging</h3>
-            <p>
-              Average skills improvement reached 20.4 points, exceeding the
-              18-point programme target.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Employment Outcomes Exceeded Target</h3>
-            <p>
-              56.8% of beneficiaries recorded employment, self-employment or
-              internship outcomes, compared with a 50% target.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Implementation Delivery Was Strong</h3>
-            <p>
-              97.3% of planned programme sessions were completed, indicating
-              strong implementation capacity.
-            </p>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- COUNTY ANALYSIS -->
-    <section class="section section-soft">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">County Analysis</span>
-          <h2>Where outcomes differ</h2>
-        </div>
-
-        <div class="table-wrap">
-          <table class="project-table">
-
-            <thead>
-              <tr>
-                <th>County</th>
-                <th>Beneficiaries</th>
-                <th>Completion</th>
-                <th>Employment Outcome</th>
-                <th>Avg Skills Improvement</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Nairobi</td>
-                <td>131</td>
-                <td>71.0%</td>
-                <td>56.5%</td>
-                <td>19.9 pts</td>
-              </tr>
-
-              <tr>
-                <td>Kiambu</td>
-                <td>71</td>
-                <td>73.2%</td>
-                <td>60.6%</td>
-                <td>21.1 pts</td>
-              </tr>
-
-              <tr>
-                <td>Nakuru</td>
-                <td>59</td>
-                <td>71.2%</td>
-                <td>55.9%</td>
-                <td>20.9 pts</td>
-              </tr>
-
-              <tr>
-                <td>Kisumu</td>
-                <td>70</td>
-                <td>72.9%</td>
-                <td>44.3%</td>
-                <td>20.1 pts</td>
-              </tr>
-
-              <tr>
-                <td>Mombasa</td>
-                <td>69</td>
-                <td>73.9%</td>
-                <td>66.7%</td>
-                <td>20.8 pts</td>
-              </tr>
-            </tbody>
-
-          </table>
-        </div>
-
-        <p class="section-note">
-          Mombasa recorded the strongest employment outcome rate, while Kisumu
-          recorded the weakest. Completion rates were comparatively similar
-          across counties, suggesting that post-training opportunity and local
-          labour-market conditions may explain more of the employment variation.
-        </p>
-
-      </div>
-    </section>
-
-
-    <!-- TRAINING TRACK ANALYSIS -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Training Track Analysis</span>
-          <h2>Comparing programme pathways</h2>
-        </div>
-
-        <div class="table-wrap">
-          <table class="project-table">
-
-            <thead>
-              <tr>
-                <th>Training Track</th>
-                <th>Beneficiaries</th>
-                <th>Completion</th>
-                <th>Employment Outcome</th>
-                <th>Avg Skills Improvement</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Digital Skills</td>
-                <td>109</td>
-                <td>72.5%</td>
-                <td>56.9%</td>
-                <td>21.2 pts</td>
-              </tr>
-
-              <tr>
-                <td>Entrepreneurship</td>
-                <td>130</td>
-                <td>71.5%</td>
-                <td>53.1%</td>
-                <td>20.0 pts</td>
-              </tr>
-
-              <tr>
-                <td>Employability</td>
-                <td>97</td>
-                <td>73.2%</td>
-                <td>60.8%</td>
-                <td>20.5 pts</td>
-              </tr>
-
-              <tr>
-                <td>Financial Literacy</td>
-                <td>64</td>
-                <td>71.9%</td>
-                <td>57.8%</td>
-                <td>19.9 pts</td>
-              </tr>
-            </tbody>
-
-          </table>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- MANAGEMENT INTERPRETATION -->
-    <section class="section section-soft">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Management Interpretation</span>
-          <h2>What programme managers should pay attention to</h2>
-        </div>
-
-        <div class="two-column-grid">
-
-          <div class="card">
-            <h3>Delivery is not the same as engagement</h3>
-            <p>
-              The programme delivered 97.3% of planned activities, yet average
-              beneficiary attendance was only 67.1%. Strong implementation
-              volume therefore did not automatically translate into consistent
-              participant engagement.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Outcomes remain promising</h3>
-            <p>
-              Skills improvement and employment-related outcomes exceeded their
-              respective targets. This suggests that the programme model can
-              generate value, particularly for beneficiaries who remain actively
-              engaged.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- RECOMMENDATIONS -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Recommendations</span>
-          <h2>Priority actions for programme improvement</h2>
-        </div>
-
-        <div class="cards-grid">
-
-          <article class="card">
-            <h3>Strengthen Attendance Monitoring</h3>
-            <p>
-              Review attendance weekly and trigger early follow-up where
-              beneficiaries begin missing sessions.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Investigate Participation Barriers</h3>
-            <p>
-              Use short interviews or pulse surveys to understand whether
-              timing, transport, work commitments or programme relevance
-              affect attendance.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Target Post-Training Support</h3>
-            <p>
-              Strengthen employer, internship and self-employment linkages in
-              locations where employment outcomes remain weaker.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Learn From Stronger Locations</h3>
-            <p>
-              Document practices associated with stronger outcomes and test
-              whether they can be adapted elsewhere.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Add Follow-Up Measurement</h3>
-            <p>
-              Track employment and livelihood outcomes at three and six months
-              after programme completion.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Use the Dashboard for Decisions</h3>
-            <p>
-              Integrate indicator review into routine programme-management
-              meetings and record actions taken in response to performance gaps.
-            </p>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- PROJECT FILES -->
-    <section class="section section-soft" id="project03Files">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Project Deliverables</span>
-          <h2>View or download the Project 03 files</h2>
-
-          <p>
-            Project resources are loaded directly from the EKO project storage
-            folder.
-          </p>
-        </div>
-
-        <div
-          id="project03FilesList"
-          class="project-files"
-          data-project-files
-          data-project="project-03"
-        >
-          <div class="card">
-            <p>Loading Project 03 resources...</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- LIMITATIONS -->
-    <section class="section">
-      <div class="container">
-
-        <div class="section-heading">
-          <span class="section-kicker">Limitations</span>
-          <h2>Responsible interpretation</h2>
-        </div>
-
-        <div class="card">
-          <p>
-            The dataset is synthetic and designed solely to demonstrate EKO
-            Analytics &amp; Research's analytical and M&amp;E capability.
-            A live assignment would require validated source records, agreed
-            indicator definitions, beneficiary consent and data-protection
-            procedures, programme-specific targets, contextual interpretation
-            and appropriate outcome-verification methods.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- CTA -->
-    <section class="section cta-section">
-      <div class="container">
-
-        <div class="cta-box">
-
-          <div>
-            <span class="section-kicker">
-              Need Better Programme Evidence?
+            <span>
+                Beneficiaries Enrolled
             </span>
 
-            <h2>Turn monitoring data into decisions.</h2>
+        </div>
 
-            <p>
-              EKO Analytics &amp; Research supports organisations with M&amp;E
-              frameworks, indicator design, programme dashboards, data analysis,
-              reporting and decision-focused learning.
-            </p>
-          </div>
 
-          <div class="cta-actions">
-            <a href="contact.html" class="btn btn-primary">
-              Request Consultation
-            </a>
+        <div class="kpi-card">
 
-            <a href="projects.html" class="btn btn-secondary">
-              Explore More Projects
-            </a>
-          </div>
+            <strong>
+                72.3%
+            </strong>
+
+            <span>
+                Completion Rate
+            </span>
 
         </div>
 
-      </div>
-    </section>
 
-  </main>
+        <div class="kpi-card">
+
+            <strong>
+                67.1%
+            </strong>
+
+            <span>
+                Average Attendance
+            </span>
+
+        </div>
 
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+        <div class="kpi-card">
 
-    <div class="container footer-grid">
+            <strong>
+                20.4 pts
+            </strong>
 
-      <div>
-        <a href="index.html" class="footer-brand-logo">
-          <img
-            src="file_000000005e7c7243ba74d1018716cc17.png"
-            alt="EKO Analytics & Research"
-            class="footer-logo"
-          >
-        </a>
+            <span>
+                Average Skills Improvement
+            </span>
 
-        <p>Turning Data into Actionable Insights.</p>
-      </div>
+        </div>
 
-      <div>
-        <h4>Explore</h4>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="projects.html">Projects</a>
-        <a href="insights.html">Insights</a>
-      </div>
 
-      <div>
-        <h4>Contact</h4>
+        <div class="kpi-card">
 
-        <a href="mailto:edwinokello24@gmail.com">
-          edwinokello24@gmail.com
-        </a>
+            <strong>
+                56.8%
+            </strong>
 
-        <a href="tel:+254143947048">
-          +254 143 947 048
-        </a>
+            <span>
+                Employment Outcome Rate
+            </span>
 
-        <a
-          href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-          target="_blank"
-          rel="noopener"
-        >
-          LinkedIn
-        </a>
-      </div>
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                51.0%
+            </strong>
+
+            <span>
+                Female Participation
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                97.3%
+            </strong>
+
+            <span>
+                Activity Completion Rate
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                8.3%
+            </strong>
+
+            <span>
+                Dropout Rate
+            </span>
+
+        </div>
+
 
     </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     KEY FINDINGS
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            KEY FINDINGS
+        </span>
+
+        <h2>
+            What the programme evidence shows.
+        </h2>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card">
+
+            <i class="fas fa-circle-check"></i>
+
+            <h3>
+                Programme Reach
+            </h3>
+
+            <p>
+                The programme enrolled 400 beneficiaries,
+                achieving the planned beneficiary-reach target.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-user-graduate"></i>
+
+            <h3>
+                Completion
+            </h3>
+
+            <p>
+                The completion rate reached 72.3%,
+                slightly below the programme target of 75%.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-calendar-days"></i>
+
+            <h3>
+                Attendance Gap
+            </h3>
+
+            <p>
+                Average attendance was 67.1% against an 80% target,
+                making participation consistency a key management concern.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-chart-line"></i>
+
+            <h3>
+                Skills Improvement
+            </h3>
+
+            <p>
+                Average skills improvement reached 20.4 points,
+                exceeding the programme target of 18 points.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-briefcase"></i>
+
+            <h3>
+                Employment Outcomes
+            </h3>
+
+            <p>
+                Employment-related outcomes reached 56.8%,
+                exceeding the programme target of 50%.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-list-check"></i>
+
+            <h3>
+                Programme Delivery
+            </h3>
+
+            <p>
+                97.3% of planned activities were completed,
+                indicating strong implementation performance.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COUNTY PERFORMANCE
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            COUNTY PERFORMANCE
+        </span>
+
+        <h2>
+            Comparing programme outcomes across locations.
+        </h2>
+
+    </div>
+
+
+    <div class="performance-table-wrap">
+
+        <table class="performance-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>County</th>
+
+                    <th>Beneficiaries</th>
+
+                    <th>Completion</th>
+
+                    <th>Employment Outcome</th>
+
+                    <th>Skills Improvement</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>Nairobi</td>
+
+                    <td>131</td>
+
+                    <td>71.0%</td>
+
+                    <td>56.5%</td>
+
+                    <td>19.9 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Kiambu</td>
+
+                    <td>71</td>
+
+                    <td>73.2%</td>
+
+                    <td>60.6%</td>
+
+                    <td>21.1 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Nakuru</td>
+
+                    <td>59</td>
+
+                    <td>71.2%</td>
+
+                    <td>55.9%</td>
+
+                    <td>20.9 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Kisumu</td>
+
+                    <td>70</td>
+
+                    <td>72.9%</td>
+
+                    <td>44.3%</td>
+
+                    <td>20.1 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Mombasa</td>
+
+                    <td>69</td>
+
+                    <td>73.9%</td>
+
+                    <td>66.7%</td>
+
+                    <td>20.8 pts</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="management-note">
+
+        <h3>
+            Management Interpretation
+        </h3>
+
+        <p>
+            Mombasa recorded the strongest employment outcome rate at 66.7%,
+            while Kisumu recorded the lowest at 44.3%. Completion rates were
+            comparatively similar across counties, suggesting that differences
+            in post-training opportunities may be contributing more strongly
+            to employment variation than completion alone.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TRAINING TRACK PERFORMANCE
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            TRAINING TRACK PERFORMANCE
+        </span>
+
+        <h2>
+            Comparing programme pathways.
+        </h2>
+
+    </div>
+
+
+    <div class="performance-table-wrap">
+
+        <table class="performance-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Training Track</th>
+
+                    <th>Beneficiaries</th>
+
+                    <th>Completion</th>
+
+                    <th>Employment Outcome</th>
+
+                    <th>Skills Improvement</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>Digital Skills</td>
+
+                    <td>109</td>
+
+                    <td>72.5%</td>
+
+                    <td>56.9%</td>
+
+                    <td>21.2 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Entrepreneurship</td>
+
+                    <td>130</td>
+
+                    <td>71.5%</td>
+
+                    <td>53.1%</td>
+
+                    <td>20.0 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Employability</td>
+
+                    <td>97</td>
+
+                    <td>73.2%</td>
+
+                    <td>60.8%</td>
+
+                    <td>20.5 pts</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>Financial Literacy</td>
+
+                    <td>64</td>
+
+                    <td>71.9%</td>
+
+                    <td>57.8%</td>
+
+                    <td>19.9 pts</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MANAGEMENT INTERPRETATION
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            MANAGEMENT INTERPRETATION
+        </span>
+
+        <h2>
+            Strong programme delivery, but weaker beneficiary attendance.
+        </h2>
+
+    </div>
+
+
+    <div class="case-study-wrap">
+
+        <div class="case-study-grid">
+
+            <div class="case-study-block">
+
+                <span class="eyebrow">
+                    WHAT IS WORKING
+                </span>
+
+                <h3>
+                    Delivery and outcomes are encouraging.
+                </h3>
+
+                <p>
+                    Programme implementation was strong, with 97.3%
+                    of planned activities completed.
+                </p>
+
+                <p>
+                    Skills improvement exceeded target, while employment-related
+                    outcomes reached 56.8%, also above target.
+                </p>
+
+                <p>
+                    Female participation reached 51%, meeting the
+                    programme's participation objective.
+                </p>
+
+            </div>
+
+
+            <div class="case-study-block">
+
+                <span class="eyebrow">
+                    MANAGEMENT PRIORITY
+                </span>
+
+                <h3>
+                    Attendance requires immediate attention.
+                </h3>
+
+                <p>
+                    Despite strong programme delivery, average attendance
+                    was only 67.1% against an 80% target.
+                </p>
+
+                <p>
+                    This suggests that delivering planned activities alone
+                    does not guarantee consistent beneficiary engagement.
+                </p>
+
+                <p>
+                    Attendance should therefore become a priority indicator
+                    in routine programme-management discussions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RECOMMENDATIONS
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            RECOMMENDATIONS
+        </span>
+
+        <h2>
+            Priority actions for programme improvement.
+        </h2>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <article class="service-card">
+
+            <i class="fas fa-bell"></i>
+
+            <h3>
+                Attendance Early Warning
+            </h3>
+
+            <p>
+                Introduce routine follow-up for beneficiaries
+                whose attendance begins to decline.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-comments"></i>
+
+            <h3>
+                Participant Feedback
+            </h3>
+
+            <p>
+                Use short beneficiary pulse interviews to understand
+                barriers affecting participation and retention.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-location-dot"></i>
+
+            <h3>
+                County-Level Follow-Up
+            </h3>
+
+            <p>
+                Investigate weaker employment outcomes in locations
+                where post-training results fall below programme averages.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-handshake"></i>
+
+            <h3>
+                Employment Linkages
+            </h3>
+
+            <p>
+                Strengthen employer, internship and self-employment
+                partnerships for programme graduates.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-chart-column"></i>
+
+            <h3>
+                Routine Dashboard Review
+            </h3>
+
+            <p>
+                Integrate the dashboard into regular management meetings
+                to identify performance gaps early.
+            </p>
+
+        </article>
+
+
+        <article class="service-card">
+
+            <i class="fas fa-clock-rotate-left"></i>
+
+            <h3>
+                Outcome Follow-Up
+            </h3>
+
+            <p>
+                Track employment and livelihood outcomes three and six
+                months after programme completion.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT DELIVERABLES
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            PROJECT 03 DELIVERABLES
+        </span>
+
+        <h2>
+            View or download project resources.
+        </h2>
+
+        <p>
+            Resources uploaded through the EKO Administrator to
+            Project 03 will automatically appear below.
+        </p>
+
+    </div>
+
+
+    <div id="project03Files"
+         data-project-files
+         data-project="project-03">
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PORTFOLIO TRANSPARENCY
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="case-study-wrap">
+
+        <div class="case-study-block">
+
+            <span class="eyebrow">
+                PORTFOLIO TRANSPARENCY
+            </span>
+
+            <h2>
+                Demonstration data used responsibly.
+            </h2>
+
+            <p>
+                Project 03 is an independent EKO Analytics &amp; Research
+                portfolio case study.
+            </p>
+
+            <p>
+                The programme and beneficiary data used in this project
+                are synthetic and were created solely to demonstrate
+                monitoring, evaluation, analysis, dashboard and
+                management-reporting capability.
+            </p>
+
+            <p>
+                The findings should therefore not be interpreted as evidence
+                about an actual youth programme, organisation, county
+                programme or labour market.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT NAVIGATION
+========================================================= -->
+
+<div class="project-navigation">
+
+    <a class="btn outline-dark"
+       href="project-02.html">
+
+        <i class="fas fa-arrow-left"></i>
+
+        Project 02
+
+    </a>
+
+
+    <a class="btn outline-dark"
+       href="projects.html">
+
+        <i class="fas fa-table-cells-large"></i>
+
+        All Projects
+
+    </a>
+
+
+    <a class="btn primary"
+       href="project-04.html">
+
+        Project 04
+
+        <i class="fas fa-arrow-right"></i>
+
+    </a>
+
+</div>
+
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta-band">
+
+    <div>
+
+        <span class="eyebrow light">
+            WORK WITH EKO
+        </span>
+
+        <h2>
+            Need stronger programme monitoring and evidence?
+        </h2>
+
+        <p>
+            EKO can support indicator development, programme monitoring,
+            dashboard design, M&amp;E analysis, reporting and
+            decision-focused learning.
+        </p>
+
+    </div>
+
+
+    <a class="btn gold"
+       href="contact.html#consultation">
+
+        <i class="fas fa-comments"></i>
+
+        Discuss Your Project
+
+    </a>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="footer-brand footer-brand-logo">
+
+                <img src="file_000000005e7c7243ba74d1018716cc17.png"
+                     alt="EKO Analytics & Research"
+                     class="footer-logo">
+
+            </div>
+
+
+            <p>
+                Research, analytics and decision-support services
+                for organisations that need clearer evidence
+                and better decisions.
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="about.html">
+                About EKO
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="projects.html">
+                Projects
+            </a>
+
+            <a href="insights.html">
+                Insights
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <a href="mailto:edwinokello24@gmail.com">
+                edwinokello24@gmail.com
+            </a>
+
+            <a href="tel:+254143947048">
+                +254 143 947 048
+            </a>
+
+            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
+               target="_blank"
+               rel="noopener noreferrer">
+                LinkedIn
+            </a>
+
+        </div>
+
+    </div>
+
+
 
     <div class="footer-bottom">
-      <p>
-        &copy; <span id="currentYear"></span>
-        EKO Analytics &amp; Research. All rights reserved.
-      </p>
+
+        <span>
+            © <span id="year"></span>
+            EKO Analytics &amp; Research
+        </span>
+
+
+        <a href="admin.html"
+           class="admin-link"
+           title="Administrator"
+           aria-label="Administrator">
+
+            <i class="fas fa-lock"></i>
+
+        </a>
+
     </div>
 
-  </footer>
+</footer>
 
 
-  <!-- BACK TO TOP -->
-  <button
-    id="backToTop"
-    class="back-to-top"
-    type="button"
-    aria-label="Back to top"
-  >
-    ↑
-  </button>
 
+<!-- =========================================================
+     SHARED JAVASCRIPT
+========================================================= -->
 
-  <!-- ADMIN -->
-  <a
-    href="admin.html"
-    class="admin-lock"
-    aria-label="Administrator access"
-    title="Administrator access"
-  >
-    🔒
-  </a>
+<script src="script.js"></script>
 
-
-  <!-- PROJECT 03 CHARTS -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-      const countyLabels = [
-        "Nairobi",
-        "Kiambu",
-        "Nakuru",
-        "Kisumu",
-        "Mombasa"
-      ];
-
-      const countyCompletion =
-        document.getElementById("countyCompletionChart");
-
-      if (countyCompletion) {
-        new Chart(countyCompletion, {
-          type: "bar",
-          data: {
-            labels: countyLabels,
-            datasets: [{
-              label: "Completion Rate (%)",
-              data: [71.0, 73.2, 71.2, 72.9, 73.9],
-              backgroundColor: "#087f5b"
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: {
-                  callback: function(value) {
-                    return value + "%";
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-
-
-      const countyEmployment =
-        document.getElementById("countyEmploymentChart");
-
-      if (countyEmployment) {
-        new Chart(countyEmployment, {
-          type: "bar",
-          data: {
-            labels: countyLabels,
-            datasets: [{
-              label: "Employment Outcome (%)",
-              data: [56.5, 60.6, 55.9, 44.3, 66.7],
-              backgroundColor: "#0b1f3a"
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: {
-                  callback: function(value) {
-                    return value + "%";
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-
-
-      const trackEmployment =
-        document.getElementById("trackEmploymentChart");
-
-      if (trackEmployment) {
-        new Chart(trackEmployment, {
-          type: "bar",
-          data: {
-            labels: [
-              "Digital Skills",
-              "Entrepreneurship",
-              "Employability",
-              "Financial Literacy"
-            ],
-            datasets: [{
-              label: "Employment Outcome (%)",
-              data: [56.9, 53.1, 60.8, 57.8],
-              backgroundColor: "#c79a3b"
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: {
-                  callback: function(value) {
-                    return value + "%";
-                  }
-                }
-              }
-            }
-          }
-        });
-      }
-
-
-      const skillsImprovement =
-        document.getElementById("skillsImprovementChart");
-
-      if (skillsImprovement) {
-        new Chart(skillsImprovement, {
-          type: "bar",
-          data: {
-            labels: [
-              "Digital Skills",
-              "Entrepreneurship",
-              "Employability",
-              "Financial Literacy"
-            ],
-            datasets: [{
-              label: "Average Skills Improvement",
-              data: [21.2, 20.0, 20.5, 19.9],
-              backgroundColor: "#087f5b"
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: false
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      }
-
-
-      const currentYear =
-        document.getElementById("currentYear");
-
-      if (currentYear) {
-        currentYear.textContent =
-          new Date().getFullYear();
-      }
-
-    });
-  </script>
-
-
-  <!-- SHARED WEBSITE FUNCTIONALITY -->
-  <script src="script.js"></script>
 
 </body>
+
 </html>
