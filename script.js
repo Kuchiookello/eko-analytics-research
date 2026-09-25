@@ -11,6 +11,7 @@
    - Contact consultation form
    - Supabase public project resources
    - Projects 01–07
+   - EKO team photographs
    - Actual uploaded filenames
    - Office document viewing
    - Direct PDF/image viewing
@@ -25,18 +26,14 @@
 const SUPABASE_URL =
     "https://cueajmzcmawvcbpwuyhi.supabase.co";
 
-
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_hUjTnuPCkxB2ysGoYZq0Mg_uhymAbhb";
-
 
 const EKO_BUCKET =
     "eko";
 
-
 let supabaseClient =
     null;
-
 
 if (
     window.supabase &&
@@ -104,6 +101,23 @@ const EKO_PROJECTS = {
 
 
 /* =========================================================
+   TEAM DEFINITIONS
+========================================================= */
+
+const EKO_TEAM = {
+
+    edwin: {
+        folder: "team/edwin"
+    },
+
+    florence: {
+        folder: "team/florence"
+    }
+
+};
+
+
+/* =========================================================
    START WEBSITE
 ========================================================= */
 
@@ -122,6 +136,8 @@ document.addEventListener(
         initialiseContactForm();
 
         initialisePublicProjectFiles();
+
+        initialiseTeamPhotos();
 
         initialiseDownloadLinks();
 
@@ -156,55 +172,37 @@ function initialiseYear() {
 function initialiseNavigation() {
 
     const toggle =
-        document.getElementById(
-            "navToggle"
-        );
-
+        document.getElementById("navToggle");
 
     const links =
-        document.getElementById(
-            "navLinks"
-        );
-
+        document.getElementById("navLinks");
 
     if (
         !toggle ||
         !links
     ) {
-
         return;
-
     }
-
 
     toggle.setAttribute(
         "aria-expanded",
         "false"
     );
 
-
     toggle.addEventListener(
         "click",
         function (event) {
 
             event.preventDefault();
-
             event.stopPropagation();
 
-
             const isOpen =
-                links.classList.toggle(
-                    "active"
-                );
-
+                links.classList.toggle("active");
 
             toggle.setAttribute(
                 "aria-expanded",
-                isOpen
-                    ? "true"
-                    : "false"
+                isOpen ? "true" : "false"
             );
-
 
             updateNavigationIcon(
                 toggle,
@@ -213,7 +211,6 @@ function initialiseNavigation() {
 
         }
     );
-
 
     links
         .querySelectorAll("a")
@@ -235,18 +232,13 @@ function initialiseNavigation() {
             }
         );
 
-
     document.addEventListener(
         "click",
         function (event) {
 
             if (
-                !links.contains(
-                    event.target
-                ) &&
-                !toggle.contains(
-                    event.target
-                )
+                !links.contains(event.target) &&
+                !toggle.contains(event.target)
             ) {
 
                 closeNavigationMenu(
@@ -258,15 +250,13 @@ function initialiseNavigation() {
 
         }
     );
-
 
     document.addEventListener(
         "keydown",
         function (event) {
 
             if (
-                event.key ===
-                "Escape"
+                event.key === "Escape"
             ) {
 
                 closeNavigationMenu(
@@ -279,14 +269,12 @@ function initialiseNavigation() {
         }
     );
 
-
     window.addEventListener(
         "resize",
         function () {
 
             if (
-                window.innerWidth >
-                980
+                window.innerWidth > 980
             ) {
 
                 closeNavigationMenu(
@@ -314,33 +302,19 @@ function updateNavigationIcon(
     const icon =
         toggle.querySelector("i");
 
-
     if (!icon) {
-
         return;
-
     }
-
 
     if (isOpen) {
 
-        icon.classList.remove(
-            "fa-bars"
-        );
-
-        icon.classList.add(
-            "fa-xmark"
-        );
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
 
     } else {
 
-        icon.classList.remove(
-            "fa-xmark"
-        );
-
-        icon.classList.add(
-            "fa-bars"
-        );
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
 
     }
 
@@ -356,20 +330,13 @@ function closeNavigationMenu(
     links
 ) {
 
-    links.classList.remove(
-        "active"
-    );
-
-    links.classList.remove(
-        "open"
-    );
-
+    links.classList.remove("active");
+    links.classList.remove("open");
 
     toggle.setAttribute(
         "aria-expanded",
         "false"
     );
-
 
     updateNavigationIcon(
         toggle,
@@ -386,39 +353,27 @@ function closeNavigationMenu(
 function initialiseNavigationScrollState() {
 
     const nav =
-        document.querySelector(
-            ".site-nav"
-        );
-
+        document.querySelector(".site-nav");
 
     if (!nav) {
-
         return;
-
     }
-
 
     function updateNavigationState() {
 
         if (
-            window.scrollY >
-            25
+            window.scrollY > 25
         ) {
 
-            nav.classList.add(
-                "scrolled"
-            );
+            nav.classList.add("scrolled");
 
         } else {
 
-            nav.classList.remove(
-                "scrolled"
-            );
+            nav.classList.remove("scrolled");
 
         }
 
     }
-
 
     window.addEventListener(
         "scroll",
@@ -427,7 +382,6 @@ function initialiseNavigationScrollState() {
             passive: true
         }
     );
-
 
     updateNavigationState();
 
@@ -441,47 +395,33 @@ function initialiseNavigationScrollState() {
 function initialiseBackToTop() {
 
     let button =
-        document.getElementById(
-            "backToTop"
-        );
-
+        document.getElementById("backToTop");
 
     if (!button) {
 
         button =
-            document.createElement(
-                "button"
-            );
-
+            document.createElement("button");
 
         button.id =
             "backToTop";
 
-
         button.className =
             "back-to-top";
-
 
         button.type =
             "button";
 
-
         button.title =
             "Return to top";
-
 
         button.setAttribute(
             "aria-label",
             "Return to top"
         );
 
-
         button.innerHTML = `
-
             <i class="fas fa-arrow-up"></i>
-
         `;
-
 
         document.body.appendChild(
             button
@@ -489,28 +429,21 @@ function initialiseBackToTop() {
 
     }
 
-
     function updateBackToTop() {
 
         if (
-            window.scrollY >
-            450
+            window.scrollY > 450
         ) {
 
-            button.classList.add(
-                "show"
-            );
+            button.classList.add("show");
 
         } else {
 
-            button.classList.remove(
-                "show"
-            );
+            button.classList.remove("show");
 
         }
 
     }
-
 
     window.addEventListener(
         "scroll",
@@ -520,23 +453,17 @@ function initialiseBackToTop() {
         }
     );
 
-
     button.addEventListener(
         "click",
         function () {
 
             window.scrollTo({
-
                 top: 0,
-
-                behavior:
-                    "smooth"
-
+                behavior: "smooth"
             });
 
         }
     );
-
 
     updateBackToTop();
 
@@ -550,82 +477,48 @@ function initialiseBackToTop() {
 function initialiseContactForm() {
 
     const form =
-        document.getElementById(
-            "consultationForm"
-        );
-
+        document.getElementById("consultationForm");
 
     if (!form) {
-
         return;
-
     }
-
 
     if (
-        form.dataset.ekoInitialised ===
-        "true"
+        form.dataset.ekoInitialised === "true"
     ) {
-
         return;
-
     }
-
 
     form.dataset.ekoInitialised =
         "true";
-
 
     form.addEventListener(
         "submit",
         function (event) {
 
             event.preventDefault();
-
             event.stopImmediatePropagation();
 
-
             const name =
-                getValue(
-                    "clientName"
-                );
-
+                getValue("clientName");
 
             const email =
-                getValue(
-                    "clientEmail"
-                );
-
+                getValue("clientEmail");
 
             const organisation =
-                getValue(
-                    "organisation"
-                );
-
+                getValue("organisation");
 
             const phone =
-                getValue(
-                    "clientPhone"
-                );
-
+                getValue("clientPhone");
 
             const service =
-                getValue(
-                    "service"
-                );
-
+                getValue("service");
 
             const timeframe =
-                getValue(
-                    "timeframe"
-                );
-
+                getValue("timeframe");
 
             const project =
-                getValue(
-                    "projectMessage"
-                );
-
+                getValue("projectMessage");
 
             if (
                 !name ||
@@ -634,46 +527,33 @@ function initialiseContactForm() {
             ) {
 
                 showFormMessage(
-
                     "Please complete your name, email and project details.",
-
                     "error"
-
                 );
 
                 return;
 
             }
 
-
             if (
-                !validateEmail(
-                    email
-                )
+                !validateEmail(email)
             ) {
 
                 showFormMessage(
-
                     "Please enter a valid email address.",
-
                     "error"
-
                 );
 
                 return;
 
             }
 
-
             const subjectText =
                 service
-                    ? "EKO Consultation Enquiry — " +
-                      service
+                    ? "EKO Consultation Enquiry — " + service
                     : "EKO Consultation Enquiry";
 
-
             const emailBody =
-
 `Dear EKO Analytics & Research,
 
 I would like to enquire about a possible research or analytical assignment.
@@ -692,35 +572,21 @@ ${project}
 Kind regards,
 ${name}`;
 
-
             const subject =
-                encodeURIComponent(
-                    subjectText
-                );
-
+                encodeURIComponent(subjectText);
 
             const body =
-                encodeURIComponent(
-                    emailBody
-                );
-
+                encodeURIComponent(emailBody);
 
             showFormMessage(
-
                 "Your enquiry is ready. Your email application should open automatically.",
-
                 "success"
-
             );
 
-
             window.location.href =
-
-                "mailto:edwinokello24@gmail.com" +
-
+                "mailto:ekoanalyticsltd@gmail.com" +
                 "?subject=" +
                 subject +
-
                 "&body=" +
                 body;
 
@@ -734,22 +600,14 @@ ${name}`;
    FORM HELPERS
 ========================================================= */
 
-function getValue(
-    id
-) {
+function getValue(id) {
 
     const field =
-        document.getElementById(
-            id
-        );
-
+        document.getElementById(id);
 
     if (!field) {
-
         return "";
-
     }
-
 
     return String(
         field.value || ""
@@ -758,14 +616,10 @@ function getValue(
 }
 
 
-function validateEmail(
-    email
-) {
+function validateEmail(email) {
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        .test(
-            email
-        );
+        .test(email);
 
 }
 
@@ -780,25 +634,235 @@ function showFormMessage(
 ) {
 
     const box =
-        document.getElementById(
-            "formMessage"
-        );
-
+        document.getElementById("formMessage");
 
     if (!box) {
-
         return;
-
     }
-
 
     box.textContent =
         message;
 
-
     box.className =
         "form-message show " +
         type;
+
+}
+
+
+/* =========================================================
+   TEAM PHOTO SYSTEM
+========================================================= */
+
+function initialiseTeamPhotos() {
+
+    document
+        .querySelectorAll("[data-team-photo]")
+        .forEach(
+            function (container) {
+
+                const member =
+                    container.dataset.teamPhoto;
+
+                if (
+                    !member ||
+                    !EKO_TEAM[member]
+                ) {
+                    return;
+                }
+
+                loadTeamPhoto(
+                    member
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   LOAD TEAM PHOTO
+========================================================= */
+
+async function loadTeamPhoto(
+    member
+) {
+
+    const teamData =
+        EKO_TEAM[member];
+
+    const image =
+        document.querySelector(
+            `[data-team-image="${member}"]`
+        );
+
+    const placeholder =
+        document.querySelector(
+            `[data-team-placeholder="${member}"]`
+        );
+
+    if (
+        !teamData ||
+        !image ||
+        !supabaseClient
+    ) {
+        return;
+    }
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+            .storage
+            .from(EKO_BUCKET)
+            .list(
+                teamData.folder,
+                {
+                    limit: 100,
+                    sortBy: {
+                        column: "created_at",
+                        order: "desc"
+                    }
+                }
+            );
+
+        if (error) {
+
+            console.warn(
+                "Unable to load team photo:",
+                member,
+                error
+            );
+
+            return;
+
+        }
+
+        const imageFiles =
+            (data || [])
+            .filter(
+                function (file) {
+
+                    if (
+                        !file.name ||
+                        file.name ===
+                        ".emptyFolderPlaceholder"
+                    ) {
+                        return false;
+                    }
+
+                    return [
+                        "jpg",
+                        "jpeg",
+                        "png",
+                        "webp",
+                        "gif"
+                    ].includes(
+                        getExtension(file.name)
+                    );
+
+                }
+            );
+
+        if (
+            imageFiles.length === 0
+        ) {
+            return;
+        }
+
+        imageFiles.sort(
+            function (a, b) {
+
+                const aTime =
+                    new Date(
+                        a.updated_at ||
+                        a.created_at ||
+                        0
+                    ).getTime();
+
+                const bTime =
+                    new Date(
+                        b.updated_at ||
+                        b.created_at ||
+                        0
+                    ).getTime();
+
+                return bTime - aTime;
+
+            }
+        );
+
+        const selectedFile =
+            imageFiles[0];
+
+        const path =
+            teamData.folder +
+            "/" +
+            selectedFile.name;
+
+        const {
+            data: urlData
+        } =
+            supabaseClient
+            .storage
+            .from(EKO_BUCKET)
+            .getPublicUrl(path);
+
+        if (
+            !urlData ||
+            !urlData.publicUrl
+        ) {
+            return;
+        }
+
+        image.onload =
+            function () {
+
+                image.hidden =
+                    false;
+
+                if (placeholder) {
+
+                    placeholder.style.display =
+                        "none";
+
+                }
+
+            };
+
+        image.onerror =
+            function () {
+
+                image.hidden =
+                    true;
+
+                if (placeholder) {
+
+                    placeholder.style.display =
+                        "";
+
+                }
+
+            };
+
+        image.src =
+            urlData.publicUrl;
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Team photo loading failed:",
+            member,
+            error
+        );
+
+    }
 
 }
 
@@ -812,16 +876,11 @@ function initialisePublicProjectFiles() {
     const containers =
         findProjectFileContainers();
 
-
     if (
-        containers.length ===
-        0
+        containers.length === 0
     ) {
-
         return;
-
     }
-
 
     containers.forEach(
         function (item) {
@@ -846,51 +905,33 @@ function findProjectFileContainers() {
     const results =
         [];
 
-
     const used =
         new Set();
 
-
     document
-        .querySelectorAll(
-            "[data-project-files]"
-        )
+        .querySelectorAll("[data-project-files]")
         .forEach(
             function (container) {
 
                 const projectKey =
                     container.dataset.project;
 
-
                 if (
-                    EKO_PROJECTS[
-                        projectKey
-                    ] &&
-                    !used.has(
-                        container
-                    )
+                    EKO_PROJECTS[projectKey] &&
+                    !used.has(container)
                 ) {
 
-                    used.add(
-                        container
-                    );
-
+                    used.add(container);
 
                     results.push({
-
-                        container:
-                            container,
-
-                        projectKey:
-                            projectKey
-
+                        container: container,
+                        projectKey: projectKey
                     });
 
                 }
 
             }
         );
-
 
     for (
         let number = 1;
@@ -900,16 +941,10 @@ function findProjectFileContainers() {
 
         const padded =
             String(number)
-            .padStart(
-                2,
-                "0"
-            );
-
+            .padStart(2, "0");
 
         const projectKey =
-            "project-" +
-            padded;
-
+            "project-" + padded;
 
         const container =
             document.getElementById(
@@ -918,36 +953,22 @@ function findProjectFileContainers() {
                 "Files"
             );
 
-
         if (
             container &&
-            EKO_PROJECTS[
-                projectKey
-            ] &&
-            !used.has(
-                container
-            )
+            EKO_PROJECTS[projectKey] &&
+            !used.has(container)
         ) {
 
-            used.add(
-                container
-            );
-
+            used.add(container);
 
             results.push({
-
-                container:
-                    container,
-
-                projectKey:
-                    projectKey
-
+                container: container,
+                projectKey: projectKey
             });
 
         }
 
     }
-
 
     return results;
 
@@ -964,35 +985,25 @@ async function loadPublicProjectFiles(
 ) {
 
     const project =
-        EKO_PROJECTS[
-            projectKey
-        ];
-
+        EKO_PROJECTS[projectKey];
 
     if (
         !container ||
         !project
     ) {
-
         return;
-
     }
-
 
     if (!supabaseClient) {
 
         displayProjectError(
-
             container,
-
             "Project storage is currently unavailable."
-
         );
 
         return;
 
     }
-
 
     container.innerHTML = `
 
@@ -1012,7 +1023,6 @@ async function loadPublicProjectFiles(
 
     `;
 
-
     try {
 
         const {
@@ -1021,29 +1031,17 @@ async function loadPublicProjectFiles(
         } =
             await supabaseClient
             .storage
-            .from(
-                EKO_BUCKET
-            )
+            .from(EKO_BUCKET)
             .list(
                 project.folder,
                 {
-
-                    limit:
-                        100,
-
+                    limit: 100,
                     sortBy: {
-
-                        column:
-                            "name",
-
-                        order:
-                            "asc"
-
+                        column: "name",
+                        order: "asc"
                     }
-
                 }
             );
-
 
         if (error) {
 
@@ -1053,20 +1051,14 @@ async function loadPublicProjectFiles(
                 error
             );
 
-
             displayProjectError(
-
                 container,
-
                 "Unable to load project resources."
-
             );
-
 
             return;
 
         }
-
 
         const files =
             (data || [])
@@ -1082,10 +1074,8 @@ async function loadPublicProjectFiles(
                 }
             );
 
-
         if (
-            files.length ===
-            0
+            files.length === 0
         ) {
 
             displayProjectEmpty(
@@ -1096,7 +1086,6 @@ async function loadPublicProjectFiles(
             return;
 
         }
-
 
         displayUploadedProjectFiles(
             container,
@@ -1114,13 +1103,9 @@ async function loadPublicProjectFiles(
             error
         );
 
-
         displayProjectError(
-
             container,
-
             "Project resources could not be loaded."
-
         );
 
     }
@@ -1139,55 +1124,36 @@ function displayUploadedProjectFiles(
 ) {
 
     const project =
-        EKO_PROJECTS[
-            projectKey
-        ];
-
+        EKO_PROJECTS[projectKey];
 
     container.innerHTML =
         "";
-
 
     files.forEach(
         function (file) {
 
             const path =
-
                 project.folder +
-
                 "/" +
-
                 file.name;
-
 
             const {
                 data
             } =
                 supabaseClient
                 .storage
-                .from(
-                    EKO_BUCKET
-                )
-                .getPublicUrl(
-                    path
-                );
-
+                .from(EKO_BUCKET)
+                .getPublicUrl(path);
 
             if (
                 !data ||
                 !data.publicUrl
             ) {
-
                 return;
-
             }
 
-
             const extension =
-                getExtension(
-                    file.name
-                );
-
+                getExtension(file.name);
 
             const resource =
                 identifyProjectResource(
@@ -1195,13 +1161,9 @@ function displayUploadedProjectFiles(
                     file.name
                 );
 
-
             createProjectFileCard(
-
                 container,
-
                 {
-
                     title:
                         resource.title,
 
@@ -1212,35 +1174,26 @@ function displayUploadedProjectFiles(
                         resource.label,
 
                     icon:
-                        fileIcon(
-                            extension
-                        ),
+                        fileIcon(extension),
 
                     url:
                         data.publicUrl,
 
                     fileName:
                         file.name
-
                 }
-
             );
 
         }
     );
 
-
     if (
-        container.children.length ===
-        0
+        container.children.length === 0
     ) {
 
         displayProjectError(
-
             container,
-
             "No public project files could be displayed."
-
         );
 
     }
@@ -1258,22 +1211,13 @@ function identifyProjectResource(
 ) {
 
     const project =
-        EKO_PROJECTS[
-            projectKey
-        ];
-
+        EKO_PROJECTS[projectKey];
 
     const extension =
-        getExtension(
-            fileName
-        );
-
+        getExtension(fileName);
 
     const cleanTitle =
-        cleanFileTitle(
-            fileName
-        );
-
+        cleanFileTitle(fileName);
 
     let description =
         "Supporting resource for Project " +
@@ -1282,16 +1226,11 @@ function identifyProjectResource(
         project.title +
         ".";
 
-
     let label =
-        getFileTypeLabel(
-            extension
-        );
-
+        getFileTypeLabel(extension);
 
     if (
-        extension ===
-        "pdf"
+        extension === "pdf"
     ) {
 
         description =
@@ -1301,15 +1240,12 @@ function identifyProjectResource(
 
     }
 
-
     if (
         [
             "xls",
             "xlsx",
             "csv"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
 
         description =
@@ -1319,14 +1255,11 @@ function identifyProjectResource(
 
     }
 
-
     if (
         [
             "doc",
             "docx"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
 
         description =
@@ -1336,14 +1269,11 @@ function identifyProjectResource(
 
     }
 
-
     if (
         [
             "ppt",
             "pptx"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
 
         description =
@@ -1353,18 +1283,10 @@ function identifyProjectResource(
 
     }
 
-
     return {
-
-        title:
-            cleanTitle,
-
-        description:
-            description,
-
-        label:
-            label
-
+        title: cleanTitle,
+        description: description,
+        label: label
     };
 
 }
@@ -1379,57 +1301,38 @@ function getFileTypeLabel(
 ) {
 
     if (
-        extension ===
-        "pdf"
+        extension === "pdf"
     ) {
-
         return "PDF REPORT";
-
     }
-
 
     if (
         [
             "xls",
             "xlsx",
             "csv"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "DATA / WORKBOOK";
-
     }
-
 
     if (
         [
             "doc",
             "docx"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "DOCUMENT";
-
     }
-
 
     if (
         [
             "ppt",
             "pptx"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "PRESENTATION";
-
     }
-
 
     if (
         [
@@ -1439,15 +1342,10 @@ function getFileTypeLabel(
             "webp",
             "gif",
             "svg"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "IMAGE";
-
     }
-
 
     return "PROJECT RESOURCE";
 
@@ -1464,21 +1362,16 @@ function createProjectFileCard(
 ) {
 
     const card =
-        document.createElement(
-            "article"
-        );
-
+        document.createElement("article");
 
     card.className =
         "project-file-card";
-
 
     const viewUrl =
         createViewUrl(
             resource.fileName,
             resource.url
         );
-
 
     card.innerHTML = `
 
@@ -1488,98 +1381,57 @@ function createProjectFileCard(
 
         </div>
 
-
         <div class="project-file-info">
 
             <span class="file-type">
-
-                ${escapeHTML(
-                    resource.label
-                )}
-
+                ${escapeHTML(resource.label)}
             </span>
 
-
             <h3>
-
-                ${escapeHTML(
-                    resource.title
-                )}
-
+                ${escapeHTML(resource.title)}
             </h3>
 
-
             <p>
-
-                ${escapeHTML(
-                    resource.description
-                )}
-
+                ${escapeHTML(resource.description)}
             </p>
 
-
             <small class="project-file-name">
-
-                ${escapeHTML(
-                    resource.fileName
-                )}
-
+                ${escapeHTML(resource.fileName)}
             </small>
 
         </div>
 
-
         <div class="project-file-actions">
-
 
             <a
                 class="file-view"
-
-                href="${escapeAttribute(
-                    viewUrl
-                )}"
-
+                href="${escapeAttribute(viewUrl)}"
                 target="_blank"
-
                 rel="noopener noreferrer"
             >
 
                 <i class="fas fa-eye"></i>
-
                 View
 
             </a>
 
-
             <a
                 class="file-download"
-
-                href="${escapeAttribute(
-                    resource.url
-                )}"
-
+                href="${escapeAttribute(resource.url)}"
                 data-eko-download
-
-                data-file-name="${escapeAttribute(
-                    resource.fileName
-                )}"
+                data-file-name="${escapeAttribute(resource.fileName)}"
             >
 
                 <i class="fas fa-download"></i>
-
                 Download
 
             </a>
-
 
         </div>
 
     `;
 
-
-    container.appendChild(
-        card
-    );
+    container.appendChild(card);
 
 }
 
@@ -1594,13 +1446,9 @@ function createViewUrl(
 ) {
 
     const extension =
-        getExtension(
-            fileName
-        );
-
+        getExtension(fileName);
 
     const directViewTypes = [
-
         "pdf",
         "jpg",
         "jpeg",
@@ -1609,51 +1457,33 @@ function createViewUrl(
         "gif",
         "svg",
         "txt"
-
     ];
 
-
     if (
-        directViewTypes.includes(
-            extension
-        )
+        directViewTypes.includes(extension)
     ) {
-
         return publicUrl;
-
     }
 
-
     const officeTypes = [
-
         "doc",
         "docx",
         "xls",
         "xlsx",
         "ppt",
         "pptx"
-
     ];
 
-
     if (
-        officeTypes.includes(
-            extension
-        )
+        officeTypes.includes(extension)
     ) {
 
         return (
-
             "https://view.officeapps.live.com/op/view.aspx?src=" +
-
-            encodeURIComponent(
-                publicUrl
-            )
-
+            encodeURIComponent(publicUrl)
         );
 
     }
-
 
     return publicUrl;
 
@@ -1675,38 +1505,25 @@ function initialiseDownloadLinks() {
                     "[data-eko-download]"
                 );
 
-
             if (!link) {
-
                 return;
-
             }
 
-
             const url =
-                link.getAttribute(
-                    "href"
-                );
-
+                link.getAttribute("href");
 
             const fileName =
                 link.dataset.fileName ||
                 "eko-resource";
 
-
             if (
                 !url ||
-                url ===
-                "#"
+                url === "#"
             ) {
-
                 return;
-
             }
 
-
             event.preventDefault();
-
 
             downloadPublicFile(
                 url,
@@ -1731,10 +1548,7 @@ async function downloadPublicFile(
     try {
 
         const response =
-            await fetch(
-                url
-            );
-
+            await fetch(url);
 
         if (
             !response.ok
@@ -1746,45 +1560,29 @@ async function downloadPublicFile(
 
         }
 
-
         const blob =
             await response.blob();
 
-
         const objectUrl =
-            URL.createObjectURL(
-                blob
-            );
-
+            URL.createObjectURL(blob);
 
         const anchor =
-            document.createElement(
-                "a"
-            );
-
+            document.createElement("a");
 
         anchor.href =
             objectUrl;
 
-
         anchor.download =
             fileName;
-
 
         anchor.style.display =
             "none";
 
-
-        document.body.appendChild(
-            anchor
-        );
-
+        document.body.appendChild(anchor);
 
         anchor.click();
 
-
         anchor.remove();
-
 
         setTimeout(
             function () {
@@ -1805,7 +1603,6 @@ async function downloadPublicFile(
             "Direct download failed; opening public URL instead.",
             error
         );
-
 
         window.open(
             url,
@@ -1869,9 +1666,7 @@ function displayProjectError(
             </h3>
 
             <p>
-                ${escapeHTML(
-                    message
-                )}
+                ${escapeHTML(message)}
             </p>
 
         </div>
@@ -1893,23 +1688,14 @@ function getExtension(
         String(fileName)
         .lastIndexOf(".");
 
-
     if (
-        position ===
-        -1
+        position === -1
     ) {
-
         return "file";
-
     }
 
-
     return String(fileName)
-
-        .substring(
-            position + 1
-        )
-
+        .substring(position + 1)
         .toLowerCase();
 
 }
@@ -1924,57 +1710,38 @@ function fileIcon(
 ) {
 
     if (
-        extension ===
-        "pdf"
+        extension === "pdf"
     ) {
-
         return "fa-file-pdf";
-
     }
-
 
     if (
         [
             "xls",
             "xlsx",
             "csv"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "fa-file-excel";
-
     }
-
 
     if (
         [
             "doc",
             "docx"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "fa-file-word";
-
     }
-
 
     if (
         [
             "ppt",
             "pptx"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "fa-file-powerpoint";
-
     }
-
 
     if (
         [
@@ -1984,15 +1751,10 @@ function fileIcon(
             "webp",
             "gif",
             "svg"
-        ].includes(
-            extension
-        )
+        ].includes(extension)
     ) {
-
         return "fa-file-image";
-
     }
-
 
     return "fa-file-lines";
 
@@ -2008,22 +1770,9 @@ function cleanFileTitle(
 ) {
 
     return String(fileName)
-
-        .replace(
-            /\.[^/.]+$/,
-            ""
-        )
-
-        .replace(
-            /[-_]+/g,
-            " "
-        )
-
-        .replace(
-            /\s+/g,
-            " "
-        )
-
+        .replace(/\.[^/.]+$/, "")
+        .replace(/[-_]+/g, " ")
+        .replace(/\s+/g, " ")
         .trim();
 
 }
@@ -2038,14 +1787,10 @@ function escapeHTML(
 ) {
 
     const div =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     div.textContent =
         String(value);
-
 
     return div.innerHTML;
 
@@ -2061,25 +1806,9 @@ function escapeAttribute(
 ) {
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
 
 }
