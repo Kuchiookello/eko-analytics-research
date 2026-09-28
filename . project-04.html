@@ -8,7 +8,7 @@
     <title>Project 04 | Consumer Purchasing Behaviour & Market Opportunity Study | EKO Analytics & Research</title>
 
     <meta name="description"
-          content="EKO Analytics & Research market research case study examining consumer purchasing behaviour and market opportunities.">
+          content="EKO Analytics & Research market research case study examining consumer purchasing behaviour, channel preferences, switching behaviour and relative market opportunities.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,67 +24,289 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .case-study-wrap{width:min(92%,1100px);margin:auto}
-        .case-study-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:start}
-        .case-study-block{padding:28px;background:#fff;border:1px solid #dfe6ed;border-radius:18px;box-shadow:0 8px 25px rgba(7,20,38,.06)}
-        .case-study-block h2,.case-study-block h3{font-family:"Playfair Display",Georgia,serif;margin-bottom:12px}
-        .case-study-block p{margin-bottom:14px}
-        .case-study-list{padding-left:20px;color:#687789}
-        .case-study-list li{margin-bottom:9px}
-        .project-meta{display:grid;gap:12px}
-        .project-meta div{padding:15px;background:#f7f9fc;border-radius:12px}
-        .project-meta small{display:block;color:#087f5b;font-weight:800;margin-bottom:3px}
-        .project-meta strong{color:#0b1f3a}
-        .project-navigation{width:min(92%,1100px);margin:45px auto 0;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-        [data-project-files]{width:min(92%,1000px);margin:35px auto 0;display:grid;gap:18px}
-        @media(max-width:850px){.case-study-grid{grid-template-columns:1fr}}
+
+        .case-study-wrap {
+            width:min(92%,1100px);
+            margin:auto;
+        }
+
+        .case-study-grid {
+            display:grid;
+            grid-template-columns:1.15fr .85fr;
+            gap:55px;
+            align-items:start;
+        }
+
+        .case-study-block {
+            padding:28px;
+            background:#fff;
+            border:1px solid #dfe6ed;
+            border-radius:18px;
+            box-shadow:0 8px 25px rgba(7,20,38,.06);
+        }
+
+        .case-study-block h2,
+        .case-study-block h3 {
+            font-family:"Playfair Display",Georgia,serif;
+            margin-bottom:12px;
+        }
+
+        .case-study-block p {
+            margin-bottom:14px;
+        }
+
+        .case-study-list {
+            padding-left:20px;
+            color:#687789;
+        }
+
+        .case-study-list li {
+            margin-bottom:9px;
+        }
+
+        .project-meta {
+            display:grid;
+            gap:12px;
+        }
+
+        .project-meta div {
+            padding:15px;
+            background:#f7f9fc;
+            border-radius:12px;
+        }
+
+        .project-meta small {
+            display:block;
+            color:#087f5b;
+            font-weight:800;
+            margin-bottom:3px;
+        }
+
+        .project-meta strong {
+            color:#0b1f3a;
+        }
+
+        .project-navigation {
+            width:min(92%,1100px);
+            margin:45px auto 0;
+            display:flex;
+            justify-content:space-between;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+
+        [data-project-files] {
+            width:min(92%,1000px);
+            margin:35px auto 0;
+            display:grid;
+            gap:18px;
+        }
+
+        .kpi-grid {
+            width:min(92%,1100px);
+            margin:35px auto 0;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:18px;
+        }
+
+        .kpi-card {
+            padding:24px 18px;
+            background:#fff;
+            border:1px solid #dfe6ed;
+            border-radius:16px;
+            text-align:center;
+            box-shadow:0 8px 25px rgba(7,20,38,.05);
+        }
+
+        .kpi-card strong {
+            display:block;
+            color:#0b1f3a;
+            font-size:1.75rem;
+            font-weight:800;
+            margin-bottom:6px;
+        }
+
+        .kpi-card span {
+            color:#687789;
+            font-size:.84rem;
+            line-height:1.4;
+        }
+
+        .findings-grid {
+            width:min(92%,1100px);
+            margin:35px auto 0;
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:20px;
+        }
+
+        .finding-card {
+            padding:25px;
+            background:#fff;
+            border:1px solid #dfe6ed;
+            border-radius:16px;
+        }
+
+        .finding-card i {
+            color:#087f5b;
+            font-size:1.25rem;
+            margin-bottom:12px;
+        }
+
+        .finding-card h3 {
+            color:#0b1f3a;
+            margin-bottom:9px;
+            font-family:"Playfair Display",Georgia,serif;
+        }
+
+        .finding-card p {
+            color:#687789;
+            margin:0;
+        }
+
+        .transparency-note {
+            width:min(92%,1000px);
+            margin:30px auto 0;
+            padding:22px 24px;
+            background:#f7f9fc;
+            border-left:4px solid #c79a3b;
+            border-radius:12px;
+        }
+
+        .transparency-note strong {
+            display:block;
+            color:#0b1f3a;
+            margin-bottom:7px;
+        }
+
+        .transparency-note p {
+            color:#687789;
+            margin:0;
+        }
+
+        @media(max-width:850px) {
+
+            .case-study-grid {
+                grid-template-columns:1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .findings-grid {
+                grid-template-columns:1fr;
+            }
+
+        }
+
+        @media(max-width:560px) {
+
+            .kpi-grid {
+                grid-template-columns:1fr;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body data-page="project-04">
 
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
 <nav class="site-nav">
+
     <div class="nav-wrap">
 
-        <a class="brand brand-official-logo" href="index.html" aria-label="EKO Analytics & Research Home">
-            <img src="file_000000005e7c7243ba74d1018716cc17.png"
-                 alt="EKO Analytics & Research — Turning Data into Actionable Insights"
-                 class="brand-logo">
+        <a class="brand brand-official-logo"
+           href="index.html"
+           aria-label="EKO Analytics & Research Home">
+
+            <img
+                src="file_000000005e7c7243ba74d1018716cc17.png"
+                alt="EKO Analytics & Research — Turning Data into Actionable Insights"
+                class="brand-logo">
+
         </a>
 
-        <button class="nav-toggle" id="navToggle" type="button"
-                aria-label="Open navigation" aria-expanded="false">
+
+        <button class="nav-toggle"
+                id="navToggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+
             <i class="fas fa-bars"></i>
+
         </button>
 
-        <div class="nav-links" id="navLinks">
+
+        <div class="nav-links"
+             id="navLinks">
+
             <a href="index.html">Home</a>
+
             <a href="about.html">About</a>
+
             <a href="services.html">Services</a>
+
             <a href="projects.html">Projects</a>
+
             <a href="insights.html">Insights</a>
+
             <a href="contact.html">Contact</a>
-            <a class="nav-cta" href="contact.html#consultation">Request Consultation</a>
+
+            <a class="nav-cta"
+               href="contact.html#consultation">
+                Request Consultation
+            </a>
+
         </div>
 
     </div>
+
 </nav>
+
+
+
+<!-- =========================================================
+     PAGE HERO
+========================================================= -->
 
 <header class="page-hero">
 
-    <span class="eyebrow light">PROJECT 04 • MARKET RESEARCH</span>
+    <span class="eyebrow light">
+        PROJECT 04 • MARKET RESEARCH
+    </span>
 
-    <h1>Consumer Purchasing Behaviour &amp; Market Opportunity Study</h1>
+    <h1>
+        Consumer Purchasing Behaviour &amp;
+        Market Opportunity Study
+    </h1>
 
     <p>
-        A market-research case study examining consumer preferences,
-        purchasing behaviour, market segments and opportunities
-        for stronger market positioning.
+        A market-research case study examining consumer behaviour,
+        spending patterns, purchasing channels, switching behaviour,
+        unmet needs and relative market opportunities.
     </p>
 
 </header>
 
+
+
 <main>
+
+
+<!-- =========================================================
+     CASE STUDY OVERVIEW
+========================================================= -->
 
 <section class="section">
 
@@ -94,56 +316,146 @@
 
             <div>
 
+
                 <div class="case-study-block">
 
-                    <span class="eyebrow">CASE STUDY OVERVIEW</span>
+                    <span class="eyebrow">
+                        CASE STUDY OVERVIEW
+                    </span>
 
-                    <h2>Understanding customers before making market decisions.</h2>
+                    <h2>
+                        Understanding customers before making
+                        market decisions.
+                    </h2>
 
                     <p>
-                        Project 04 demonstrates how consumer research can help
-                        organisations understand purchasing motivations,
-                        preferences, customer segments and market opportunities.
+                        Project 04 demonstrates how EKO Analytics &amp;
+                        Research can transform consumer survey data into
+                        practical market intelligence for organisations
+                        considering new products, services, customer
+                        segments or market opportunities.
                     </p>
 
                     <p>
-                        The project transforms consumer evidence into practical
-                        insights for targeting, positioning and market strategy.
+                        The study analyses a synthetic dataset of
+                        500 consumers across five Kenyan urban markets,
+                        examining purchasing behaviour, spending,
+                        satisfaction, channel preferences, willingness
+                        to switch brands, purchase intent and unmet needs.
+                    </p>
+
+                    <p>
+                        Rather than relying on a single indicator,
+                        the analysis combines several consumer signals
+                        to identify areas that may justify deeper
+                        market validation and concept testing.
                     </p>
 
                 </div>
 
+
                 <br>
+
 
                 <div class="case-study-block">
 
-                    <span class="eyebrow">RESEARCH QUESTIONS</span>
+                    <span class="eyebrow">
+                        RESEARCH QUESTIONS
+                    </span>
 
-                    <h3>What the study investigates</h3>
+                    <h3>
+                        What the study investigates
+                    </h3>
 
                     <ul class="case-study-list">
-                        <li>What factors influence consumer purchasing decisions?</li>
-                        <li>Which product or service attributes matter most?</li>
-                        <li>How do purchasing behaviours vary across segments?</li>
-                        <li>What barriers affect purchasing decisions?</li>
-                        <li>Which customer groups offer stronger market potential?</li>
-                        <li>What opportunities exist for improved market positioning?</li>
+
+                        <li>
+                            What factors influence consumer
+                            purchasing decisions?
+                        </li>
+
+                        <li>
+                            How much are consumers spending across
+                            different product categories?
+                        </li>
+
+                        <li>
+                            Which purchasing channels do consumers prefer?
+                        </li>
+
+                        <li>
+                            How willing are consumers to switch
+                            from their current brands?
+                        </li>
+
+                        <li>
+                            What unmet needs influence purchasing behaviour?
+                        </li>
+
+                        <li>
+                            Which categories show stronger relative
+                            market-opportunity signals?
+                        </li>
+
                     </ul>
 
                 </div>
 
             </div>
 
+
+
             <aside class="case-study-block">
 
-                <span class="eyebrow">PROJECT PROFILE</span>
+                <span class="eyebrow">
+                    PROJECT PROFILE
+                </span>
 
                 <div class="project-meta">
-                    <div><small>PROJECT</small><strong>04</strong></div>
-                    <div><small>DOMAIN</small><strong>Market Research</strong></div>
-                    <div><small>FOCUS</small><strong>Consumer Purchasing Behaviour</strong></div>
-                    <div><small>ANALYSIS</small><strong>Segmentation &amp; Market Opportunity</strong></div>
-                    <div><small>OUTPUT</small><strong>Market Insights &amp; Strategic Recommendations</strong></div>
+
+                    <div>
+                        <small>PROJECT</small>
+                        <strong>04</strong>
+                    </div>
+
+                    <div>
+                        <small>DOMAIN</small>
+                        <strong>Market Research</strong>
+                    </div>
+
+                    <div>
+                        <small>DATASET</small>
+                        <strong>500 Synthetic Consumer Records</strong>
+                    </div>
+
+                    <div>
+                        <small>GEOGRAPHIC SCOPE</small>
+                        <strong>Five Kenyan Urban Markets</strong>
+                    </div>
+
+                    <div>
+                        <small>FOCUS</small>
+                        <strong>
+                            Consumer Purchasing Behaviour
+                        </strong>
+                    </div>
+
+                    <div>
+                        <small>ANALYSIS</small>
+                        <strong>
+                            Consumer Behaviour &amp;
+                            Market Opportunity
+                        </strong>
+                    </div>
+
+                    <div>
+                        <small>OUTPUT</small>
+                        <strong>
+                            Workbook, Analytical Report
+                            &amp; Strategic Recommendations
+                        </strong>
+                    </div>
+
                 </div>
 
             </aside>
@@ -154,65 +466,615 @@
 
 </section>
 
+
+
+<!-- =========================================================
+     ANALYTICAL FRAMEWORK
+========================================================= -->
+
 <section class="section alt">
 
     <div class="section-head center">
-        <span class="eyebrow">MARKET INTELLIGENCE</span>
-        <h2>From consumer evidence to market opportunity.</h2>
+
+        <span class="eyebrow">
+            MARKET INTELLIGENCE
+        </span>
+
+        <h2>
+            From consumer evidence to market opportunity.
+        </h2>
+
+        <p>
+            The analysis examines multiple dimensions of
+            consumer behaviour rather than treating market
+            demand as a single measure.
+        </p>
+
     </div>
+
 
     <div class="service-grid">
 
+
         <article class="service-card">
+
             <i class="fas fa-cart-shopping"></i>
-            <h3>Purchasing Behaviour</h3>
-            <p>Examine how consumers make purchasing decisions.</p>
+
+            <h3>
+                Purchasing Behaviour
+            </h3>
+
+            <p>
+                Examine purchasing frequency, spending
+                and category preferences.
+            </p>
+
         </article>
 
-        <article class="service-card">
-            <i class="fas fa-users-viewfinder"></i>
-            <h3>Segmentation</h3>
-            <p>Identify meaningful customer groups based on behaviours and characteristics.</p>
-        </article>
+
 
         <article class="service-card">
+
+            <i class="fas fa-money-bill-wave"></i>
+
+            <h3>
+                Consumer Spending
+            </h3>
+
+            <p>
+                Compare estimated monthly spending
+                across consumer categories.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
             <i class="fas fa-heart"></i>
-            <h3>Preferences</h3>
-            <p>Understand which attributes and benefits matter most to consumers.</p>
+
+            <h3>
+                Satisfaction
+            </h3>
+
+            <p>
+                Assess current consumer satisfaction
+                and areas where expectations remain unmet.
+            </p>
+
         </article>
 
+
+
         <article class="service-card">
+
+            <i class="fas fa-repeat"></i>
+
+            <h3>
+                Switching Behaviour
+            </h3>
+
+            <p>
+                Examine consumers' willingness to
+                change from their current brands.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
+            <i class="fas fa-store"></i>
+
+            <h3>
+                Channel Preference
+            </h3>
+
+            <p>
+                Understand the role of physical,
+                online and social purchasing channels.
+            </p>
+
+        </article>
+
+
+
+        <article class="service-card">
+
             <i class="fas fa-magnifying-glass-chart"></i>
-            <h3>Opportunity</h3>
-            <p>Identify potential gaps and areas of stronger market potential.</p>
+
+            <h3>
+                Market Opportunity
+            </h3>
+
+            <p>
+                Combine demand, spending, switching,
+                purchase intent and satisfaction signals.
+            </p>
+
         </article>
 
-        <article class="service-card">
-            <i class="fas fa-location-crosshairs"></i>
-            <h3>Positioning</h3>
-            <p>Translate research findings into clearer market positioning.</p>
-        </article>
-
-        <article class="service-card">
-            <i class="fas fa-chess"></i>
-            <h3>Strategy</h3>
-            <p>Develop evidence-based recommendations for market decisions.</p>
-        </article>
 
     </div>
 
 </section>
 
+
+
+<!-- =========================================================
+     KPI SUMMARY
+========================================================= -->
+
 <section class="section">
 
     <div class="section-head center">
-        <span class="eyebrow">PROJECT 04 DELIVERABLES</span>
-        <h2>View or download project resources.</h2>
+
+        <span class="eyebrow">
+            HEADLINE INDICATORS
+        </span>
+
+        <h2>
+            Key signals from the analysis.
+        </h2>
+
         <p>
-            Resources uploaded to Project 04 through the administrator
-            will automatically appear below.
+            The indicators below summarise the synthetic
+            consumer dataset used in this demonstration study.
         </p>
+
     </div>
+
+
+    <div class="kpi-grid">
+
+
+        <div class="kpi-card">
+
+            <strong>
+                500
+            </strong>
+
+            <span>
+                Consumer records analysed
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                KES 5,484
+            </strong>
+
+            <span>
+                Average estimated monthly spend
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                3.65 / 5
+            </strong>
+
+            <span>
+                Average current satisfaction
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                45.6%
+            </strong>
+
+            <span>
+                Willingness to switch brands
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                3.68 / 5
+            </strong>
+
+            <span>
+                Average purchase intent
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                38.2%
+            </strong>
+
+            <span>
+                Digital and social channel preference
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                Price
+            </strong>
+
+            <span>
+                Leading purchase driver
+            </span>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <strong>
+                Lower Prices
+            </strong>
+
+            <span>
+                Leading reported unmet need
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     KEY FINDINGS
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            KEY FINDINGS
+        </span>
+
+        <h2>
+            What the consumer evidence suggests.
+        </h2>
+
+    </div>
+
+
+    <div class="findings-grid">
+
+
+        <div class="finding-card">
+
+            <i class="fas fa-tags"></i>
+
+            <h3>
+                Price strongly influences purchasing behaviour.
+            </h3>
+
+            <p>
+                Price emerged as the leading purchase driver,
+                while lower prices were also the most frequently
+                identified unmet need. Affordability therefore
+                represents an important proposition-design issue.
+            </p>
+
+        </div>
+
+
+
+        <div class="finding-card">
+
+            <i class="fas fa-right-left"></i>
+
+            <h3>
+                Consumers show meaningful willingness to switch.
+            </h3>
+
+            <p>
+                45.6% of respondents indicated willingness to
+                switch brands, suggesting that stronger value
+                propositions may be able to attract customers
+                from existing alternatives.
+            </p>
+
+        </div>
+
+
+
+        <div class="finding-card">
+
+            <i class="fas fa-mobile-screen-button"></i>
+
+            <h3>
+                Digital channels matter, but do not dominate.
+            </h3>
+
+            <p>
+                Online Marketplace, Brand Website and Social
+                Commerce together represent 38.2% of preferred
+                purchasing channels. The result supports an
+                omnichannel rather than digital-only approach.
+            </p>
+
+        </div>
+
+
+
+        <div class="finding-card">
+
+            <i class="fas fa-microchip"></i>
+
+            <h3>
+                Electronics shows the strongest relative signal.
+            </h3>
+
+            <p>
+                Electronics recorded the highest relative
+                opportunity score in the model, supported by
+                an average monthly spend of approximately
+                KES 11,711 and the highest purchase-intent
+                score of 3.80/5.
+            </p>
+
+        </div>
+
+
+
+        <div class="finding-card">
+
+            <i class="fas fa-basket-shopping"></i>
+
+            <h3>
+                Demand volume and opportunity are not identical.
+            </h3>
+
+            <p>
+                Food &amp; Groceries recorded the largest demand
+                share at 25.4%, demonstrating why category size
+                should be considered alongside spending,
+                switching and purchase-intent indicators.
+            </p>
+
+        </div>
+
+
+
+        <div class="finding-card">
+
+            <i class="fas fa-chart-line"></i>
+
+            <h3>
+                Market signals require deeper validation.
+            </h3>
+
+            <p>
+                The analysis identifies areas for further
+                investigation rather than automatically
+                recommending market entry. Concept testing,
+                pricing research and competitor analysis
+                would be required before commercial decisions.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CATEGORY OPPORTUNITY
+========================================================= -->
+
+<section class="section">
+
+    <div class="case-study-wrap">
+
+        <div class="case-study-grid">
+
+
+            <div class="case-study-block">
+
+                <span class="eyebrow">
+                    RELATIVE OPPORTUNITY
+                </span>
+
+                <h2>
+                    Electronics emerges as a category
+                    for deeper concept testing.
+                </h2>
+
+                <p>
+                    Electronics represented 11.2% of category
+                    demand within the synthetic dataset, but
+                    recorded the highest average monthly spend
+                    at approximately KES 11,711 and the highest
+                    average purchase intent at 3.80/5.
+                </p>
+
+                <p>
+                    When demand, spending, willingness to switch,
+                    purchase intent and satisfaction gap were
+                    combined, Electronics produced the strongest
+                    relative opportunity score.
+                </p>
+
+                <p>
+                    This does not establish Electronics as the
+                    objectively best market opportunity. It
+                    identifies the category as a strong candidate
+                    for deeper validation through concept testing,
+                    pricing analysis and competitor research.
+                </p>
+
+            </div>
+
+
+
+            <div class="case-study-block">
+
+                <span class="eyebrow">
+                    OPPORTUNITY MODEL
+                </span>
+
+                <h3>
+                    Multiple signals were considered.
+                </h3>
+
+                <ul class="case-study-list">
+
+                    <li>
+                        Demand share — 25%
+                    </li>
+
+                    <li>
+                        Average spending — 15%
+                    </li>
+
+                    <li>
+                        Willingness to switch — 20%
+                    </li>
+
+                    <li>
+                        Purchase intent — 25%
+                    </li>
+
+                    <li>
+                        Satisfaction gap — 15%
+                    </li>
+
+                </ul>
+
+                <p>
+                    The resulting score is a relative analytical
+                    tool for prioritising further research.
+                    It is not a market-size estimate or sales forecast.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MANAGEMENT INTERPRETATION
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="case-study-wrap">
+
+        <div class="case-study-block">
+
+            <span class="eyebrow">
+                MANAGEMENT INTERPRETATION
+            </span>
+
+            <h2>
+                What could an organisation do with these findings?
+            </h2>
+
+            <p>
+                The analysis suggests that an organisation
+                considering market expansion should avoid
+                basing its decision on demand volume alone.
+            </p>
+
+            <ul class="case-study-list">
+
+                <li>
+                    Test the Electronics proposition more deeply
+                    before committing resources to market entry.
+                </li>
+
+                <li>
+                    Examine willingness to pay rather than assuming
+                    that lower prices automatically create the
+                    strongest commercial proposition.
+                </li>
+
+                <li>
+                    Develop an omnichannel customer journey combining
+                    digital access with reliable physical fulfilment
+                    and customer support.
+                </li>
+
+                <li>
+                    Segment the analysis further by age, income,
+                    location and channel preference.
+                </li>
+
+                <li>
+                    Benchmark competitor pricing, availability,
+                    service experience and positioning.
+                </li>
+
+                <li>
+                    Combine consumer demand evidence with commercial
+                    measures such as market size, margin,
+                    acquisition cost and retention.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT DELIVERABLES
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            PROJECT 04 DELIVERABLES
+        </span>
+
+        <h2>
+            View or download project resources.
+        </h2>
+
+        <p>
+            The analytical workbook and supporting reports
+            uploaded to Project 04 are available below.
+        </p>
+
+    </div>
+
 
     <div id="project04Files"
          data-project-files
@@ -221,86 +1083,243 @@
 
 </section>
 
+
+
+<!-- =========================================================
+     TRANSPARENCY
+========================================================= -->
+
+<section class="section alt">
+
+    <div class="section-head center">
+
+        <span class="eyebrow">
+            DATA TRANSPARENCY
+        </span>
+
+        <h2>
+            Portfolio demonstration project.
+        </h2>
+
+    </div>
+
+
+    <div class="transparency-note">
+
+        <strong>
+            Synthetic Data Disclosure
+        </strong>
+
+        <p>
+            Project 04 uses a synthetic dataset created for
+            EKO Analytics &amp; Research's professional portfolio.
+            The findings do not represent actual Kenyan consumers,
+            brands, market size or commercial performance.
+            The project demonstrates EKO's approach to consumer
+            research, market analysis, interpretation and
+            evidence-based decision support.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT NAVIGATION
+========================================================= -->
+
 <div class="project-navigation">
 
-    <a class="btn outline-dark" href="project-03.html">
+    <a class="btn outline-dark"
+       href="project-03.html">
+
         <i class="fas fa-arrow-left"></i>
+
         Project 03
+
     </a>
 
-    <a class="btn outline-dark" href="projects.html">
+
+    <a class="btn outline-dark"
+       href="projects.html">
+
         <i class="fas fa-table-cells-large"></i>
+
         All Projects
+
     </a>
 
-    <a class="btn primary" href="project-05.html">
+
+    <a class="btn primary"
+       href="project-05.html">
+
         Project 05
+
         <i class="fas fa-arrow-right"></i>
+
     </a>
 
 </div>
 
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
 <section class="cta-band">
+
     <div>
-        <span class="eyebrow light">WORK WITH EKO</span>
-        <h2>Need stronger market intelligence?</h2>
+
+        <span class="eyebrow light">
+            WORK WITH EKO
+        </span>
+
+        <h2>
+            Need stronger market intelligence?
+        </h2>
+
         <p>
             EKO can support consumer research, market analysis,
-            segmentation and evidence-based market strategy.
+            customer segmentation, opportunity assessment and
+            evidence-based market strategy.
         </p>
+
     </div>
 
-    <a class="btn gold" href="contact.html#consultation">
+
+    <a class="btn gold"
+       href="contact.html#consultation">
+
         <i class="fas fa-comments"></i>
+
         Discuss Your Project
+
     </a>
+
 </section>
 
+
 </main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer class="site-footer">
 
     <div class="footer-grid">
 
+
         <div>
+
             <div class="footer-brand footer-brand-logo">
-                <img src="file_000000005e7c7243ba74d1018716cc17.png"
-                     alt="EKO Analytics & Research"
-                     class="footer-logo">
+
+                <img
+                    src="file_000000005e7c7243ba74d1018716cc17.png"
+                    alt="EKO Analytics & Research"
+                    class="footer-logo">
+
             </div>
-            <p>Research, analytics and decision-support services for organisations that need clearer evidence and better decisions.</p>
+
+            <p>
+                Research, analytics and decision-support services
+                for organisations that need clearer evidence
+                and better decisions.
+            </p>
+
         </div>
 
-        <div>
-            <h4>Explore</h4>
-            <a href="about.html">About EKO</a>
-            <a href="services.html">Services</a>
-            <a href="projects.html">Projects</a>
-            <a href="insights.html">Insights</a>
-        </div>
+
 
         <div>
-            <h4>Contact</h4>
-            <a href="mailto:edwinokello24@gmail.com">edwinokello24@gmail.com</a>
-            <a href="tel:+254143947048">+254 143 947 048</a>
-            <a href="https://www.linkedin.com/in/edwin-kuchio-1280521a6/"
-               target="_blank" rel="noopener noreferrer">LinkedIn</a>
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="about.html">
+                About EKO
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="projects.html">
+                Projects
+            </a>
+
+            <a href="insights.html">
+                Insights
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <a href="mailto:ekoanalyticsltd@gmail.com">
+                ekoanalyticsltd@gmail.com
+            </a>
+
+            <a href="tel:+254143947048">
+                +254 143 947 048
+            </a>
+
+            <a href="https://www.linkedin.com/company/eko-analytics-andresearch/"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                LinkedIn
+
+            </a>
+
         </div>
 
     </div>
 
-    <div class="footer-bottom">
-        <span>© <span id="year"></span> EKO Analytics &amp; Research</span>
 
-        <a href="admin.html" class="admin-link"
-           title="Administrator" aria-label="Administrator">
+
+    <div class="footer-bottom">
+
+        <span>
+            © <span id="year"></span>
+            EKO Analytics &amp; Research
+        </span>
+
+
+        <a href="admin.html"
+           class="admin-link"
+           title="Administrator"
+           aria-label="Administrator">
+
             <i class="fas fa-lock"></i>
+
         </a>
+
     </div>
 
 </footer>
 
+
+
+<!-- =========================================================
+     MAIN JAVASCRIPT
+========================================================= -->
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
